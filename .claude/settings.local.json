@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd /Users/hammadmemon/Desktop/shoppish.index/_redirects)",
+      "Bash(grep -Ei '\\\\.\\(jpg|jpeg|png|webp|heic\\)$')",
+      "WebSearch"
+    ]
+  }
+}

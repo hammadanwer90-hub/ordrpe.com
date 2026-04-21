@@ -1,0 +1,3822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoppish — Shop USA. Deliver Pakistan.</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23080808'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia%2C serif' font-size='20' font-weight='bold' fill='%2300c65e'%3ES%3C/text%3E%3C/svg%3E">
+
+  <!-- SEO -->
+  <meta name="description" content="Shoppish — Shop any US store and get it delivered to Pakistan. Personal shopping, consolidation, Shoppish Card, in-store shopping and pre-orders. Join 5,000+ members.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shoppish — Shop USA. Deliver Pakistan.">
+  <meta property="og:description" content="Your wishlist doesn't stop at borders. Ours doesn't either. Shop any US store — we handle everything.">
+  <meta property="og:url" content="https://shoppish.pk">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://shoppish.pk/og-image.jpg">
+  <meta property="og:site_name" content="Shoppish">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shoppish — Shop USA. Deliver Pakistan.">
+  <meta name="twitter:description" content="Your wishlist doesn't stop at borders. Ours doesn't either.">
+  <meta name="twitter:image" content="https://shoppish.pk/og-image.jpg">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#00c65e">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVSSBKJ6D9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HVSSBKJ6D9');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #00c65e;
+      --green-dim: rgba(0,198,94,0.08);
+      --bg: #080808;
+      --bg2: #121212;
+      --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.10);
+      --border-light: rgba(255,255,255,0.18);
+      --text: #ffffff;
+      --muted: #999999;
+      --muted2: #b0b0b0;
+      --text-soft: #b8b8b8;
+      --text-muted: #a0a0a0;
+      --text-faint: #888888;
+      --nav-bg: rgba(8,8,8,0.92);
+      --step-num: rgba(255,255,255,0.04);
+      --btn-sec-hover: rgba(255,255,255,0.3);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f9f9f7;
+        --bg2: #f2f2f0;
+        --bg3: #e8e8e6;
+        --border: rgba(0,0,0,0.10);
+        --border-light: rgba(0,0,0,0.18);
+        --text: #0d0d0d;
+        --muted: #666666;
+        --muted2: #555555;
+        --text-soft: #555555;
+        --text-muted: #666666;
+        --text-faint: #777777;
+        --nav-bg: rgba(249,249,247,0.92);
+        --step-num: rgba(0,0,0,0.04);
+        --btn-sec-hover: rgba(0,0,0,0.3);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── CUSTOM CURSOR ─── */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(0,198,94,0.4);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), width 0.3s, height 0.3s, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(0,198,94,0.7); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: color-mix(in srgb, var(--nav-bg) 97%, #00c65e);
+      border-bottom: none;
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      box-shadow: 0 1px 0 rgba(0,198,94,0.12), 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* logo icon removed — wordmark only */
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .logo-text em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted2);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-pill {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      color: var(--text);
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .nav-pill:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .nav-pill.cta {
+      background: var(--green);
+      color: #000;
+      border-color: var(--green);
+      font-weight: 600;
+    }
+    .nav-pill.cta:hover { background: #00e06a; border-color: #00e06a; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient background glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,198,94,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    /* Ticker at top of hero */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      padding: 6px 16px 6px 8px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 100px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s ease forwards;
+    }
+    .hero h1 .line { display: block; overflow: hidden; }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 460px;
+      margin: 0 auto 52px;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: transform 0.4s cubic-bezier(.23,1,.32,1), background 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      will-change: transform;
+    }
+    .btn-primary:hover { background: #00e06a; }
+
+    .btn-secondary {
+      border: 1px solid var(--border-light);
+      color: var(--muted2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: border-color 0.25s, color 0.25s, transform 0.4s cubic-bezier(.23,1,.32,1);
+      will-change: transform;
+    }
+    .btn-secondary:hover { border-color: var(--btn-sec-hover); color: var(--text); }
+
+    .hero-calc-link {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-top: 4px;
+      transition: color 0.25s;
+      display: inline-block;
+    }
+    .hero-calc-link:hover { color: var(--green); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeIn 1s 1.4s ease forwards;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--green), transparent);
+      transform-origin: top;
+      animation: scrollDrop 2s 1.6s infinite;
+    }
+    .scroll-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    @keyframes scrollDrop {
+      0% { transform: scaleY(0); opacity: 1; }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
+    /* ─── TICKER ─── */
+    .ticker-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      background: var(--bg);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-right: 20px;
+      white-space: nowrap;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .ticker-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--green);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── STATS CARD ─── */
+    .stats-wrap {
+      padding: 48px 48px;
+    }
+    .stats-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .stat-block {
+      padding: 72px 48px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-block::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--green), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .stat-block:hover::before { opacity: 1; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 88px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -3px;
+    }
+    .stat-num sup {
+      font-size: 32px;
+      color: var(--green);
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(.25,.46,.45,.94), transform 0.9s cubic-bezier(.25,.46,.45,.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    .section-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 96px 48px;
+    }
+
+    .section-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .section-meta-line {
+      width: 32px;
+      height: 1px;
+      background: var(--green);
+    }
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .section-title em { font-style: italic; color: var(--green); }
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted2);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 56px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-wrap { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .step {
+      padding: 40px 32px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 300;
+      color: var(--step-num);
+      line-height: 1;
+      margin-bottom: -16px;
+      letter-spacing: -3px;
+    }
+    .step-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .step p {
+      font-size: 13px;
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+    .step-connector {
+      position: absolute;
+      top: 50%; right: -1px;
+      transform: translateY(-50%);
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      display: none;
+    }
+
+    /* ─── STEP SCENES ─── */
+    .step-scene {
+      width: 100%; height: 148px;
+      border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden; margin-bottom: 20px;
+      position: relative; background: #0a0a0a;
+      display: flex; flex-direction: column;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── sc1: Message thread ── */
+    .sc1-topbar {
+      height: 28px; background: #111;
+      display: flex; align-items: center; padding: 0 12px; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.05); flex-shrink:0;
+    }
+    .sc1-dot { width:5px; height:5px; border-radius:50%; background:#00c65e; }
+    .sc1-toplabel { font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#444; }
+    .sc1-body {
+      flex:1; display:flex; flex-direction:column;
+      justify-content:center; gap:8px; padding:10px 14px;
+    }
+    .sc1-row {
+      display:flex; align-items:flex-end; gap:8px;
+    }
+    .sc1-row.out { flex-direction:row-reverse; }
+    .sc1-bubble {
+      max-width:72%; padding:6px 10px; border-radius:10px;
+      font-size:8px; line-height:1.55; color:#ccc;
+      background:#1a1a1a; border:1px solid rgba(255,255,255,0.06);
+    }
+    .sc1-row.out .sc1-bubble { background:#0f2d1a; border-color:rgba(0,198,94,0.2); color:#c8f0d8; }
+    .sc1-time { font-size:6px; color:#333; flex-shrink:0; margin-bottom:2px; }
+    .sc1-row1 { opacity:0; animation: scFadeUp 5s infinite; }
+    .sc1-row2 { opacity:0; animation: scFadeUp 5s 1.2s infinite; }
+    .sc1-row3 { opacity:0; animation: scFadeUp 5s 2.2s infinite; }
+    @keyframes scFadeUp {
+      0%,5%   { opacity:0; transform:translateY(6px); }
+      18%,78% { opacity:1; transform:translateY(0); }
+      92%,100%{ opacity:0; }
+    }
+
+    /* ── sc2: Order progress ── */
+    .sc2-card {
+      flex:1; display:flex; flex-direction:column;
+      justify-content:center; padding:14px 16px; gap:10px;
+    }
+    .sc2-item { display:flex; justify-content:space-between; align-items:center; }
+    .sc2-iname { font-size:9px; font-weight:500; color:#e0e0e0; letter-spacing:0.2px; }
+    .sc2-iprice { font-size:11px; font-weight:700; color:#00c65e; letter-spacing:-0.3px; }
+    .sc2-track { display:flex; flex-direction:column; gap:5px; }
+    .sc2-track-label {
+      font-size:7px; letter-spacing:1.5px; text-transform:uppercase; color:#444;
+    }
+    .sc2-bar-wrap {
+      height:4px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden;
+    }
+    .sc2-bar-fill {
+      height:100%; background:#00c65e; border-radius:2px; width:0%;
+      animation: sc2BarFill 3.5s infinite;
+    }
+    .sc2-status {
+      font-size:8px; font-weight:600; color:#aaa; letter-spacing:0.3px;
+      animation: sc2StatusPulse 3.5s ease-in-out infinite;
+    }
+    @keyframes sc2BarFill {
+      0%,5%   { width:0%; }
+      60%,78% { width:100%; }
+      88%,100%{ width:0%; }
+    }
+    @keyframes sc2StatusPulse {
+      0%,100% { opacity: 0.5; }
+      50%     { opacity: 1; }
+    }
+
+    /* ── sc3: Shipping tracker ── */
+    .sc3-card {
+      flex:1; display:flex; flex-direction:column;
+      justify-content:center; padding:12px 16px; gap:12px;
+    }
+    .sc3-header { display:flex; justify-content:space-between; align-items:baseline; }
+    .sc3-title { font-size:9px; font-weight:600; color:#e0e0e0; letter-spacing:0.2px; }
+    .sc3-eta { font-size:7.5px; color:#555; letter-spacing:0.5px; }
+    .sc3-timeline { display:flex; align-items:center; gap:0; }
+    .sc3-step { display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; }
+    .sc3-node {
+      width:8px; height:8px; border-radius:50%;
+      border:1.5px solid #333; background:#0a0a0a;
+      position:relative; z-index:1;
+    }
+    .sc3-node.done { border-color:#00c65e; background:#00c65e; }
+    .sc3-node.active { border-color:#00c65e; background:#0a0a0a;
+      box-shadow: 0 0 0 3px rgba(0,198,94,0.15); animation: sc3Pulse 1.5s infinite; }
+    .sc3-slabel { font-size:6px; color:#444; letter-spacing:0.5px; text-align:center; white-space:nowrap; }
+    .sc3-slabel.done { color:#00c65e; }
+    .sc3-slabel.active { color:#aaa; }
+    .sc3-line {
+      flex:1; height:1.5px; background:#222; margin-top:-15px; position:relative; overflow:hidden;
+    }
+    .sc3-line.done { background:#00c65e; }
+    .sc3-progress {
+      position:absolute; top:0; left:0; height:100%; width:0%;
+      background:#00c65e; animation: sc3Progress 4s 0.5s infinite;
+    }
+    @keyframes sc3Pulse { 0%,100%{box-shadow:0 0 0 3px rgba(0,198,94,0.15);} 50%{box-shadow:0 0 0 5px rgba(0,198,94,0.25);} }
+    @keyframes sc3Progress { 0%,5%{width:0%;} 70%,90%{width:100%;} 100%{width:0%;} }
+
+    /* ── sc4: Delivery confirmation ── */
+    .sc4-card {
+      flex:1; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:8px; padding:12px;
+    }
+    .sc4-badge {
+      display:flex; align-items:center; gap:6px;
+      background:#0f2d1a; border:1px solid rgba(0,198,94,0.2);
+      border-radius:8px; padding:6px 12px; width:100%;
+      animation: sc4SlideIn 4s infinite;
+      opacity:0; transform:translateY(10px);
+    }
+    .sc4-icon {
+      width:24px; height:24px; border-radius:50%;
+      background:rgba(0,198,94,0.15); border:1.5px solid #00c65e;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .sc4-info { flex:1; }
+    .sc4-ihead { font-size:9px; font-weight:600; color:#c8f0d8; letter-spacing:0.2px; }
+    .sc4-isub { font-size:7px; color:#4a8a5a; margin-top:1px; }
+    .sc4-tag {
+      font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+      color:#00c65e; padding:2px 7px; border:1px solid rgba(0,198,94,0.3); border-radius:3px;
+      flex-shrink:0;
+    }
+    .sc4-tracking {
+      font-size:7px; color:#333; letter-spacing:1.5px; text-transform:uppercase;
+      opacity:0; animation: sc4TrackIn 4s 0.6s infinite;
+    }
+    @keyframes sc4SlideIn { 0%,8%{opacity:0;transform:translateY(10px);} 22%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
+    @keyframes sc4TrackIn { 0%,25%{opacity:0;} 40%,78%{opacity:1;} 90%,100%{opacity:0;} }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .service {
+      background: var(--bg);
+      padding: 40px 32px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--green), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .service:hover {
+      background: var(--bg3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,198,94,0.08);
+    }
+    .service:hover::after { transform: scaleX(1); }
+
+    /* ─── SERVICE SCENES ─── */
+    .svc-scene {
+      width:100%; height:120px; border-radius:8px;
+      border:1px solid rgba(255,255,255,0.07); overflow:hidden;
+      margin-bottom:18px; position:relative; background:#0a0a0a;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'DM Sans', sans-serif;
+    }
+
+    /* sv1 — Personal Shopping: shopping list */
+    .sv1 { flex-direction:column; align-items:stretch; justify-content:center; padding:0; }
+    .sv1-header {
+      padding:7px 14px 5px; border-bottom:1px solid rgba(255,255,255,0.05);
+      font-size:7px; letter-spacing:2px; text-transform:uppercase; color:#444;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .sv1-count { color:#00c65e; font-weight:700; font-size:8px; }
+    .sv1-list { flex:1; padding:6px 14px; display:flex; flex-direction:column; gap:5px; }
+    .sv1-item {
+      display:flex; align-items:center; gap:8px;
+      font-size:8px; color:#777; opacity:0;
+    }
+    .sv1-item.i1 { animation: sv1ItemIn 4s 0.2s infinite; }
+    .sv1-item.i2 { animation: sv1ItemIn 4s 0.9s infinite; }
+    .sv1-item.i3 { animation: sv1ItemIn 4s 1.6s infinite; }
+    .sv1-check {
+      width:11px; height:11px; border-radius:3px; flex-shrink:0;
+      border:1.5px solid #333; display:flex; align-items:center; justify-content:center;
+    }
+    .sv1-item.i1 .sv1-check { border-color:#00c65e; background:rgba(0,198,94,0.15); }
+    .sv1-item.i2 .sv1-check { border-color:#00c65e; background:rgba(0,198,94,0.15); }
+    .sv1-iname { flex:1; }
+    .sv1-iprice { color:#555; font-size:7.5px; }
+    @keyframes sv1ItemIn { 0%,3%{opacity:0;transform:translateX(-6px);} 15%,78%{opacity:1;transform:translateX(0);} 90%,100%{opacity:0;} }
+
+    /* sv2 — Consolidation: packages → savings */
+    .sv2 { flex-direction:column; gap:8px; padding:0 16px; align-items:stretch; }
+    .sv2-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .sv2-label { font-size:8px; color:#555; letter-spacing:0.3px; white-space:nowrap; }
+    .sv2-val { font-size:11px; font-weight:700; color:#e0e0e0; letter-spacing:-0.3px; }
+    .sv2-val.green { color:#00c65e; }
+    .sv2-divider { height:1px; background:rgba(255,255,255,0.05); }
+    .sv2-saving {
+      font-size:9px; font-weight:600; color:#00c65e; text-align:center;
+      opacity:0; animation: sv2SaveIn 4s 1s infinite;
+      letter-spacing:0.3px;
+    }
+    .sv2-row1 { opacity:0; animation: sv2RowIn 4s 0.1s infinite; }
+    .sv2-row2 { opacity:0; animation: sv2RowIn 4s 0.4s infinite; }
+    .sv2-row3 { opacity:0; animation: sv2RowIn 4s 0.7s infinite; }
+    @keyframes sv2RowIn { 0%,5%{opacity:0;} 18%,78%{opacity:1;} 90%,100%{opacity:0;} }
+    @keyframes sv2SaveIn { 0%,35%{opacity:0;transform:translateY(4px);} 50%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
+
+    /* sv3 — In-Store */
+    .sv3-scene { flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+    .sv3-pin {
+      width:28px; height:28px;
+      animation: sv3PinDrop 4s infinite;
+      opacity:0; transform:translateY(-10px);
+      filter:drop-shadow(0 3px 8px rgba(0,198,94,0.4));
+    }
+    .sv3-addr { text-align:center; }
+    .sv3-store { font-size:9px; font-weight:600; color:#e0e0e0; letter-spacing:0.3px; }
+    .sv3-city  { font-size:7.5px; color:#444; letter-spacing:0.5px; margin-top:2px; }
+    .sv3-status {
+      font-size:7.5px; color:#00c65e; letter-spacing:1px; text-transform:uppercase;
+      border:1px solid rgba(0,198,94,0.3); border-radius:100px; padding:2px 8px;
+      opacity:0; animation:sv3StatusIn 4s 1s infinite;
+    }
+    .sv3-addr { opacity:0; animation:sv3AddrIn 4s 0.4s infinite; }
+    @keyframes sv3PinDrop { 0%,8%{opacity:0;transform:translateY(-10px);} 22%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
+    @keyframes sv3AddrIn { 0%,18%{opacity:0;} 30%,78%{opacity:1;} 90%,100%{opacity:0;} }
+    @keyframes sv3StatusIn { 0%,38%{opacity:0;} 50%,78%{opacity:1;} 90%,100%{opacity:0;} }
+
+    /* sv4 — Shoppish Card */
+    .sv4 { flex-direction:column; gap:0; padding:12px 16px; align-items:stretch; }
+    .sv4-cardrow {
+      display:flex; align-items:center; gap:10px; margin-bottom:10px;
+      opacity:0; animation: sv4CardIn 4s infinite;
+    }
+    .sv4-card-mini {
+      width:48px; height:30px; border-radius:5px;
+      background:linear-gradient(135deg,#00c65e 0%,#004d25 100%);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 6px; flex-shrink:0;
+      box-shadow:0 3px 12px rgba(0,198,94,0.25);
+    }
+    .sv4-chip-mini {
+      width:8px; height:6px; border-radius:1.5px;
+      background:linear-gradient(135deg,#d4a800,#a07800);
+    }
+    .sv4-card-name { font-size:6px; font-weight:700; color:rgba(0,0,0,0.6); letter-spacing:0.8px; }
+    .sv4-card-info { flex:1; }
+    .sv4-card-label { font-size:7.5px; font-weight:600; color:#e0e0e0; }
+    .sv4-card-sub { font-size:6.5px; color:#555; margin-top:1px; }
+    .sv4-approved-row {
+      display:flex; align-items:center; gap:6px;
+      background:#0f2d1a; border:1px solid rgba(0,198,94,0.2); border-radius:6px; padding:6px 10px;
+      opacity:0; animation: sv4ApprIn 4s 1s infinite;
+    }
+    .sv4-check-icon { width:16px; height:16px; flex-shrink:0; }
+    .sv4-appr-text { font-size:8px; font-weight:600; color:#00c65e; }
+    .sv4-appr-sub  { font-size:6.5px; color:#4a8a5a; margin-top:1px; }
+    @keyframes sv4CardIn { 0%,5%{opacity:0;transform:translateY(5px);} 18%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
+    @keyframes sv4ApprIn { 0%,30%{opacity:0;transform:translateY(5px);} 44%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
+
+    /* sv5 — Pre-Orders */
+    .sv5 { flex-direction:column; gap:0; padding:10px 14px; align-items:stretch; }
+    .sv5-top {
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;
+      opacity:0; animation:sv5FadeIn 3s infinite;
+    }
+    .sv5-badge {
+      font-size:7px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:#00c65e; border:1px solid rgba(0,198,94,0.3); padding:2px 8px; border-radius:100px;
+    }
+    .sv5-timer { font-size:9px; font-weight:700; color:#e0e0e0; letter-spacing:1px; font-variant-numeric:tabular-nums; }
+    .sv5-product {
+      font-size:9px; font-weight:600; color:#e0e0e0; margin-bottom:3px;
+      opacity:0; animation:sv5FadeIn 3s 0.3s infinite;
+    }
+    .sv5-stock {
+      font-size:7.5px; color:#666; margin-bottom:8px;
+      opacity:0; animation:sv5FadeIn 3s 0.5s infinite;
+    }
+    .sv5-secured {
+      font-size:8.5px; font-weight:700; color:#00c65e; letter-spacing:1.5px; text-transform:uppercase;
+      border:1.5px solid rgba(0,198,94,0.4); border-radius:4px; padding:3px 10px;
+      align-self:flex-start; opacity:0; animation:sv5SecureIn 3s 1.2s infinite;
+    }
+    @keyframes sv5FadeIn { 0%,8%{opacity:0;} 20%,75%{opacity:1;} 88%,100%{opacity:0;} }
+    @keyframes sv5SecureIn { 0%,55%{opacity:0;transform:scale(0.9);} 68%,85%{opacity:1;transform:scale(1);} 96%,100%{opacity:0;} }
+
+    /* sv7 — Tax Refund */
+    .sv7 { flex-direction:column; gap:0; padding:10px 14px; align-items:stretch; }
+    .sv7-title {
+      font-size:7px; letter-spacing:2px; text-transform:uppercase; color:#444;
+      margin-bottom:8px; opacity:0; animation:sv7FadeIn 3.5s infinite;
+    }
+    .sv7-rows { display:flex; flex-direction:column; gap:5px; }
+    .sv7-row {
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:8px; opacity:0;
+    }
+    .sv7-row.r1 { animation:sv7FadeIn 3.5s 0.2s infinite; color:#666; }
+    .sv7-row.r2 { animation:sv7FadeIn 3.5s 0.4s infinite; color:#666; }
+    .sv7-row.r3 { animation:sv7FadeIn 3.5s 0.6s infinite; color:#e0e0e0; font-weight:600; border-top:1px solid rgba(255,255,255,0.06); padding-top:5px; margin-top:2px; }
+    .sv7-row.r4 { animation:sv7FadeIn 3.5s 1.4s infinite; color:#00c65e; font-weight:700; }
+    .sv7-row-val { font-variant-numeric:tabular-nums; }
+    @keyframes sv7FadeIn { 0%,5%{opacity:0;transform:translateX(-4px);} 18%,76%{opacity:1;transform:translateX(0);} 88%,100%{opacity:0;} }
+
+
+    .service h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .service p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+
+    /* ─── MEMBERSHIP ─── */
+    .tiers-wrap { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--border);
+      margin-bottom: 1px;
+    }
+    .tier-invite-row {
+      border: 1px dashed var(--border-light);
+      border-radius: 14px;
+      margin-top: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 24px 32px;
+      gap: 24px;
+      opacity: 0.75;
+      transition: opacity 0.3s;
+    }
+    .tier-invite-row:hover { opacity: 1; }
+    .tier-invite-info { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+    .tier-invite-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-faint); }
+    .tier-invite-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text); }
+    .tier-invite-desc { font-size: 12px; color: var(--text-muted); }
+    .tier {
+      background: var(--bg2);
+      padding: 32px 24px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s;
+    }
+    .tier:hover { background: var(--bg3); }
+    .tier-muted { opacity: 0.55; }
+    .tier-popular {
+      background: rgba(0,198,94,0.05);
+      outline: 1px solid rgba(0,198,94,0.35);
+      outline-offset: -1px;
+      z-index: 1;
+    }
+    .tier-best {
+      background: var(--bg3);
+    }
+    .tier-best-badge {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #000;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 0 0 8px 8px;
+    }
+    .tier-tag {
+      font-size: 8px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 2px;
+    }
+    .tier-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .tier-popular .tier-num,
+    .tier-best .tier-num { color: var(--green); }
+    .tier-price-line {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .tier-sub { font-size: 11px; font-weight: 300; color: var(--text-faint); }
+    .tier-perks {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+    .tier-perks li {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.4;
+    }
+    .tier-perks li:last-child { border-bottom: none; }
+    .tier-cta {
+      display: block;
+      text-align: center;
+      padding: 9px 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      color: var(--muted2);
+      transition: all 0.22s;
+      margin-top: auto;
+    }
+    .tier-cta:hover { background: var(--green); color: #000; border-color: var(--green); }
+    .tier-popular .tier-cta { background: var(--green); color: #000; border-color: var(--green); }
+    .tier-disclaimer {
+      text-align: center;
+      font-size: 10.5px;
+      color: var(--text-faint);
+      margin-top: 20px;
+    }
+    .tier-disclaimer a { color: var(--green); }
+
+    /* ─── INTRO OVERLAY ─── */
+    #intro-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #080808;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: all;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.9s cubic-bezier(.4,0,.2,1);
+    }
+    #intro-overlay.exit { opacity: 0; pointer-events: none; }
+
+    #intro-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    #intro-stage {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      width: 100vw; height: 100vh;
+    }
+
+    #iw-wish, #iw-shop {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 82px);
+      font-weight: 300;
+      white-space: nowrap;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+    #iw-wish {
+      font-style: italic;
+      color: rgba(255,255,255,0.92);
+    }
+    #iw-shop {
+      font-style: normal;
+      color: rgba(255,255,255,0.96);
+      font-weight: 400;
+    }
+
+    #iw-brand {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 82px);
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    #intro-skip {
+      position: fixed; bottom: 28px; right: 32px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #444; cursor: pointer;
+      transition: color 0.2s; z-index: 100000;
+    }
+    #intro-skip:hover { color: #00c65e; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      padding: 120px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(0,198,94,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .cta-band h2 em { font-style: italic; color: var(--green); }
+    .cta-band p {
+      font-size: 15px;
+      color: var(--text-soft);
+      margin-bottom: 44px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── TRUST BADGES ─── */
+    .trust-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.5px;
+    }
+    .trust-badge svg {
+      width: 14px; height: 14px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .trust-badges { gap: 16px; }
+      .trust-badge { font-size: 10px; }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 72px 48px 40px;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .footer-brand-name em { font-style: normal; color: var(--green); }
+    .footer-brand p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 220px; }
+
+    .footer-col h5 {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      font-size: 13px;
+      color: var(--muted2);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p { font-size: 11px; color: var(--text-faint); letter-spacing: 0.5px; }
+    .footer-flag { font-size: 13px; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (hover: none) {
+      .cursor, .cursor-ring { display: none; }
+    }
+
+    /* ─── HAMBURGER ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      cursor: pointer;
+      background: none; border: none; padding: 4px;
+      z-index: 102;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.35s cubic-bezier(.76,0,.24,1), opacity 0.25s, width 0.3s;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ─── MOBILE MENU OVERLAY ─── */
+    #mobile-menu {
+      position: fixed; inset: 0;
+      z-index: 101;
+      background: #080808;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      pointer-events: none;
+      transform: translateY(-100%);
+      transition: transform 0.55s cubic-bezier(.76,0,.24,1);
+      overflow: hidden;
+    }
+    #mobile-menu::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,198,94,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #mobile-menu.open {
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-menu-links {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+      list-style: none;
+    }
+    .mobile-menu-links li {
+      overflow: hidden;
+    }
+    .mobile-menu-links a {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 12vw, 72px);
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.15;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.25s;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: color 0.25s, transform 0.55s cubic-bezier(.16,1,.3,1), opacity 0.4s ease;
+    }
+    #mobile-menu.open .mobile-menu-links a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    #mobile-menu.open .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
+    #mobile-menu.open .mobile-menu-links li:nth-child(2) a { transition-delay: 0.18s; }
+    #mobile-menu.open .mobile-menu-links li:nth-child(3) a { transition-delay: 0.26s; }
+    .mobile-menu-links a::after {
+      content: '';
+      position: absolute; bottom: 8px; left: 0;
+      width: 0; height: 1px;
+      background: var(--green);
+      transition: width 0.3s ease;
+    }
+    .mobile-menu-links a:hover { color: #fff; }
+    .mobile-menu-links a:hover::after { width: 100%; }
+    .mobile-menu-links a em {
+      font-style: italic; color: var(--green);
+    }
+    .mobile-menu-footer {
+      position: absolute; bottom: 40px;
+      display: flex; gap: 20px; align-items: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s 0.35s ease, transform 0.4s 0.35s ease;
+    }
+    #mobile-menu.open .mobile-menu-footer {
+      opacity: 1; transform: translateY(0);
+    }
+    .mobile-menu-footer a {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #444; transition: color 0.2s;
+    }
+    .mobile-menu-footer a:hover { color: var(--green); }
+    .mobile-menu-footer .sep { color: #2a2a2a; }
+    .mobile-menu-wa {
+      padding: 10px 24px;
+      background: var(--green); color: #000 !important;
+      border-radius: 100px;
+      font-size: 11px !important; font-weight: 600;
+      letter-spacing: 1.5px !important;
+    }
+    .mobile-menu-wa:hover { background: #00e06a; color: #000 !important; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .stats-wrap { padding: 0 24px; }
+      .section-wrap { padding: 72px 24px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+      .step:nth-child(odd) { border-right: 1px solid var(--border); }
+      .step:last-child, .step:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .tiers { grid-template-columns: 1fr 1fr; }
+      .tier-invite-row { grid-template-columns: 1fr; }
+      .stats-section { grid-template-columns: 1fr 1fr; }
+      .stat-block:nth-child(2) { border-right: none; }
+      .stat-block:last-child { grid-column: span 2; border-top: 1px solid var(--border); border-right: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 44px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .nav-pill:not(.cta) { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .wa-cta-band { padding: 48px 24px; }
+      .wa-cta-inner { flex-direction: column; align-items: flex-start; }
+      .tiers { grid-template-columns: 1fr 1fr; }
+      .stats-section { grid-template-columns: 1fr; }
+      .stat-block { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-block:last-child { grid-column: auto; border-bottom: none; }
+      .cta-band { padding: 80px 24px; }
+      footer { padding: 48px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+      .step:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 0;
+        overflow: visible;
+        gap: 0;
+      }
+      .hero-stat {
+        border-right: none;
+        border: 1px solid var(--border);
+        padding: 14px 16px;
+        white-space: normal;
+      }
+    }
+
+    /* ─── HERO STATS ─── */
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 52px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.2s ease forwards;
+    }
+    .hero-stat {
+      padding: 10px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .hero-stat-num em { font-style: normal; color: var(--green); }
+    .hero-stat-label {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ─── SOCIAL PROOF ─── */
+    .proof-section { background: var(--bg); border-top: 1px solid var(--border); }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .proof-card {
+      background: var(--bg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.3s;
+    }
+    .proof-card:hover { background: var(--bg2); }
+    .proof-stars {
+      display: flex;
+      gap: 3px;
+      color: var(--green);
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+    .proof-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.6;
+      flex: 1;
+      position: relative;
+    }
+    .proof-quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -28px; left: -8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 1;
+      color: #00c65e;
+      opacity: 0.06;
+      pointer-events: none;
+      user-select: none;
+    }
+    .proof-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .proof-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1px solid rgba(0,198,94,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+      color: var(--green);
+      flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .proof-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.2; }
+    .proof-meta { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
+    .proof-verified {
+      margin-left: auto;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid rgba(0,198,94,0.3);
+      padding: 3px 8px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section { background: var(--bg); border-top: 1px solid var(--border); }
+    .faq-list { margin-top: 40px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      width: 100%;
+      background: none; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0;
+      cursor: pointer;
+      text-align: left;
+      gap: 24px;
+    }
+    .faq-question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
+      transition: color 0.25s;
+    }
+    .faq-item.open .faq-question-text { color: var(--green); }
+    .faq-icon {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--text-muted);
+      border-radius: 2px;
+      transition: transform 0.35s cubic-bezier(.76,0,.24,1), opacity 0.25s;
+    }
+    .faq-icon::before { width: 100%; height: 1.5px; top: 50%; left: 0; transform: translateY(-50%); }
+    .faq-icon::after  { width: 1.5px; height: 100%; top: 0; left: 50%; transform: translateX(-50%); }
+    .faq-item.open .faq-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+    .faq-item.open .faq-icon::before { background: var(--green); }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(.76,0,.24,1);
+    }
+    .faq-answer-inner {
+      padding-bottom: 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* ─── EMAIL CAPTURE ─── */
+    .email-strip {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 48px;
+    }
+    .email-strip-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+      flex-wrap: wrap;
+    }
+    .email-strip-text { flex: 1; min-width: 200px; }
+    .email-strip-eyebrow {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 6px;
+    }
+    .email-strip-line {
+      font-size: 14px; color: var(--text-muted); line-height: 1.5;
+    }
+    .email-strip-form {
+      display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap;
+    }
+    .email-strip-input {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--text);
+      outline: none; width: 240px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .email-strip-input::placeholder { color: var(--text-faint); }
+    .email-strip-input:focus {
+      border-color: rgba(0,198,94,0.5);
+      box-shadow: 0 0 0 3px rgba(0,198,94,0.07);
+    }
+    .email-strip-btn {
+      background: var(--green); color: #000;
+      border: none; border-radius: 10px;
+      padding: 12px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .email-strip-btn:hover { background: #00e06a; transform: translateY(-1px); }
+    .email-strip-confirm {
+      font-size: 12px; color: var(--green);
+      display: none; align-items: center; gap: 6px;
+      padding: 12px 0;
+    }
+    .email-strip-confirm.show { display: flex; }
+    @media (max-width: 768px) {
+      .email-strip { padding: 32px 24px; }
+      .email-strip-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .email-strip-input { width: 100%; }
+      .email-strip-form { width: 100%; }
+      .email-strip-btn { flex: 1; }
+    }
+
+    /* ─── WHATSAPP CTA BAND ─── */
+    .wa-cta-band {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: 100%;
+    }
+    .wa-cta-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .wa-cta-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .wa-cta-text h3 em { font-style: italic; color: var(--green); }
+    .wa-cta-text p { font-size: 13px; color: var(--text-muted); }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: background 0.25s, transform 0.25s;
+      flex-shrink: 0;
+    }
+    .btn-whatsapp:hover { background: #20bd59; transform: translateY(-1px); }
+    .btn-whatsapp svg { width: 18px; height: 18px; fill: #000; flex-shrink: 0; }
+
+    /* sv3 and sv7 styles now in service scenes section */
+
+    /* ─── BACK TO TOP ─── */
+    #back-to-top {
+      position: fixed;
+      bottom: 32px; left: 32px;
+      z-index: 800;
+      width: 42px; height: 42px;
+      background: var(--bg2);
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+    }
+    #back-to-top.show { opacity: 1; pointer-events: all; transform: translateY(0); }
+    #back-to-top:hover { background: var(--green); border-color: var(--green); }
+    #back-to-top:hover svg { stroke: #000; }
+    #back-to-top svg { width: 16px; height: 16px; stroke: var(--text-muted); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+    @media (max-width: 600px) { #back-to-top { display: none; } }
+
+    /* ─── PAGE TRANSITION ─── */
+    #page-transition {
+      position: fixed; inset: 0;
+      background: #080808;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ─── STICKY MOBILE WA BAR ─── */
+    #sticky-wa-bar {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      #sticky-wa-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 8900;
+        background: var(--green);
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px 24px;
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+        box-shadow: 0 -4px 24px rgba(0,198,94,0.3);
+      }
+      #sticky-wa-bar.visible { transform: translateY(0); }
+      .sticky-wa-bar-text {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px; font-weight: 600;
+        color: #000; letter-spacing: 0.3px;
+      }
+      .sticky-wa-bar-sub {
+        font-size: 11px; color: rgba(0,0,0,0.65);
+        margin-top: 1px;
+      }
+      .sticky-wa-bar-btn {
+        background: #000; color: var(--green);
+        border: none; border-radius: 100px;
+        padding: 10px 20px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px; font-weight: 600;
+        letter-spacing: 1px; text-transform: uppercase;
+        cursor: pointer; white-space: nowrap;
+        flex-shrink: 0;
+        text-decoration: none;
+        display: inline-flex; align-items: center; gap: 6px;
+      }
+      #chat-fab { bottom: 88px; }
+    }
+
+    /* ─── EXIT INTENT POPUP ─── */
+    #exit-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    #exit-overlay.show { opacity: 1; pointer-events: all; }
+    #exit-popup {
+      background: var(--bg2);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 48px 44px;
+      max-width: 460px;
+      width: calc(100% - 48px);
+      text-align: center;
+      position: relative;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #exit-overlay.show #exit-popup { transform: translateY(0) scale(1); }
+    #exit-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      color: var(--text-faint); font-size: 22px; line-height: 1;
+      padding: 4px 8px;
+    }
+    #exit-close:hover { color: var(--text); }
+    .exit-icon { font-size: 36px; margin-bottom: 16px; }
+    .exit-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .exit-headline em { font-style: italic; color: var(--green); }
+    .exit-sub {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.65; margin-bottom: 28px;
+    }
+    .exit-actions { display: flex; flex-direction: column; gap: 10px; }
+    .exit-btn-primary {
+      background: var(--green); color: #000;
+      border: none; border-radius: 100px;
+      padding: 15px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+      text-decoration: none; display: inline-block;
+    }
+    .exit-btn-primary:hover { background: #00e06a; transform: translateY(-1px); }
+    .exit-btn-dismiss {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-faint); font-size: 12px;
+      letter-spacing: 0.5px; padding: 6px;
+      transition: color 0.2s;
+    }
+    .exit-btn-dismiss:hover { color: var(--text-muted); }
+    @media (max-width: 600px) { #exit-overlay { display: none !important; } }
+
+    /* ─── SCROLL PROGRESS BAR ─── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--green);
+      z-index: 99999;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ─── TIER Y BORDER GLOW ─── */
+    .tier-popular {
+      position: relative;
+    }
+    .tier-popular::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from var(--angle, 0deg),
+        transparent 0deg,
+        rgba(0,198,94,0.6) 60deg,
+        transparent 120deg
+      );
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .tier-popular:hover::before {
+      opacity: 1;
+      animation: borderSpin 3s linear infinite;
+    }
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes borderSpin {
+      to { --angle: 360deg; }
+    }
+    .tier-popular > * { position: relative; z-index: 1; }
+
+    /* ─── FAB PULSE ─── */
+    #chat-fab::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--green);
+      z-index: -1;
+      animation: fabPulse 2.5s ease-out infinite;
+    }
+    @keyframes fabPulse {
+      0%   { transform: scale(1);   opacity: 0.5; }
+      70%  { transform: scale(1.9); opacity: 0; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    /* ─── CHAT WIDGET ─── */
+    #chat-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9000;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--green);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,198,94,0.40);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      isolation: isolate;
+    }
+    #chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,198,94,0.55); }
+    #chat-fab svg { width: 26px; height: 26px; fill: #000; transition: opacity 0.15s; }
+    #chat-fab .icon-close { display: none; }
+    #chat-fab.open .icon-chat  { display: none; }
+    #chat-fab.open .icon-close { display: block; }
+
+    #chat-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 8999;
+      width: 360px;
+      max-width: calc(100vw - 40px);
+      height: 520px;
+      max-height: calc(100vh - 120px);
+      background: var(--bg2);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px) scale(0.97);
+      transform-origin: bottom right;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    #chat-panel.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0) scale(1);
+    }
+
+    .chat-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .chat-header-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.2; }
+    .chat-header-status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 4px; }
+    .chat-header-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
+    .chat-close-btn {
+      width: 28px; height: 28px;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 20px; line-height: 1;
+      border-radius: 6px;
+      margin-left: auto;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+    .chat-close-btn:hover { color: var(--text); }
+
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+    #chat-messages::-webkit-scrollbar { width: 4px; }
+    #chat-messages::-webkit-scrollbar-track { background: transparent; }
+    #chat-messages::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+    .chat-msg {
+      max-width: 82%;
+      padding: 9px 13px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .chat-msg.bot {
+      background: var(--bg3);
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+    .chat-msg.user {
+      background: var(--green);
+      color: #000;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+    }
+
+    .chat-typing {
+      align-self: flex-start;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg3);
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-typing span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: typingDot 1.2s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .chat-footer {
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+    #chat-input {
+      flex: 1;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 13.5px;
+      padding: 9px 12px;
+      resize: none;
+      outline: none;
+      min-height: 38px;
+      max-height: 110px;
+      font-family: inherit;
+      line-height: 1.45;
+      transition: border-color 0.15s;
+    }
+    #chat-input::placeholder { color: var(--muted); }
+    #chat-input:focus { border-color: var(--green); }
+    #chat-send {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--green);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    #chat-send:disabled { opacity: 0.45; cursor: not-allowed; }
+    #chat-send svg { width: 17px; height: 17px; fill: #000; }
+
+    .chat-api-notice {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      padding: 0 16px 10px;
+      flex-shrink: 0;
+    }
+    .chat-api-key-form {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chat-api-key-form p { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+    .chat-api-key-form input {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .chat-api-key-form input:focus { border-color: var(--green); }
+    .chat-api-key-form button {
+      background: var(--green);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ─── SITEWIDE INTERACTIVE FEEL ─── */
+    .nav-pill,
+    .btn-primary,
+    .btn-secondary,
+    .btn-whatsapp,
+    .tier-cta,
+    .exit-btn-primary,
+    .hero-calc-link,
+    #chat-send,
+    .api-key-submit {
+      will-change: transform;
+    }
+
+    .nav-pill { transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s cubic-bezier(.23,1,.32,1); }
+    .nav-pill:not(.cta):hover { transform: translateY(-1px); }
+    .nav-pill.cta:hover       { transform: translateY(-1px); }
+
+    .btn-primary:hover    { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,198,94,0.25); }
+    .btn-secondary:hover  { transform: translateY(-2px); }
+    .tier-cta:hover       { transform: translateY(-2px); }
+
+    .nav-pill:active,
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-whatsapp:active,
+    .tier-cta:active,
+    .exit-btn-primary:active,
+    .hero-calc-link:active,
+    #chat-send:not(:disabled):active {
+      transform: scale(0.95) translateY(1px) !important;
+      transition: transform 0.08s ease !important;
+    }
+  </style>
+
+  <!-- ── ANALYTICS & HEATMAPS ── -->
+
+  <!-- Google Analytics 4 -->
+  <!-- Replace G-XXXXXXXXXX with your actual Google Analytics 4 measurement ID from analytics.google.com -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Hotjar -->
+  <!-- Replace 0000000 with your actual Hotjar site ID from hotjar.com -->
+  <script>
+    (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:'0000000',hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- INTRO OVERLAY -->
+  <div id="intro-overlay">
+    <canvas id="intro-canvas"></canvas>
+    <div id="intro-stage">
+      <span id="iw-wish">wish.</span>
+      <span id="iw-shop">shop.</span>
+      <span id="iw-brand">SHOPPISH</span>
+    </div>
+    <div id="intro-skip">skip →</div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu-links">
+      <li><a href="#how" class="mobile-link">Process</a></li>
+      <li><a href="membership.html" class="mobile-link">Membership</a></li>
+      <li><a href="calculator.html" class="mobile-link">Calc<em>u</em>lator</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <a href="https://instagram.com/shoppish.pk" target="_blank" rel="noopener">@shoppish.pk</a>
+      <span class="sep">·</span>
+      <a href="https://wa.me/923143442661?utm_source=website&utm_medium=nav&utm_campaign=whatsapp" class="mobile-menu-wa" target="_blank" rel="noopener">Join Now</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <div class="logo-wrap">
+      <span class="logo-text">SHOPP<em>I</em>SH</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#how">Process</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://instagram.com/shoppish.pk" class="nav-pill">@shoppish.pk</a>
+      <a href="#join" class="nav-pill cta">Join Now</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Trusted by shoppers in Karachi, Lahore, Islamabad &amp; beyond
+    </div>
+    <h1>
+      <span class="line">Shop the USA.</span>
+      <span class="line"><em>Delivered</em> to Pakistan.</span>
+    </h1>
+    <p class="hero-sub">Your wishlist doesn't stop at borders. Ours doesn't either.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Start Shopping <span>→</span></a>
+      <a href="#how" class="btn-secondary">How It Works</a>
+    </div>
+    <a href="calculator.html" class="hero-calc-link reveal reveal-delay-1">Calculate your landed cost →</a>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5,000<em>+</em></div>
+        <div class="hero-stat-label">Members</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50<em>+</em></div>
+        <div class="hero-stat-label">US Stores</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">48<em>h</em></div>
+        <div class="hero-stat-label">Avg Order Time</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4.9<em>★</em></div>
+        <div class="hero-stat-label">Member Rating</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <!-- set repeated twice for seamless loop -->
+      <div class="ticker-item"><span>Personal Shopping</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Consolidation</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Shoppish Card</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>In-Store Shopping</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Pre-Orders</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Tax Refunds</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>USA to Pakistan</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Personal Shopping</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Consolidation</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Shoppish Card</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>In-Store Shopping</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Pre-Orders</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Tax Refunds</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>USA to Pakistan</span><span class="ticker-dot"></span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div class="stats-card">
+      <div class="stats-section">
+        <div class="stat-block reveal">
+          <div class="stat-num"><span class="counter" data-target="5000">0</span><sup>+</sup></div>
+          <div class="stat-label">Members</div>
+          <div class="stat-sub">and growing every week</div>
+        </div>
+        <div class="stat-block reveal reveal-delay-2">
+          <div class="stat-num"><span class="counter" data-target="50">0</span><sup>+</sup></div>
+          <div class="stat-label">US Stores</div>
+          <div class="stat-sub">online and in-person</div>
+        </div>
+        <div class="stat-block reveal reveal-delay-4">
+          <div class="stat-num"><span class="counter" data-target="48">0</span><sup>h</sup></div>
+          <div class="stat-label">Avg. Order Time</div>
+          <div class="stat-sub">from request to purchase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-wrap" id="how">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">Process</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1">How It <em>Works</em></div>
+      <p class="section-sub reveal reveal-delay-2">You wish it. We ship it. Simple as that.</p>
+      <div class="steps">
+        <div class="step reveal reveal-delay-1">
+          <div class="step-scene">
+            <div class="sc1-topbar">
+              <div class="sc1-dot"></div>
+              <span class="sc1-toplabel">WhatsApp · Shoppish</span>
+            </div>
+            <div class="sc1-body">
+              <div class="sc1-row out sc1-row1">
+                <div class="sc1-bubble">Nike Dunk Low Panda SZ 10<br>nike.com/t/dunk-low/...</div>
+                <div class="sc1-time">11:42</div>
+              </div>
+              <div class="sc1-row sc1-row2">
+                <div class="sc1-bubble">Got it! Checking availability now.</div>
+                <div class="sc1-time">11:42</div>
+              </div>
+              <div class="sc1-row sc1-row3">
+                <div class="sc1-bubble">In stock — confirming your order ✓</div>
+                <div class="sc1-time">11:43</div>
+              </div>
+            </div>
+          </div>
+          <div class="step-number">01</div>
+          <div class="step-tag">Step One</div>
+          <h3>Send the Link</h3>
+          <p>Share any product link or name with us on WhatsApp. We handle the rest.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-scene">
+            <div class="sc2-card">
+              <div class="sc2-item">
+                <div class="sc2-iname">Nike Dunk Low Panda · US 10</div>
+                <div class="sc2-iprice">$129.99</div>
+              </div>
+              <div class="sc2-track">
+                <div class="sc2-track-label">Order Status</div>
+                <div class="sc2-bar-wrap"><div class="sc2-bar-fill"></div></div>
+                <div class="sc2-status"></div>
+              </div>
+            </div>
+          </div>
+          <div class="step-number">02</div>
+          <div class="step-tag">Step Two</div>
+          <h3>We Purchase It</h3>
+          <p>Our team buys your item from any US store or website — in-person or online.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-scene">
+            <div class="sc3-card">
+              <div class="sc3-header">
+                <div class="sc3-title">Shipment Tracking</div>
+                <div class="sc3-eta">ETA: 8–12 days</div>
+              </div>
+              <div class="sc3-timeline">
+                <div class="sc3-step">
+                  <div class="sc3-node done"></div>
+                  <div class="sc3-slabel done">Ordered</div>
+                </div>
+                <div class="sc3-line done"></div>
+                <div class="sc3-step">
+                  <div class="sc3-node done"></div>
+                  <div class="sc3-slabel done">Packed</div>
+                </div>
+                <div class="sc3-line"><div class="sc3-progress"></div></div>
+                <div class="sc3-step">
+                  <div class="sc3-node active"></div>
+                  <div class="sc3-slabel active">In Transit</div>
+                </div>
+                <div class="sc3-line"></div>
+                <div class="sc3-step">
+                  <div class="sc3-node"></div>
+                  <div class="sc3-slabel">Pakistan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="step-number">03</div>
+          <div class="step-tag">Step Three</div>
+          <h3>We Pack &amp; Ship</h3>
+          <p>Your order is carefully packed and shipped internationally from our US warehouse.</p>
+        </div>
+        <div class="step reveal reveal-delay-4">
+          <div class="step-scene">
+            <div class="sc4-card">
+              <div class="sc4-badge">
+                <div class="sc4-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6.5l2.5 2.5 5.5-5.5" stroke="#00c65e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="sc4-info">
+                  <div class="sc4-ihead">Your order has arrived</div>
+                  <div class="sc4-isub">Delivered to your address in Pakistan</div>
+                </div>
+                <div class="sc4-tag">Done</div>
+              </div>
+              <div class="sc4-tracking">TRK · SHP-2024-00847</div>
+            </div>
+          </div>
+          <div class="step-number">04</div>
+          <div class="step-tag">Step Four</div>
+          <h3>You Receive It</h3>
+          <p>Delivered to your door in Pakistan. Fully tracked the entire way.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">Services</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1">What We <em>Offer</em></div>
+      <p class="section-sub reveal reveal-delay-2">Every way to shop America — we've got it covered.</p>
+      <div class="services-grid">
+        <div class="service reveal reveal-delay-1">
+          <div class="svc-scene sv1">
+            <div class="sv1-header">
+              <span>Shopping List</span>
+              <span class="sv1-count">3 items</span>
+            </div>
+            <div class="sv1-list">
+              <div class="sv1-item i1">
+                <div class="sv1-check"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="M1 3.5l2 2 3-3" stroke="#00c65e" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+                <div class="sv1-iname">Nike Dunk Low Panda SZ 10</div>
+                <div class="sv1-iprice">$129</div>
+              </div>
+              <div class="sv1-item i2">
+                <div class="sv1-check"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="M1 3.5l2 2 3-3" stroke="#00c65e" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+                <div class="sv1-iname">Yeezy 350 V2 Bone SZ 9</div>
+                <div class="sv1-iprice">$230</div>
+              </div>
+              <div class="sv1-item i3">
+                <div class="sv1-check"></div>
+                <div class="sv1-iname">Supreme Box Logo Hoodie M</div>
+                <div class="sv1-iprice">$168</div>
+              </div>
+            </div>
+          </div>
+          <h3>Personal Shopping</h3>
+          <p>Send us a link. We buy it, pack it, ship it. You just wait at the door.</p>
+        </div>
+        <div class="service reveal reveal-delay-2">
+          <div class="svc-scene sv2">
+            <div class="sv2-row sv2-row1">
+              <div class="sv2-label">3 separate shipments</div>
+              <div class="sv2-val">$186</div>
+            </div>
+            <div class="sv2-divider"></div>
+            <div class="sv2-row sv2-row2">
+              <div class="sv2-label">1 consolidated shipment</div>
+              <div class="sv2-val">$94</div>
+            </div>
+            <div class="sv2-divider"></div>
+            <div class="sv2-row sv2-row3">
+              <div class="sv2-label">You save</div>
+              <div class="sv2-val green">$92</div>
+            </div>
+            <div class="sv2-saving">Consolidation applied ✓</div>
+          </div>
+          <h3>Consolidation</h3>
+          <p>Order from 10 different stores. Pay shipping once. The math does the rest.</p>
+        </div>
+        <div class="service reveal reveal-delay-3">
+          <div class="svc-scene sv4">
+            <div class="sv4-cardrow">
+              <div class="sv4-card-mini">
+                <div class="sv4-chip-mini"></div>
+                <div class="sv4-card-name">SHOPPISH</div>
+              </div>
+              <div class="sv4-card-info">
+                <div class="sv4-card-label">Shoppish Card</div>
+                <div class="sv4-card-sub">Virtual US debit card</div>
+              </div>
+            </div>
+            <div class="sv4-approved-row">
+              <svg class="sv4-check-icon" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="#00c65e" stroke-width="1.2" fill="rgba(0,198,94,0.1)"/>
+                <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke="#00c65e" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <div class="sv4-appr-text">Payment Approved</div>
+                <div class="sv4-appr-sub">$129.99 · nike.com</div>
+              </div>
+            </div>
+          </div>
+          <h3>Shoppish Card</h3>
+          <p>A US card in your pocket. Shop Nike, Amazon, Supreme — at the actual US price.</p>
+        </div>
+        <div class="service reveal reveal-delay-4">
+          <div class="svc-scene sv5">
+            <div class="sv5-top">
+              <div class="sv5-badge">Limited Drop</div>
+              <div class="sv5-timer">00:04:22</div>
+            </div>
+            <div class="sv5-product">Jordan 4 Retro Thunder 2023</div>
+            <div class="sv5-stock">Only 3 pairs left · US 10</div>
+            <div class="sv5-secured">Secured ✓</div>
+          </div>
+          <h3>Pre-Orders</h3>
+          <p>Limited drop. 3 pairs left. We already got yours.</p>
+        </div>
+        <div class="service reveal reveal-delay-5">
+          <div class="svc-scene sv3-scene">
+            <svg class="sv3-pin" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C8.69 2 6 4.69 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.31-2.69-6-6-6z" fill="#00c65e" opacity="0.85"/>
+              <circle cx="12" cy="8" r="2.2" fill="#000" opacity="0.4"/>
+            </svg>
+            <div class="sv3-addr">
+              <div class="sv3-store">Nike Factory Store</div>
+              <div class="sv3-city">Portland, OR · USA</div>
+            </div>
+            <div class="sv3-status">We're there</div>
+          </div>
+          <h3>In-Store Shopping</h3>
+          <p>If it's not online, we walk in. Physically. In the US. For you.</p>
+        </div>
+        <div class="service reveal reveal-delay-6">
+          <div class="svc-scene sv7">
+            <div class="sv7-title">Bulk Order · Tax Refund Applied</div>
+            <div class="sv7-rows">
+              <div class="sv7-row r1"><span>8 items subtotal</span><span class="sv7-row-val">$642.00</span></div>
+              <div class="sv7-row r2"><span>Sales tax (10.6%)</span><span class="sv7-row-val">$68.05</span></div>
+              <div class="sv7-row r3"><span>Total charged</span><span class="sv7-row-val">$710.05</span></div>
+              <div class="sv7-row r4"><span>Tax refund</span><span class="sv7-row-val">− $68.05 ✓</span></div>
+            </div>
+          </div>
+          <h3>Bulk &amp; Tax Refunds</h3>
+          <p>We claim your US sales tax back. That's free money — we just get it for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="proof-section" id="reviews">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">Reviews</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1">What Members <em>Say</em></div>
+      <p class="section-sub reveal reveal-delay-2">5,000+ members can't all be wrong.</p>
+      <div class="proof-grid">
+        <div class="proof-card reveal reveal-delay-1">
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-quote">"Ordered Yeezys from StockX — got them in 12 days. The process was so smooth I didn't even have to think about it. Shoppish handled everything."</div>
+          <div class="proof-author">
+            <div class="proof-avatar">A</div>
+            <div>
+              <div class="proof-name">Ahmed R.</div>
+              <div class="proof-meta">Lahore · Tier S Member</div>
+            </div>
+            <div class="proof-verified">Verified</div>
+          </div>
+        </div>
+        <div class="proof-card reveal reveal-delay-2">
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-quote">"I bulk-ordered skincare from Sephora — 11 items. They consolidated everything, applied the tax refund, and I saved over $80. 100% worth it."</div>
+          <div class="proof-author">
+            <div class="proof-avatar">S</div>
+            <div>
+              <div class="proof-name">Sara M.</div>
+              <div class="proof-meta">Karachi · Tier Y Member</div>
+            </div>
+            <div class="proof-verified">Verified</div>
+          </div>
+        </div>
+        <div class="proof-card reveal reveal-delay-3">
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-quote">"The Shoppish Card is unreal. I literally shopped Nike.com myself at the US price. No middleman markup. Just the actual price with their service fee on top."</div>
+          <div class="proof-author">
+            <div class="proof-avatar">U</div>
+            <div>
+              <div class="proof-name">Usman K.</div>
+              <div class="proof-meta">Islamabad · Tier S Member</div>
+            </div>
+            <div class="proof-verified">Verified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP CTA -->
+  <div class="wa-cta-band">
+    <div class="wa-cta-inner reveal">
+      <div class="wa-cta-text">
+        <h3>Your first order is one<br><em>message away.</em></h3>
+        <p>Drop us a link on WhatsApp. We'll handle everything else.</p>
+      </div>
+      <a href="https://wa.me/923143442661?utm_source=website&utm_medium=cta_band&utm_campaign=whatsapp" target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">FAQ</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1">Questions, <em>Answered</em></div>
+      <div class="faq-list reveal reveal-delay-2">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">How long does shipping take?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Typically 8–14 days from purchase to your door in Pakistan. Express options are available for Tier S and above.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">How do I pay?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">You pay us directly via bank transfer or your preferred method after we confirm your order and final cost. No upfront payment until you approve the quote.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Can you buy from any US store?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Yes — any online US store, and we also do in-store purchases physically at US malls and outlets.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">What if my item arrives damaged?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">We photograph every item before shipping. Tier S and above members get full dispute handling support. All shipments are insured.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">How do I track my order?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">You receive tracking updates directly on WhatsApp at every stage — purchased, packed, shipped, and delivered.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">What is the Shoppish Card?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">A virtual US debit card that lets you shop any US website yourself at the real US price. Available on Tier S and above.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAIL CAPTURE STRIP -->
+  <div class="email-strip reveal">
+    <div class="email-strip-inner">
+      <div class="email-strip-text">
+        <div class="email-strip-eyebrow">Stay in the loop</div>
+        <div class="email-strip-line">Get notified when we launch new features, drop rates, or run member-only deals.</div>
+      </div>
+      <div class="email-strip-form" id="emailStripForm">
+        <input class="email-strip-input" type="email" id="emailStripInput" placeholder="your@email.com" autocomplete="email">
+        <button class="email-strip-btn" onclick="handleEmailStrip()">Notify Me</button>
+      </div>
+      <div class="email-strip-confirm" id="emailStripConfirm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00c65e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        You're on the list.
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMBERSHIP -->
+  <div class="tiers-wrap" id="membership">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">Membership</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1">Pick Your <em>Tier</em></div>
+      <p class="section-sub reveal reveal-delay-2">The more you shop, the less you pay.</p>
+
+      <div class="tiers reveal reveal-delay-2">
+        <!-- Tier 3 -->
+        <div class="tier tier-muted">
+          <div class="tier-tag">TIER</div>
+          <div class="tier-num">3</div>
+          <div class="tier-price-line">Free <span class="tier-sub">Always</span></div>
+          <ul class="tier-perks">
+            <li>15% order fee</li>
+            <li>PKR 8,000/kg carry charge</li>
+            <li>Market exchange rate</li>
+            <li>Basic access</li>
+            <li>Perfect to try us out</li>
+          </ul>
+          <a href="#join" class="tier-cta">Get Started</a>
+        </div>
+        <!-- Tier X -->
+        <div class="tier">
+          <div class="tier-tag">TIER</div>
+          <div class="tier-num">X</div>
+          <div class="tier-price-line">$4.99 <span class="tier-sub">/mo</span></div>
+          <ul class="tier-perks">
+            <li>10% order fee</li>
+            <li>PKR 8,000/kg · ~290 rate</li>
+            <li>Exact weighing</li>
+            <li>For the regular shopper</li>
+          </ul>
+          <a href="#join" class="tier-cta">Get X</a>
+        </div>
+        <!-- Tier S -->
+        <div class="tier">
+          <div class="tier-tag">TIER</div>
+          <div class="tier-num">S</div>
+          <div class="tier-price-line">$19.99 <span class="tier-sub">/mo</span></div>
+          <ul class="tier-perks">
+            <li>8% order fee · PKR 8,000/kg</li>
+            <li>In-store + warehouse</li>
+            <li>Shoppish Card</li>
+            <li>For the serious shopper</li>
+          </ul>
+          <a href="#join" class="tier-cta">Get S</a>
+        </div>
+        <!-- Tier Y -->
+        <div class="tier tier-popular">
+          <div class="tier-best-badge">Most Popular</div>
+          <div class="tier-tag">TIER</div>
+          <div class="tier-num">Y</div>
+          <div class="tier-price-line">$49.99 <span class="tier-sub">/mo</span></div>
+          <ul class="tier-perks">
+            <li>6% order fee · PKR 8,000/kg</li>
+            <li>Virtual card + Apple Pay</li>
+            <li>USD rate lock</li>
+            <li>For the one who shops smart</li>
+          </ul>
+          <a href="#join" class="tier-cta">Get Y</a>
+        </div>
+      </div>
+
+      <!-- Tier ! — Invite Only -->
+      <div class="tier-invite-row reveal reveal-delay-3">
+        <div class="tier-invite-info">
+          <div>
+            <div class="tier-invite-label">Tier !</div>
+            <div class="tier-invite-name">Invite Only</div>
+          </div>
+          <div class="tier-invite-desc">You don't find Tier ! — Tier ! finds you.</div>
+        </div>
+        <a href="https://wa.me/923143442661?utm_source=website&utm_medium=tier_invite&utm_campaign=whatsapp" target="_blank" rel="noopener" class="tier-cta">Request Access</a>
+      </div>
+
+      <p class="tier-disclaimer reveal">
+        <a href="https://shoppish.pk" target="_blank" rel="noopener">shoppish.pk</a> &nbsp;·&nbsp;
+        Rates indicative &amp; subject to change &nbsp;·&nbsp; T&amp;Cs apply
+      </p>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band" id="join">
+    <h2 class="reveal">Ready to<br><em>start shopping?</em></h2>
+    <p class="reveal reveal-delay-2">Your wishlist is waiting. Let's get it.</p>
+    <a href="https://shoppish.pk" class="btn-primary reveal reveal-delay-3">Join Shoppish &nbsp;→</a>
+    <div class="trust-badges reveal reveal-delay-4">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Secure &amp; Trusted
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Fast Delivery
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        5,000+ Members
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        24/7 Support
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-name">SHOPP<em>I</em>SH</div>
+          <p>Everything America has. Delivered to your door in Pakistan.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Personal Shopping</a></li>
+            <li><a href="#services">Consolidation</a></li>
+            <li><a href="#services">Shoppish Card</a></li>
+            <li><a href="#services">In-Store Shopping</a></li>
+            <li><a href="#services">Pre-Orders</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Membership</h5>
+          <ul>
+            <li><a href="#membership">Tier 3 — Free</a></li>
+            <li><a href="#membership">Tier X — $4.99</a></li>
+            <li><a href="#membership">Tier S — $19.99</a></li>
+            <li><a href="#membership">Tier Y — $49.99</a></li>
+            <li><a href="#join">Tier ! — Invite</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://wa.me/923143442661?utm_source=website&utm_medium=footer&utm_campaign=whatsapp" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://instagram.com/shoppish.pk" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://shoppish.pk" target="_blank" rel="noopener">shoppish.pk</a></li>
+            <li><a href="#contact-placeholder">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Shoppish. All rights reserved.</p>
+        <p class="footer-flag">Made for Pakistani shoppers (PK)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── CHAT WIDGET ─── -->
+  <button id="chat-fab" aria-label="Open chat">
+    <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+
+  <div id="chat-panel" role="dialog" aria-label="Shoppish AI Assistant">
+    <div class="chat-header">
+      <div class="chat-header-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7V6a6 6 0 0112 0v1"/><path d="M3 7h18l-1 13H4L3 7z"/></svg>
+      </div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Shoppish Assistant</div>
+        <div class="chat-header-status">Online</div>
+      </div>
+      <button class="chat-close-btn" onclick="closeChat()" aria-label="Close chat">×</button>
+    </div>
+
+    <div id="chat-api-key-screen" class="chat-api-key-form hidden">
+      <p>Enter your Anthropic API key to chat. It's stored only in your browser session.</p>
+      <input type="password" id="chat-api-key-input" placeholder="sk-ant-..." autocomplete="off"/>
+      <button id="chat-api-key-submit">Start chatting</button>
+    </div>
+
+    <div id="chat-messages" class="hidden"></div>
+    <div class="chat-footer hidden" id="chat-footer">
+      <textarea id="chat-input" rows="1" placeholder="Ask about services, pricing…"></textarea>
+      <button id="chat-send" disabled aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <div class="chat-api-notice hidden" id="chat-notice">Powered by Claude AI · Key stored in session only</div>
+  </div>
+
+  <script>
+    // ─── CURSOR ───
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+
+    // ─── SCROLL PROGRESS ───
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const docH  = document.documentElement.scrollHeight - window.innerHeight;
+      const pct   = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }, { passive: true });
+
+    // ─── SC2 STATUS CYCLE ───
+    (function() {
+      const statusEl = document.querySelector('.sc2-status');
+      if (!statusEl) return;
+      const labels = ['Queued', 'Purchasing…', 'Order Confirmed ✓'];
+      let idx = 0;
+      statusEl.textContent = labels[0];
+      setInterval(() => {
+        idx = (idx + 1) % labels.length;
+        statusEl.textContent = labels[idx];
+      }, 1200);
+    })();
+
+    // ─── NAV SCROLL ───
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ─── MAGNETIC BUTTONS ───
+    if (!window.matchMedia('(hover: none)').matches) {
+      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r  = btn.getBoundingClientRect();
+          const bx = r.left + r.width  / 2;
+          const by = r.top  + r.height / 2;
+          const dx = e.clientX - bx;
+          const dy = e.clientY - by;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = 80;
+          if (dist < maxDist) {
+            const pull = (1 - dist / maxDist) * 12;
+            btn.style.transform = `translate(${(dx / dist) * pull}px, ${(dy / dist) * pull}px)`;
+          }
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+        });
+      });
+    }
+
+    // ─── EMAIL STRIP ───
+    function handleEmailStrip() {
+      const input = document.getElementById('emailStripInput');
+      const form  = document.getElementById('emailStripForm');
+      const conf  = document.getElementById('emailStripConfirm');
+      if (!input.value || !input.value.includes('@')) {
+        input.focus();
+        input.style.borderColor = '#ff4444';
+        setTimeout(() => input.style.borderColor = '', 1200);
+        return;
+      }
+      form.style.display = 'none';
+      conf.classList.add('show');
+    }
+
+    // ─── FAQ ACCORDION ───
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-answer').style.maxHeight = '0';
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ─── MOBILE MENU ───
+    const hamburger  = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Close on link tap
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // ─── SCROLL REVEAL ───
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ─── STAT COUNTERS ───
+    function animateCounter(el, target, duration = 1800) {
+      let start = null;
+      const isLarge = target >= 1000;
+      const step = timestamp => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(eased * target);
+        el.textContent = isLarge ? current.toLocaleString() : current;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = isLarge ? target.toLocaleString() : target;
+      };
+      requestAnimationFrame(step);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          animateCounter(el, target);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ─── INTRO ANIMATION ───
+    (function () {
+      const overlay = document.getElementById('intro-overlay');
+      const canvas  = document.getElementById('intro-canvas');
+      const ctx     = canvas.getContext('2d');
+      const wishEl  = document.getElementById('iw-wish');
+      const shopEl  = document.getElementById('iw-shop');
+      const brandEl = document.getElementById('iw-brand');
+      const skipBtn = document.getElementById('intro-skip');
+
+      document.body.style.overflow = 'hidden';
+      let done = false;
+      let raf;
+
+      // Resize canvas
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // ── Exit ──
+      function exit() {
+        if (done) return;
+        done = true;
+        cancelAnimationFrame(raf);
+        window.removeEventListener('resize', resize);
+        overlay.classList.add('exit');
+        document.body.style.overflow = '';
+        setTimeout(() => overlay.remove(), 1000);
+      }
+      skipBtn.addEventListener('click', exit);
+
+      // ── Easing helpers ──
+      const easeOut  = t => 1 - Math.pow(1 - t, 3);
+      const easeIn   = t => t * t * t;
+      const lerp     = (a, b, t) => a + (b - a) * t;
+
+      // ── Center reference ──
+      const cx = window.innerWidth  / 2;
+      const cy = window.innerHeight / 2;
+
+      // Position elements initially
+      function setPos(el, x, y, opacity, scale, color) {
+        el.style.position   = 'absolute';
+        el.style.left       = '0';
+        el.style.top        = '0';
+        el.style.transform  = `translate(${x - el.offsetWidth/2}px, ${y - el.offsetHeight/2}px) scale(${scale})`;
+        el.style.opacity    = opacity;
+        if (color) el.style.color = color;
+      }
+
+      // Init — hide everything
+      wishEl.style.opacity  = '0';
+      shopEl.style.opacity  = '0';
+      brandEl.style.opacity = '0';
+      wishEl.style.position = shopEl.style.position = brandEl.style.position = 'absolute';
+      wishEl.style.left = shopEl.style.left = brandEl.style.left = '0';
+      wishEl.style.top  = shopEl.style.top  = brandEl.style.top  = '0';
+
+      // ── Particle system ──
+      const particles = [];
+      const GREEN = '#00c65e';
+
+      function spawnParticles(n, cx, cy) {
+        for (let i = 0; i < n; i++) {
+          const angle  = Math.random() * Math.PI * 2;
+          const speed  = 2.5 + Math.random() * 7;
+          const size   = 1.5 + Math.random() * 4;
+          const life   = 0.6 + Math.random() * 0.7;
+          particles.push({
+            x: cx, y: cy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            size,
+            life,
+            maxLife: life,
+            hue: Math.random() < 0.75 ? 0 : 60, // mostly green, some yellow-green
+          });
+        }
+      }
+
+      function drawParticles() {
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x  += p.vx;
+          p.y  += p.vy;
+          p.vx *= 0.93;
+          p.vy *= 0.93;
+          p.vy += 0.06; // slight gravity
+          p.life -= 0.022;
+          if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+          const t = p.life / p.maxLife;
+          ctx.save();
+          ctx.globalAlpha = Math.pow(t, 0.5) * 0.9;
+          // color: green -> slightly warm fade
+          const r = Math.round(lerp(0,   180, 1 - t));
+          const g = Math.round(lerp(198, 220, 1 - t));
+          const b = Math.round(lerp(94,   50, 1 - t));
+          ctx.fillStyle = `rgb(${r},${g},${b})`;
+          ctx.shadowColor = '#00c65e';
+          ctx.shadowBlur  = p.size * 3;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * t, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      // ── Glow rings on collision ──
+      const rings = [];
+      function spawnRings() {
+        for (let i = 0; i < 3; i++) {
+          rings.push({ r: 0, maxR: 120 + i * 60, life: 1, delay: i * 0.08 });
+        }
+      }
+      function drawRings(cx, cy) {
+        for (let i = rings.length - 1; i >= 0; i--) {
+          const rg = rings[i];
+          if (rg.delay > 0) { rg.delay -= 0.016; continue; }
+          rg.r    += (rg.maxR - rg.r) * 0.08;
+          rg.life -= 0.028;
+          if (rg.life <= 0) { rings.splice(i, 1); continue; }
+          ctx.save();
+          ctx.globalAlpha = rg.life * 0.35;
+          ctx.strokeStyle = '#00c65e';
+          ctx.lineWidth   = 1.5;
+          ctx.shadowColor = '#00c65e';
+          ctx.shadowBlur  = 12;
+          ctx.beginPath();
+          ctx.arc(cx, cy, rg.r, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      // ── Ambient glow behind words ──
+      function drawAmbient(x, cy, intensity) {
+        ctx.save();
+        const g = ctx.createRadialGradient(x, cy, 0, x, cy, 90);
+        g.addColorStop(0, `rgba(0,198,94,${intensity * 0.18})`);
+        g.addColorStop(1, 'transparent');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(x, cy, 90, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // ─────────────────────────────────────────────
+      // ANIMATION TIMELINE  (total ≈ 4.6 s)
+      // 0.0–0.6s  : fade in "wish" from far left
+      // 0.6–1.2s  : fade in "shop" from far right
+      // 1.2–2.0s  : both orbit / pulse gently
+      // 2.0–2.9s  : magnetic pull toward center
+      // 2.9s      : collision — particles + rings burst
+      // 2.9–3.5s  : "SHOPPISH" emerges green
+      // 3.5–4.0s  : pulse breathe, color shifts white
+      // 4.0–4.9s  : overlay fades out
+      // ─────────────────────────────────────────────
+      const T = {
+        wishIn:    0,
+        shopIn:    600,
+        orbitEnd:  2000,
+        pullStart: 2000,
+        collide:   2900,
+        brandIn:   2950,
+        brandPulse:3400,
+        colorShift:3600,
+        exit:      4200,
+        remove:    5200,
+      };
+
+      let startTime = null;
+      let collided  = false;
+      let brandShown = false;
+
+      function tick(now) {
+        if (done) return;
+        if (!startTime) startTime = now;
+        const elapsed = now - startTime;
+        raf = requestAnimationFrame(tick);
+        const cx = canvas.width  / 2;
+        const cy = canvas.height / 2;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // ── 1. WISH fade in from left ──
+        const wishInT = Math.min(1, Math.max(0, (elapsed - T.wishIn) / 600));
+        const wishOpacity = easeOut(wishInT);
+        // floating: starts way off left, drifts in with slight vertical oscillation
+        let wishX, wishY, wishScale;
+        if (elapsed < T.pullStart) {
+          const drift = easeOut(wishInT);
+          wishX = lerp(cx - window.innerWidth * 0.42, cx - window.innerWidth * 0.20, drift);
+          // gentle orbit after arriving
+          const orbitPhase = Math.max(0, elapsed - T.shopIn - 300);
+          wishY = cy + Math.sin(orbitPhase * 0.0018) * 10;
+          wishScale = 1;
+        } else {
+          // magnetic pull phase
+          const pullT = Math.min(1, (elapsed - T.pullStart) / (T.collide - T.pullStart));
+          const eased = easeIn(pullT);
+          wishX = lerp(cx - window.innerWidth * 0.20, cx, eased);
+          wishY = cy + Math.sin(T.pullStart * 0.0018) * 10 * (1 - pullT);
+          wishScale = lerp(1, 0, eased);
+        }
+
+        // ── 2. SHOP fade in from right ──
+        const shopInT  = Math.min(1, Math.max(0, (elapsed - T.shopIn) / 600));
+        const shopOpacity = easeOut(shopInT);
+        let shopX, shopY, shopScale;
+        if (elapsed < T.pullStart) {
+          const drift = easeOut(shopInT);
+          shopX = lerp(cx + window.innerWidth * 0.42, cx + window.innerWidth * 0.20, drift);
+          const orbitPhase = Math.max(0, elapsed - T.shopIn - 300);
+          shopY = cy + Math.sin(orbitPhase * 0.0018 + Math.PI) * 10;
+          shopScale = 1;
+        } else {
+          const pullT = Math.min(1, (elapsed - T.pullStart) / (T.collide - T.pullStart));
+          const eased = easeIn(pullT);
+          shopX = lerp(cx + window.innerWidth * 0.20, cx, eased);
+          shopY = cy + Math.sin(T.pullStart * 0.0018 + Math.PI) * 10 * (1 - pullT);
+          shopScale = lerp(1, 0, eased);
+        }
+
+        // ── Draw ambient glow under words ──
+        if (!collided) {
+          drawAmbient(wishX, cy, wishOpacity * 0.7);
+          drawAmbient(shopX, cy, shopOpacity * 0.7);
+        }
+
+        // ── Collision event ──
+        if (elapsed >= T.collide && !collided) {
+          collided = true;
+          spawnParticles(130, cx, cy);
+          spawnRings();
+          wishEl.style.opacity  = '0';
+          shopEl.style.opacity  = '0';
+        }
+
+        // ── Draw particles + rings ──
+        drawParticles();
+        drawRings(cx, cy);
+
+        // ── Position wish/shop elements ──
+        if (!collided) {
+          setPos(wishEl, wishX, wishY, wishOpacity, wishScale, null);
+          setPos(shopEl, shopX, shopY, shopOpacity, shopScale, null);
+        }
+
+        // ── SHOPPISH emerge ──
+        if (elapsed >= T.brandIn && !brandShown) {
+          brandShown = true;
+          brandEl.style.color = '#00c65e';
+          brandEl.style.textShadow = '0 0 40px rgba(0,198,94,0.7), 0 0 80px rgba(0,198,94,0.3)';
+          setPos(brandEl, cx, cy, 0, 0.8, '#00c65e');
+        }
+        if (elapsed >= T.brandIn) {
+          const t = Math.min(1, (elapsed - T.brandIn) / 500);
+          const eased = easeOut(t);
+          // pulse breathe
+          let breathe = 1;
+          if (elapsed >= T.brandPulse) {
+            const bt = (elapsed - T.brandPulse) / 600;
+            breathe = 1 + Math.sin(bt * Math.PI) * 0.04;
+          }
+          // color shift: green → white
+          let brandColor = '#00c65e';
+          let shadowOpacity = 0.6;
+          if (elapsed >= T.colorShift) {
+            const ct = Math.min(1, (elapsed - T.colorShift) / 400);
+            const rc = Math.round(lerp(0,   255, ct));
+            const gc = Math.round(lerp(198, 255, ct));
+            const bc = Math.round(lerp(94,  255, ct));
+            brandColor = `rgb(${rc},${gc},${bc})`;
+            shadowOpacity = lerp(0.6, 0, ct);
+          }
+          brandEl.style.color = brandColor;
+          brandEl.style.textShadow = `0 0 30px rgba(0,198,94,${shadowOpacity}), 0 0 60px rgba(0,198,94,${shadowOpacity * 0.5})`;
+          setPos(brandEl, cx, cy, eased, breathe, brandColor);
+        }
+
+        // ── Overlay exit ──
+        if (elapsed >= T.exit && !done) {
+          exit();
+        }
+      }
+
+      document.fonts.ready.then(() => { requestAnimationFrame(tick); });
+    })();
+
+    // ─── CHAT WIDGET ───
+    const SHOPPISH_SYSTEM = `You are the Shoppish AI assistant — a friendly, knowledgeable helper for Shoppish, a US-to-Pakistan personal shopping service.
+
+About Shoppish:
+- We help Pakistanis buy anything from US stores and get it delivered to Pakistan.
+- Services: Personal Shopping (we buy for you), Consolidation (ship multiple items together), Shoppish Card (virtual US card for self-checkout), In-Store Shopping (physical US mall visits), Pre-Orders (limited drops, releases).
+
+Membership Tiers:
+- Tier 3 — Free: 15% order fee, PKR 8,000/kg carry charge, 295 exchange rate, roundup weighing
+- Tier X — $4.99/month: 10% order fee, PKR 8,000/kg carry charge, ~290 exchange rate, exact weighing
+- Tier S — $19.99/month: 8% order fee, PKR 8,000/kg, ~288 rate, in-store, warehouse, dispute handling, Shoppish Card, 1 instalment device
+- Tier Y — $49.99/month: 6% order fee, PKR 8,000/kg, ~285 rate, all Tier S features + PAK Instock, virtual card, Apple Pay, USD rate lock, 0% events (occasionally)
+- Tier ! — By invite only: Best rates, lowest fees, US wholesaler purchase, free PAK delivery, discounted US delivery, monthly 0% events, tax returns
+
+Contact / Order:
+- WhatsApp: +92 314 3442661 (primary way to place orders)
+- Instagram: @shoppish.pk
+- Website: shoppish.pk
+
+Guidelines:
+- Keep answers concise and helpful.
+- For placing orders, always direct to WhatsApp: https://wa.me/923143442661
+- If asked about pricing for a specific product, explain that final cost depends on product price + US sales tax + shipping + service fee, and they should ask on WhatsApp for a quote.
+- Be warm, professional, and use simple English.
+- Do not make up policies or prices not listed above.`;
+
+    let chatHistory = [];
+    let chatApiKey = sessionStorage.getItem('shoppish_chat_key') || '';
+    let chatLoading = false;
+
+    const fab = document.getElementById('chat-fab');
+    const panel = document.getElementById('chat-panel');
+    const messages = document.getElementById('chat-messages');
+    const footer = document.getElementById('chat-footer');
+    const notice = document.getElementById('chat-notice');
+    const input = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+    const apiKeyScreen = document.getElementById('chat-api-key-screen');
+    const apiKeyInput = document.getElementById('chat-api-key-input');
+    const apiKeySubmit = document.getElementById('chat-api-key-submit');
+
+    function openChat() {
+      panel.classList.add('open');
+      fab.classList.add('open');
+      if (chatApiKey) {
+        showChatUI();
+      } else {
+        apiKeyScreen.style.display = 'flex';
+        messages.style.display = 'none';
+        footer.style.display = 'none';
+        notice.style.display = 'none';
+        setTimeout(() => apiKeyInput.focus(), 50);
+      }
+    }
+
+    function closeChat() {
+      panel.classList.remove('open');
+      fab.classList.remove('open');
+    }
+
+    function showChatUI() {
+      apiKeyScreen.style.display = 'none';
+      messages.style.display = 'flex';
+      footer.style.display = 'flex';
+      notice.style.display = 'block';
+      if (chatHistory.length === 0) {
+        addMessage('bot', 'Hi! I\'m the Shoppish assistant. Ask me about our services, membership tiers, or how to place an order.');
+      }
+      updateSendBtn();
+      setTimeout(() => input.focus(), 50);
+    }
+
+    fab.addEventListener('click', () => {
+      panel.classList.contains('open') ? closeChat() : openChat();
+    });
+
+    apiKeySubmit.addEventListener('click', () => {
+      const key = apiKeyInput.value.trim();
+      if (!key.startsWith('sk-ant-')) {
+        apiKeyInput.style.borderColor = '#ff4d4d';
+        apiKeyInput.placeholder = 'Must start with sk-ant-…';
+        return;
+      }
+      chatApiKey = key;
+      sessionStorage.setItem('shoppish_chat_key', key);
+      showChatUI();
+    });
+    apiKeyInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') apiKeySubmit.click();
+    });
+
+    function addMessage(role, text) {
+      const div = document.createElement('div');
+      div.className = `chat-msg ${role}`;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      const el = document.createElement('div');
+      el.className = 'chat-typing';
+      el.id = 'chat-typing-indicator';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('chat-typing-indicator');
+      if (el) el.remove();
+    }
+
+    function updateSendBtn() {
+      sendBtn.disabled = chatLoading || input.value.trim() === '';
+    }
+
+    input.addEventListener('input', () => {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 110) + 'px';
+      updateSendBtn();
+    });
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        if (!sendBtn.disabled) sendMessage();
+      }
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    async function sendMessage() {
+      const text = input.value.trim();
+      if (!text || chatLoading) return;
+
+      addMessage('user', text);
+      chatHistory.push({ role: 'user', content: text });
+      input.value = '';
+      input.style.height = 'auto';
+      chatLoading = true;
+      updateSendBtn();
+      showTyping();
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': chatApiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-haiku-4-5',
+            max_tokens: 512,
+            system: SHOPPISH_SYSTEM,
+            messages: chatHistory
+          })
+        });
+
+        hideTyping();
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          if (res.status === 401) {
+            chatApiKey = '';
+            sessionStorage.removeItem('shoppish_chat_key');
+            addMessage('bot', 'Invalid API key. Please refresh and try again.');
+          } else {
+            addMessage('bot', `Error: ${err.error?.message || res.statusText}`);
+          }
+        } else {
+          const data = await res.json();
+          const reply = data.content?.[0]?.text || '…';
+          addMessage('bot', reply);
+          chatHistory.push({ role: 'assistant', content: reply });
+          // keep history manageable (last 20 turns)
+          if (chatHistory.length > 40) chatHistory = chatHistory.slice(-40);
+        }
+      } catch (e) {
+        hideTyping();
+        addMessage('bot', 'Could not reach the server. Check your connection.');
+      }
+
+      chatLoading = false;
+      updateSendBtn();
+    }
+
+    // Connect the footer "Contact" link to open the chat
+    document.querySelectorAll('a[href="#contact-placeholder"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openChat();
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  </script>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div id="page-transition"></div>
+
+  <!-- STICKY MOBILE WA BAR -->
+  <div id="sticky-wa-bar">
+    <div>
+      <div class="sticky-wa-bar-text">Ready to shop the US?</div>
+      <div class="sticky-wa-bar-sub">Chat with us on WhatsApp</div>
+    </div>
+    <a href="https://wa.me/923143442661?utm_source=shoppish&utm_medium=sticky_bar&utm_campaign=mobile_cta" class="sticky-wa-bar-btn" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- EXIT INTENT POPUP -->
+  <div id="exit-overlay" role="dialog" aria-modal="true" aria-label="Before you go">
+    <div id="exit-popup">
+      <button id="exit-close" aria-label="Close" onclick="dismissExit()">×</button>
+      <div class="exit-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7V6a6 6 0 0112 0v1"/><path d="M3 7h18l-1 13H4L3 7z"/></svg>
+      </div>
+      <div class="exit-headline">Before you go — <em>see what it costs.</em></div>
+      <p class="exit-sub">Pop your order total into our calculator and get an instant Pakistan delivery estimate. No signup. No commitment.</p>
+      <div class="exit-actions">
+        <a href="calculator.html" class="exit-btn-primary" onclick="dismissExit()">Try the Calculator →</a>
+        <button class="exit-btn-dismiss" onclick="dismissExit()">No thanks, I'll figure it out</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── BACK TO TOP ───
+    (function() {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) btn.classList.add('show');
+        else btn.classList.remove('show');
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    // ─── PAGE TRANSITIONS ───
+    (function() {
+      var overlay = document.getElementById('page-transition');
+      // Fade in on load and back-navigation — never block clicks
+      window.addEventListener('pageshow', function() {
+        setTimeout(function() { overlay.style.opacity = '0'; }, 50);
+      });
+      function fadeOut(cb) {
+        overlay.style.pointerEvents = 'all'; // block during exit only
+        overlay.style.opacity = '1';
+        setTimeout(cb, 320);
+      }
+      // Intercept internal links
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
+        if (a.target === '_blank') return;
+        e.preventDefault();
+        fadeOut(function() { window.location.href = href; });
+      });
+    })();
+  </script>
+
+  <script>
+    // ─── STICKY MOBILE WA BAR ───
+    (function() {
+      var bar = document.getElementById('sticky-wa-bar');
+      if (!bar) return;
+      var shown = false;
+      setTimeout(function() {
+        bar.classList.add('visible');
+        shown = true;
+      }, 2000);
+    })();
+  </script>
+
+  <script>
+    // ─── EXIT INTENT ───
+    (function() {
+      if (sessionStorage.getItem('exitSeen')) return;
+      var fired = false;
+      function showExit() {
+        if (fired) return;
+        fired = true;
+        sessionStorage.setItem('exitSeen', '1');
+        document.getElementById('exit-overlay').classList.add('show');
+      }
+      document.addEventListener('mouseleave', function(e) {
+        if (e.clientY <= 0) showExit();
+      });
+      document.getElementById('exit-overlay').addEventListener('click', function(e) {
+        if (e.target === this) dismissExit();
+      });
+    })();
+    function dismissExit() {
+      document.getElementById('exit-overlay').classList.remove('show');
+    }
+  </script>
+
+  <!-- ═══ SITEWIDE HOVER EXPERIENCE ═══ -->
+  <style>
+    /* Cursor glow dot */
+    .cursor { box-shadow: 0 0 10px rgba(0,198,94,1), 0 0 20px rgba(0,198,94,0.5); }
+
+    /* Cursor ring */
+    .cursor-ring {
+      transition: width 0.25s cubic-bezier(.23,1,.32,1),
+                  height 0.25s cubic-bezier(.23,1,.32,1),
+                  border-color 0.25s, background 0.25s,
+                  transform 0.06s linear;
+    }
+    .cursor-ring.hover {
+      width: 64px; height: 64px;
+      border-color: rgba(0,198,94,0.9);
+      background: rgba(0,198,94,0.08);
+    }
+    .cursor-ring.click {
+      width: 24px; height: 24px;
+      border-color: var(--green);
+      background: rgba(0,198,94,0.2);
+      transition: width 0.08s ease, height 0.08s ease;
+    }
+
+    /* Every plain link turns green */
+    a:not([class]):hover,
+    a.footer-link:hover,
+    .footer-col a:hover,
+    .faq-q:hover { color: var(--green) !important; }
+
+    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap):not(.mobile-menu-wa) {
+      transition: color 0.2s ease;
+    }
+
+    /* Nav links — letter-spacing nudge */
+    .nav-links a { transition: color 0.25s, letter-spacing 0.3s; }
+    .nav-links a:hover { color: var(--text) !important; letter-spacing: 2.5px; }
+
+    /* Footer links slide */
+    .footer-col li a {
+      display: inline-block;
+      transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important;
+    }
+    .footer-col li a:hover { color: var(--green) !important; transform: translateX(5px) !important; }
+
+    /* Buttons — bigger lift + glow */
+    .btn-primary:hover   { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.4) !important; }
+    .btn-secondary:hover { transform: translateY(-4px) !important; }
+    .btn-whatsapp:hover  { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.35) !important; }
+    .tier-cta:hover      { transform: translateY(-4px) !important; box-shadow: 0 8px 24px rgba(0,198,94,0.25) !important; }
+    .nav-pill:not(.cta):hover { transform: translateY(-2px) !important; }
+    .nav-pill.cta:hover  { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,198,94,0.4) !important; }
+    .exit-btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 8px 24px rgba(0,198,94,0.35) !important; }
+
+    /* Service cards */
+    .service {
+      transition: transform 0.4s cubic-bezier(.23,1,.32,1),
+                  background 0.3s, box-shadow 0.3s, border-color 0.3s !important;
+    }
+    .service:hover {
+      box-shadow: 0 0 0 1px rgba(0,198,94,0.3), 0 24px 64px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Stat blocks */
+    .stat-block {
+      transition: transform 0.35s cubic-bezier(.23,1,.32,1), box-shadow 0.35s, background 0.3s !important;
+    }
+    .stat-block:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 0 0 1px rgba(0,198,94,0.2), 0 16px 40px rgba(0,0,0,0.4) !important;
+    }
+
+    /* Tier cards */
+    .tier {
+      transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s, background 0.3s !important;
+    }
+    .tier:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 0 0 1px rgba(0,198,94,0.25), 0 28px 70px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Hero calc link */
+    .hero-calc-link { transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important; }
+    .hero-calc-link:hover { transform: translateX(4px) !important; }
+  </style>
+
+  <script>
+    (function () {
+      // ── Cursor spotlight ──
+      var spot = document.createElement('div');
+      spot.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:0;transition:opacity 0.5s;';
+      document.body.appendChild(spot);
+
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      function updateSpot() {
+        spot.style.background =
+          'radial-gradient(700px circle at ' + mx + 'px ' + my + 'px, rgba(0,198,94,0.07), transparent 55%)';
+      }
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        updateSpot();
+        spot.style.opacity = '1';
+      });
+      document.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
+
+      // ── Cursor click pulse ──
+      var ring = document.getElementById('cursorRing');
+      if (ring) {
+        document.addEventListener('mousedown', function () { ring.classList.add('click'); });
+        document.addEventListener('mouseup',   function () { ring.classList.remove('click'); });
+      }
+
+      // ── Magnetic effect on CTAs ──
+      document.querySelectorAll('.btn-primary,.btn-secondary,.btn-whatsapp,.nav-pill.cta,.exit-btn-primary').forEach(function (btn) {
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          var x = (e.clientX - r.left - r.width  / 2) * 0.22;
+          var y = (e.clientY - r.top  - r.height / 2) * 0.22;
+          btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+          btn.style.transition = 'transform 0.15s ease, box-shadow 0.25s, background 0.25s';
+        });
+        btn.addEventListener('mouseleave', function () {
+          btn.style.transform = '';
+          btn.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), box-shadow 0.25s, background 0.25s';
+        });
+        btn.addEventListener('mousedown', function () { btn.style.transform = 'scale(0.94)'; });
+        btn.addEventListener('mouseup',   function () { btn.style.transform = ''; });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Role } from "@/lib/types";
 
@@ -15,13 +15,17 @@ export default function LoginPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  function navigateTo(path: "/admin" | "/vendor" | "/") {
+    router.replace(path);
+    router.refresh();
+  }
+
   async function redirectByRole(supabaseClient: any) {
     const {
       data: { user }
     } = await supabaseClient.auth.getUser();
     if (!user) {
-      router.push("/");
-      router.refresh();
+      navigateTo("/");
       return;
     }
     const { data: profile } = await supabaseClient
@@ -30,11 +34,31 @@ export default function LoginPage() {
       .eq("id", user.id)
       .single();
     const role = profile?.role;
-    if (role === "admin") router.push("/admin");
-    else if (role === "vendor") router.push("/vendor");
-    else router.push("/");
-    router.refresh();
+    if (role === "admin") navigateTo("/admin");
+    else if (role === "vendor") navigateTo("/vendor");
+    else navigateTo("/");
   }
+
+  useEffect(() => {
+    let cancelled = false;
+    async function redirectIfAlreadyAuthenticated() {
+      try {
+        const mod = await import("@/lib/supabase/client");
+        const supabase = mod.createClient();
+        const {
+          data: { user }
+        } = await supabase.auth.getUser();
+        if (cancelled || !user) return;
+        await redirectByRole(supabase);
+      } catch {
+        // keep login usable even if env is missing
+      }
+    }
+    redirectIfAlreadyAuthenticated();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -96,7 +120,11 @@ export default function LoginPage() {
         setLoading(false);
         return;
       }
-      await redirectByRole(supabase);
+      try {
+        await redirectByRole(supabase);
+      } catch {
+        navigateTo("/");
+      }
       setLoading(false);
       return;
     }

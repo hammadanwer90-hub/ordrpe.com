@@ -23,9 +23,16 @@ export async function createClient() {
         setAll(
           cookiesToSet: Array<{ name: string; value: string; options?: Record<string, unknown> }>
         ) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
-          );
+          // In Server Components, cookie mutation can throw.
+          // Supabase may still call setAll during session refresh, so we
+          // swallow here and let middleware handle persistent cookie updates.
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            // no-op
+          }
         }
       }
     }

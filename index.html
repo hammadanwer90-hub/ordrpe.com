@@ -328,7 +328,7 @@
 
     .hero-stack-shell {
       width: 100%;
-      max-width: min(680px, 100%);
+      max-width: min(820px, 100%);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -340,11 +340,11 @@
     .hero-wheel-stage {
       --hero-wheel-dur: 52s;
       --wheel-n: 6;
-      --wheel-tz: min(36vw, 236px);
+      --wheel-tz: min(44vw, 292px);
       position: relative;
       width: 100%;
-      min-height: clamp(300px, 50vw, 430px);
-      perspective: min(1260px, 142vw);
+      min-height: clamp(360px, 58vw, 520px);
+      perspective: min(1480px, 158vw);
       perspective-origin: 50% 42%;
       overflow: visible;
       user-select: none;
@@ -375,7 +375,7 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      min-height: clamp(300px, 50vw, 430px);
+      min-height: clamp(360px, 58vw, 520px);
       transform-style: preserve-3d;
       transform: rotateX(14deg);
     }
@@ -420,7 +420,7 @@
       left: 0;
       top: 0;
       display: block;
-      width: clamp(120px, 21vw, 176px);
+      width: clamp(148px, 26vw, 216px);
       aspect-ratio: 3 / 4;
       border-radius: 16px;
       overflow: visible;
@@ -493,9 +493,14 @@
     .hero-r .hm.hero-wheel-card img.hero-rot-img {
       width: 100%;
       height: 100%;
+      min-height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
-      transition: transform 0.55s var(--motion-lux, ease), filter 0.35s ease;
+      background: #2a2622;
+      transform: translateZ(0.02px);
+      -webkit-transform: translateZ(0.02px);
+      transition: transform 0.55s var(--motion-lux, ease), filter 0.35s ease, opacity 0.2s ease;
     }
     html[data-theme="dark"] .hero-r .hm.hero-wheel-card img.hero-rot-img {
       filter: brightness(0.78) contrast(1.06) saturate(0.94);
@@ -509,9 +514,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 36px 8px 9px;
+      padding: 40px 9px 10px;
       background: linear-gradient(to top, rgba(12,11,10,0.94) 0%, transparent 88%);
-      font-size: 7.5px;
+      font-size: 8px;
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -523,21 +528,21 @@
 
     @media (max-width: 520px) {
       .hero-wheel-stage {
-        --wheel-tz: min(32vw, 178px);
-        min-height: clamp(276px, 74vw, 380px);
+        --wheel-tz: min(40vw, 224px);
+        min-height: clamp(320px, 86vw, 440px);
         perspective-origin: 50% 40%;
       }
       .hero-wheel-tilt {
-        min-height: clamp(276px, 74vw, 380px);
+        min-height: clamp(320px, 86vw, 440px);
         transform: rotateX(11deg);
       }
       .hero-wheel-rotor-wrap { top: 42%; }
       .hero-r .hm.hero-wheel-card {
-        width: clamp(108px, 29vw, 146px);
+        width: clamp(130px, 36vw, 174px);
         border-radius: 14px;
       }
       .hero-wheel-card-face { border-radius: 13px; }
-      .hero-wheel-card .hm-label { font-size: 7px; letter-spacing: 0.14em; padding-top: 32px; }
+      .hero-wheel-card .hm-label { font-size: 7.25px; letter-spacing: 0.14em; padding-top: 34px; }
     }
 
     @keyframes heroWheelExit {
@@ -585,7 +590,7 @@
         top: auto;
         margin: 0;
         transform: none !important;
-        width: clamp(104px, 29vw, 140px);
+        width: clamp(128px, 36vw, 172px);
         backface-visibility: visible;
         -webkit-backface-visibility: visible;
       }
@@ -2687,12 +2692,12 @@
   var nextOrdIx = SLOT;
   var swapSlotIx = 0;
   var isNarrow = window.matchMedia && window.matchMedia('(max-width: 520px)').matches;
-  var cardEstPx = isNarrow ? 122 : 164;
-  var tzPx = Math.round(Math.min(isNarrow ? 288 : 400, Math.max(isNarrow ? 172 : 198, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / SLOT)))));
+  var cardEstPx = isNarrow ? 152 : 200;
+  var tzPx = Math.round(Math.min(isNarrow ? 350 : 490, Math.max(isNarrow ? 200 : 238, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / SLOT)))));
   stage.style.setProperty('--wheel-tz', tzPx + 'px');
 
   function imgUrl(item) {
-    var u = item.img.indexOf('?') >= 0 ? item.img + '&v=marq1' : item.img + '?v=marq1';
+    var u = item.img.indexOf('?') >= 0 ? item.img + '&fm=jpg&v=marq1' : item.img + '?fm=jpg&v=marq1';
     return u;
   }
 
@@ -2709,7 +2714,15 @@
       img.alt = item.alt || '';
       img.loading = 'eager';
       img.decoding = 'async';
-      img.src = imgUrl(item);
+      var primary = imgUrl(item);
+      img.onerror = function () {
+        img.onerror = null;
+        var plain = item.img;
+        if (!plain) return;
+        var root = plain.split('?')[0];
+        if (root) img.src = root + '?auto=format&w=900&q=82&fit=crop';
+      };
+      img.src = primary;
     }
     if (lab) lab.innerHTML = item.label;
   }
@@ -2722,7 +2735,7 @@
     img.className = 'hero-rot-img';
     img.decoding = 'async';
     img.loading = 'eager';
-    if (ix < 4) img.setAttribute('fetchpriority', 'high');
+    img.setAttribute('fetchpriority', 'high');
     var lab = document.createElement('div');
     lab.className = 'hm-label';
     var face = document.createElement('span');

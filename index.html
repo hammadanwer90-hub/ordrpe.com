@@ -328,7 +328,7 @@
 
     .hero-stack-shell {
       width: 100%;
-      max-width: min(640px, 100%);
+      max-width: min(720px, 100%);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -340,11 +340,11 @@
     .hero-wheel-stage {
       --hero-wheel-dur: 52s;
       --wheel-n: 6;
-      --wheel-tz: min(34vw, 228px);
+      --wheel-tz: min(38vw, 248px);
       position: relative;
       width: 100%;
-      min-height: clamp(300px, 48vw, 420px);
-      perspective: min(1240px, 140vw);
+      min-height: clamp(320px, 52vw, 460px);
+      perspective: min(1280px, 145vw);
       perspective-origin: 50% 42%;
       overflow: visible;
       user-select: none;
@@ -375,7 +375,7 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      min-height: clamp(300px, 48vw, 420px);
+      min-height: clamp(320px, 52vw, 460px);
       transform-style: preserve-3d;
       transform: rotateX(14deg);
     }
@@ -420,7 +420,7 @@
       left: 0;
       top: 0;
       display: block;
-      width: clamp(112px, 20vw, 162px);
+      width: clamp(128px, 22vw, 188px);
       aspect-ratio: 3 / 4;
       border-radius: 16px;
       overflow: visible;
@@ -523,17 +523,17 @@
 
     @media (max-width: 520px) {
       .hero-wheel-stage {
-        --wheel-tz: min(30vw, 168px);
-        min-height: clamp(268px, 72vw, 360px);
+        --wheel-tz: min(34vw, 188px);
+        min-height: clamp(288px, 76vw, 400px);
         perspective-origin: 50% 40%;
       }
       .hero-wheel-tilt {
-        min-height: clamp(268px, 72vw, 360px);
+        min-height: clamp(288px, 76vw, 400px);
         transform: rotateX(11deg);
       }
       .hero-wheel-rotor-wrap { top: 42%; }
       .hero-r .hm.hero-wheel-card {
-        width: clamp(102px, 28vw, 138px);
+        width: clamp(114px, 30vw, 152px);
         border-radius: 14px;
       }
       .hero-wheel-card-face { border-radius: 13px; }
@@ -2671,16 +2671,19 @@
     { id: 'gifts', href: wa("Hi Ordrpe! I'm looking for gift bundles & gifting ideas."), ext: true, label: 'Gift Ideas', alt: 'Gifts', img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345e?w=900&q=85', aria: 'Gift ideas on WhatsApp' },
     { id: 'wellness', href: wa("Hi Ordrpe! I'm looking for supplements & wellness."), ext: true, label: 'Wellness', alt: 'Wellness', img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85', aria: 'Order Wellness on WhatsApp' }
   ];
-  /* Fixed six “Shop these picks” cards (hero top strip): stable order, no shuffle. Extra categories stay in POOL for search / future use. */
-  var _heroPoolById = {};
-  for (var _pi = 0; _pi < POOL.length; _pi++) _heroPoolById[POOL[_pi].id] = _pi;
-  var HERO_TOP_IDS = ['makeup', 'fragrance', 'shoes', 'bags', 'intimates', 'tech'];
+  /* Full POOL on the wheel (~5–6 visible at once); shuffled order so every category passes as it spins. */
+  var L = POOL.length;
   var ring = [];
-  for (var _ti = 0; _ti < HERO_TOP_IDS.length; _ti++) {
-    var _idx = _heroPoolById[HERO_TOP_IDS[_ti]];
-    if (_idx !== undefined) ring.push(_idx);
+  for (var ii = 0; ii < L; ii++) ring.push(ii);
+  for (var a = ring.length - 1; a > 0; a--) {
+    var bb = Math.floor(Math.random() * (a + 1));
+    var tmp = ring[a]; ring[a] = ring[bb]; ring[bb] = tmp;
   }
-  var L = ring.length;
+  var cardEstPx = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 126 : 172;
+  var tzMax = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 300 : 440;
+  var tzMin = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 168 : 200;
+  var tzPx = Math.round(Math.min(tzMax, Math.max(tzMin, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / Math.max(L, 2))))));
+  stage.style.setProperty('--wheel-tz', tzPx + 'px');
 
   function makeCard(pi, ix) {
     var item = POOL[pi];
@@ -2697,8 +2700,8 @@
     img.className = 'hero-rot-img';
     img.alt = item.alt || '';
     img.decoding = 'async';
-    img.loading = ix < 8 ? 'eager' : 'lazy';
-    if (ix === 0) {
+    img.loading = ix < 6 ? 'eager' : 'lazy';
+    if (ix < 2) {
       img.setAttribute('fetchpriority', 'high');
     }
     img.src = item.img.indexOf('?') >= 0 ? item.img + '&v=marq1' : item.img + '?v=marq1';
@@ -2721,7 +2724,7 @@
     rotor.appendChild(makeCard(ring[r], r));
   }
 
-  var secs = Math.round(Math.min(76, Math.max(48, L * 8.2)) * 10) / 10;
+  var secs = Math.round(Math.min(108, Math.max(56, L * 4.15)) * 10) / 10;
   heroDbg.pickCount = L;
   heroDbg.secondsPerLap = secs;
   heroDbg.slotCount = L;

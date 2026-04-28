@@ -6,17 +6,37 @@
   <title>Refund & Return Policy | Ordrpe</title>
   <meta name="description" content="Ordrpe refund and return policy.">
   <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('ordrpe_theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (_) {}
+    })();
+  </script>
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, sans-serif; color: #1a1008; background: #fdf8f3; line-height: 1.7; }
+    body { margin: 0; font-family: Arial, sans-serif; color: #11100e; background: radial-gradient(circle at 12% 0%, #ffffff 0%, #f7f5ef 34%, #ebe6dc 100%); line-height: 1.7; opacity: 0; transition: opacity 0.45s ease, transform 0.45s ease; }
+    body.page-loaded { opacity: 1; }
+    body.page-leaving { opacity: 0; transform: translateY(6px); transition: opacity 0.24s ease, transform 0.24s ease; }
+    @media (prefers-reduced-motion: reduce) { body { opacity: 1 !important; transition: none !important; transform: none !important; } }
     .wrap { max-width: 900px; margin: 0 auto; padding: 36px 20px 60px; }
-    h1 { margin: 0 0 10px; font-size: 34px; }
-    h2 { margin-top: 28px; font-size: 20px; }
+    .wrap::before { content: "ORDRPE"; display: block; width: fit-content; margin-bottom: 18px; padding: 8px 13px; border-radius: 999px; background: #11100e; color: #f7f5ef; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+    h1 { margin: 0 0 10px; font-size: 34px; color: #11100e; }
+    h2 { margin-top: 28px; font-size: 20px; color: #2a2824; }
     p, li { font-size: 15px; }
-    .meta { color: #6b5438; font-size: 13px; margin-bottom: 20px; }
-    a { color: #8a6228; }
+    .meta { color: #625d54; font-size: 13px; margin-bottom: 20px; }
+    a { color: #11100e; font-weight: 700; text-decoration-color: #c8c1b5; }
     .topnav { margin-bottom: 20px; font-size: 14px; }
+    html[data-theme="dark"] body { color: #f7f5ef; background: radial-gradient(circle at 12% 0%, #1c1a17 0%, #11100e 36%, #0a0908 100%); }
+    html[data-theme="dark"] .wrap::before { background: #f7f5ef; color: #11100e; }
+    html[data-theme="dark"] h1 { color: #f7f5ef; }
+    html[data-theme="dark"] h2 { color: #d8d1c5; }
+    html[data-theme="dark"] .meta { color: #b9b3a6; }
+    html[data-theme="dark"] a { color: #f7f5ef; text-decoration-color: #6f6a61; }
   </style>
+  <link rel="stylesheet" href="assets/fx.css">
 </head>
 <body>
   <div class="wrap">
@@ -56,5 +76,23 @@
     <h2>Support Contact</h2>
     <p>For claims, message us at <a href="https://wa.me/923218705726">+92 321 8705726</a> with your order reference.</p>
   </div>
+  <script>
+    (function(){
+      const body=document.body;
+      requestAnimationFrame(()=>body.classList.add('page-loaded'));
+      document.addEventListener('click',e=>{
+        const a=e.target.closest('a[href]');if(!a)return;
+        const h=a.getAttribute('href');if(!h)return;
+        if(a.target==='_blank'||a.hasAttribute('download'))return;
+        if(h.startsWith('#')||h.startsWith('mailto:')||h.startsWith('tel:'))return;
+        if(/^https?:\/\//i.test(h)){try{const u=new URL(h,location.href);if(u.host!==location.host)return;}catch(_){return;}}
+        if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1)return;
+        e.preventDefault();body.classList.add('page-leaving');
+        setTimeout(()=>{location.href=h;},240);
+      });
+      window.addEventListener('pageshow',e=>{if(e.persisted)body.classList.remove('page-leaving');body.classList.add('page-loaded');});
+    })();
+  </script>
+  <script src="assets/fx.js" defer></script>
 </body>
 </html>

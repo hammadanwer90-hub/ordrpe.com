@@ -15,7 +15,7 @@ where id in (
   select id
   from auth.users
   where email in (
-    'admin@ordrpe.com'
+    'm.memonhammad@gmail.com'
     -- add more emails here, comma-separated
     -- 'second-admin@ordrpe.com'
   )

@@ -26,6 +26,8 @@
   <meta name="apple-mobile-web-app-title" content="Ordrpe">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link rel="dns-prefetch" href="//images.unsplash.com">
+  <link rel="preconnect" href="https://picsum.photos" crossorigin>
+  <link rel="dns-prefetch" href="//picsum.photos">
   <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
   <link rel="shortcut icon" href="images/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
@@ -339,7 +341,7 @@
 
     .hero-wheel-stage {
       --hero-wheel-dur: 52s;
-      --wheel-n: 6;
+      --wheel-n: 4;
       --wheel-tz: min(44vw, 292px);
       position: relative;
       width: 100%;
@@ -530,13 +532,13 @@
       .hero-wheel-stage {
         --wheel-tz: min(40vw, 224px);
         min-height: clamp(320px, 86vw, 440px);
-        perspective-origin: 50% 40%;
+        perspective-origin: 50% 52%;
       }
       .hero-wheel-tilt {
         min-height: clamp(320px, 86vw, 440px);
         transform: rotateX(11deg);
       }
-      .hero-wheel-rotor-wrap { top: 42%; }
+      .hero-wheel-rotor-wrap { top: 52%; }
       .hero-r .hm.hero-wheel-card {
         width: clamp(130px, 36vw, 174px);
         border-radius: 14px;
@@ -2676,8 +2678,8 @@
     { id: 'gifts', href: wa("Hi Ordrpe! I'm looking for gift bundles & gifting ideas."), ext: true, label: 'Gift Ideas', alt: 'Gifts', img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345e?w=900&q=85', aria: 'Gift ideas on WhatsApp' },
     { id: 'wellness', href: wa("Hi Ordrpe! I'm looking for supplements & wellness."), ext: true, label: 'Wellness', alt: 'Wellness', img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85', aria: 'Order Wellness on WhatsApp' }
   ];
-  /* Six physical cards on the wheel; shuffled `order` feeds them. Each tick exactly ONE slot swaps to the next pick (clean “one in, one out” feel). */
-  var SLOT = 6;
+  /* Four physical cards on the wheel; shuffled `order` feeds them. Each tick exactly ONE slot swaps to the next pick (clean “one in, one out” feel). */
+  var SLOT = 4;
   var L = POOL.length;
   var order = [];
   for (var ii = 0; ii < L; ii++) order.push(ii);
@@ -2696,9 +2698,17 @@
   var tzPx = Math.round(Math.min(isNarrow ? 350 : 490, Math.max(isNarrow ? 200 : 238, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / SLOT)))));
   stage.style.setProperty('--wheel-tz', tzPx + 'px');
 
+  function photoRoot(item) {
+    if (!item || !item.img) return '';
+    var s = String(item.img);
+    var q = s.indexOf('?');
+    return q >= 0 ? s.slice(0, q) : s;
+  }
+
   function imgUrl(item) {
-    var u = item.img.indexOf('?') >= 0 ? item.img + '&fm=jpg&v=marq1' : item.img + '?fm=jpg&v=marq1';
-    return u;
+    var r = photoRoot(item);
+    if (!r) return '';
+    return r + '?auto=format&fit=crop&w=840&h=1120&q=80';
   }
 
   function applyCard(el, pi) {
@@ -2714,15 +2724,24 @@
       img.alt = item.alt || '';
       img.loading = 'eager';
       img.decoding = 'async';
-      var primary = imgUrl(item);
-      img.onerror = function () {
-        img.onerror = null;
-        var plain = item.img;
-        if (!plain) return;
-        var root = plain.split('?')[0];
-        if (root) img.src = root + '?auto=format&w=900&q=82&fit=crop';
+      img.removeAttribute('data-hero-img-fail');
+      var root = photoRoot(item);
+      img.onload = function () {
+        img.removeAttribute('data-hero-img-fail');
       };
-      img.src = primary;
+      img.onerror = function () {
+        var step = parseInt(img.getAttribute('data-hero-img-fail') || '0', 10) + 1;
+        img.setAttribute('data-hero-img-fail', String(step));
+        if (step === 1 && root) {
+          img.src = root + '?w=800&q=80';
+        } else if (step === 2 && root) {
+          img.src = root + '?w=640&h=853&fit=crop&q=80';
+        } else {
+          img.onerror = null;
+          img.src = 'https://picsum.photos/seed/ordrpe-' + encodeURIComponent(item.id) + '/600/800';
+        }
+      };
+      img.src = imgUrl(item);
     }
     if (lab) lab.innerHTML = item.label;
   }
@@ -2735,7 +2754,7 @@
     img.className = 'hero-rot-img';
     img.decoding = 'async';
     img.loading = 'eager';
-    img.setAttribute('fetchpriority', 'high');
+    if (ix < 2) img.setAttribute('fetchpriority', 'high');
     var lab = document.createElement('div');
     lab.className = 'hm-label';
     var face = document.createElement('span');
@@ -2746,7 +2765,7 @@
     return el;
   }
 
-  function currentSixIds() {
+  function currentWheelIds() {
     var out = [];
     for (var i = 0; i < SLOT; i++) {
       out.push(POOL[displayedPi[i]].id);
@@ -2758,7 +2777,7 @@
     for (var i = 0; i < SLOT; i++) {
       applyCard(slotEls[i], displayedPi[i]);
     }
-    heroDbg.lastIds = currentSixIds();
+    heroDbg.lastIds = currentWheelIds();
     heroDbg.lastApply = Date.now();
     ordrpeHeroUpdateHud();
   }
@@ -2781,9 +2800,9 @@
   paintAllSlots(slotEls);
 
   var secs = Math.round(Math.min(84, Math.max(50, SLOT * 8.4)) * 10) / 10;
-  var advanceMs = 6200;
+  var advanceMs = isNarrow ? 9000 : 6200;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    advanceMs = 10000;
+    advanceMs = Math.max(advanceMs, 10000);
   }
   var slotIv = window.setInterval(function () {
     advanceOnePick(slotEls);
@@ -2794,7 +2813,7 @@
   heroDbg.slotCount = SLOT;
   heroDbg.slotAdvanceMs = advanceMs;
   heroDbg.shuffleOrder = order.slice();
-  heroDbg.lastIds = currentSixIds();
+  heroDbg.lastIds = currentWheelIds();
   heroDbg.inited = true;
   heroDbg.log = heroLog;
   heroDbg.howToDebug = 'localhost / file · ?heroDebug=1 · console: __ordrpeHeroDebug';

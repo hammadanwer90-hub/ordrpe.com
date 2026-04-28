@@ -6,7 +6,7 @@
   "scope": "/",
   "display": "standalone",
   "background_color": "#fdf8f3",
-  "theme_color": "#a97c3a",
+  "theme_color": "#11100e",
   "icons": [
     {
       "src": "images/favicon/android-chrome-192x192.png",

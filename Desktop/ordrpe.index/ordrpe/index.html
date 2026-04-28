@@ -295,7 +295,7 @@
     .ht-dot { width: 5px; height: 5px; background: #11100e; border-radius: 50%; opacity: 0.9; }
     .ht span { font-size: 11px; color: #625d54; letter-spacing: 0.5px; }
 
-    /* hero right — infinite horizontal marquee of all curated picks */
+    /* hero right — 3D circular “wheel” carousel */
     .hero-r {
       position: relative;
       display: flex;
@@ -327,7 +327,7 @@
 
     .hero-stack-shell {
       width: 100%;
-      max-width: min(760px, 100%);
+      max-width: min(640px, 100%);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -336,166 +336,260 @@
       animation: luxRise 0.62s var(--motion-lux) 0.2s forwards;
     }
 
-    .hero-marquee-viewport {
-      overflow: hidden;
+    .hero-wheel-stage {
+      --hero-wheel-dur: 52s;
+      --wheel-n: 6;
+      --wheel-tz: min(34vw, 228px);
+      position: relative;
       width: 100%;
-      max-width: 100vw;
-      --hero-marquee-dur: 56s;
-      mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-      mask-size: 100% 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-    }
-    html[data-theme="dark"] .hero-marquee-viewport {
-      mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+      min-height: clamp(300px, 48vw, 420px);
+      perspective: min(1240px, 140vw);
+      perspective-origin: 50% 42%;
+      overflow: visible;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    @keyframes heroMarqueeSlide {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(-50%, 0, 0); }
+    .hero-wheel-ground {
+      position: absolute;
+      left: 50%;
+      bottom: 4%;
+      width: min(92%, 440px);
+      height: clamp(56px, 12vw, 84px);
+      transform: translateX(-50%) rotateX(78deg) scale(1.05);
+      transform-origin: 50% 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse 50% 88% at 50% 50%, rgba(17,16,14,0.14) 0%, transparent 72%);
+      opacity: 0.85;
+      filter: blur(1px);
+    }
+    html[data-theme="dark"] .hero-wheel-ground {
+      background: radial-gradient(ellipse 50% 88% at 50% 50%, rgba(0,0,0,0.55) 0%, transparent 72%);
+      opacity: 0.7;
     }
 
-    .hero-marquee-strip {
-      display: flex;
-      width: max-content;
+    .hero-wheel-tilt {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      min-height: clamp(300px, 48vw, 420px);
+      transform-style: preserve-3d;
+      transform: rotateX(14deg);
+    }
+
+    @keyframes heroWheelSpin {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(-360deg); }
+    }
+
+    .hero-wheel-rotor-wrap {
+      position: absolute;
+      left: 50%;
+      top: 44%;
+      width: 0;
+      height: 0;
+      transform: translate(-50%, -50%);
+      transform-style: preserve-3d;
+    }
+
+    .hero-wheel-rotor {
+      position: relative;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      transform-style: preserve-3d;
       will-change: transform;
     }
 
-    .hero-marquee-seq {
-      display: flex;
-      align-items: stretch;
-      gap: clamp(10px, 2vw, 16px);
-      padding-right: clamp(10px, 2vw, 16px);
-      flex-shrink: 0;
-    }
-
     @media (prefers-reduced-motion: no-preference) {
-      .hero-marquee-strip {
-        animation: heroMarqueeSlide var(--hero-marquee-dur, 56s) linear infinite !important;
+      .hero-wheel-rotor {
+        animation: heroWheelSpin var(--hero-wheel-dur, 52s) linear infinite;
       }
-      .hero-marquee-viewport:hover .hero-marquee-strip {
+      .hero-wheel-stage:hover .hero-wheel-rotor {
         animation-play-state: paused;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hero-marquee-strip {
-        animation: none !important;
-        width: 100% !important;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-      .hero-marquee-seq + .duplicate-seq { display: none !important; }
-      .hero-marquee-viewport {
-        overflow-x: visible;
-        mask-image: none;
-        -webkit-mask-image: none;
-        padding-bottom: 4px;
-      }
-      .hero-marquee-seq {
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 100%;
-        gap: 10px;
-        padding-right: 0;
-      }
-    }
-
-    .hero-r .hm.hero-marquee-card {
-      position: relative;
+    .hero-r .hm.hero-wheel-card {
+      --wheel-i: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
       display: block;
-      flex-shrink: 0;
-      width: clamp(124px, 22vw, 184px);
+      width: clamp(112px, 20vw, 162px);
       aspect-ratio: 3 / 4;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(17,16,14,0.1);
+      border-radius: 16px;
+      overflow: visible;
+      border: 1px solid rgba(17,16,14,0.12);
       text-decoration: none;
       cursor: pointer;
-      background: #14120f;
-      box-shadow: 0 14px 40px rgba(17,16,14,0.12);
+      background: #12100e;
+      box-shadow:
+        0 4px 0 rgba(255,255,255,0.06) inset,
+        0 18px 36px rgba(17,16,14,0.18),
+        0 2px 8px rgba(17,16,14,0.08);
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%)
+        rotateY(calc(var(--wheel-i) * 1turn / var(--wheel-n)))
+        translateZ(var(--wheel-tz));
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       transition:
-        transform 0.42s var(--motion-lux, cubic-bezier(0.32, 0.72, 0, 1)),
-        box-shadow 0.38s ease,
+        box-shadow 0.45s var(--motion-lux, cubic-bezier(0.32, 0.72, 0, 1)),
         border-color 0.35s ease;
     }
-    html[data-theme="dark"] .hero-r .hm.hero-marquee-card {
-      border-color: rgba(247,245,239,0.1);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
-      background: #0d0c0b;
+    html[data-theme="dark"] .hero-r .hm.hero-wheel-card {
+      border-color: rgba(247,245,239,0.11);
+      box-shadow:
+        0 4px 0 rgba(255,255,255,0.04) inset,
+        0 22px 48px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.04);
+      background: #0a0908;
     }
 
-    .hero-r .hm.hero-marquee-card:focus-visible {
-      outline: 2px solid #11100e;
-      outline-offset: 4px;
-      z-index: 3;
+    .hero-wheel-card-face {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      transform: translateZ(0);
+      transition: transform 0.5s var(--motion-lux, cubic-bezier(0.32, 0.72, 0, 1));
     }
-    html[data-theme="dark"] .hero-r .hm.hero-marquee-card:focus-visible {
+
+    .hero-r .hm.hero-wheel-card:focus-visible {
+      outline: 2px solid #11100e;
+      outline-offset: 6px;
+    }
+    html[data-theme="dark"] .hero-r .hm.hero-wheel-card:focus-visible {
       outline-color: #f7f5ef;
     }
 
-    .hero-r .hm.hero-marquee-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 56px rgba(17,16,14,0.2);
-      border-color: rgba(17,16,14,0.16);
-      z-index: 2;
+    .hero-r .hm.hero-wheel-card:hover {
+      border-color: rgba(17,16,14,0.22);
+      box-shadow:
+        0 4px 0 rgba(255,255,255,0.08) inset,
+        0 26px 52px rgba(17,16,14,0.28),
+        0 0 0 1px rgba(17,16,14,0.06);
+      z-index: 5;
     }
-    html[data-theme="dark"] .hero-r .hm.hero-marquee-card:hover {
-      box-shadow: 0 26px 64px rgba(0,0,0,0.55);
-      border-color: rgba(247,245,239,0.14);
+    html[data-theme="dark"] .hero-r .hm.hero-wheel-card:hover {
+      border-color: rgba(247,245,239,0.2);
+      box-shadow:
+        0 4px 0 rgba(255,255,255,0.06) inset,
+        0 30px 60px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(247,245,239,0.08);
     }
 
-    .hero-r .hm.hero-marquee-card img.hero-rot-img {
+    .hero-r .hm.hero-wheel-card:hover .hero-wheel-card-face {
+      transform: scale(1.04);
+    }
+
+    .hero-r .hm.hero-wheel-card img.hero-rot-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.55s var(--motion-lux, ease);
+      transition: transform 0.55s var(--motion-lux, ease), filter 0.35s ease;
+    }
+    html[data-theme="dark"] .hero-r .hm.hero-wheel-card img.hero-rot-img {
+      filter: brightness(0.78) contrast(1.06) saturate(0.94);
+    }
+    .hero-r .hm.hero-wheel-card:hover img.hero-rot-img {
+      transform: scale(1.03);
     }
 
-    html[data-theme="dark"] .hero-r .hm.hero-marquee-card img.hero-rot-img {
-      filter: brightness(0.76) contrast(1.05) saturate(0.95);
-    }
-    .hero-r .hm.hero-marquee-card:hover img.hero-rot-img {
-      transform: scale(1.035);
-    }
-
-    .hero-marquee-card .hm-label {
+    .hero-wheel-card .hm-label {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 38px 8px 8px;
-      background: linear-gradient(to top, rgba(17,16,14,0.92) 0%, transparent 90%);
-      font-size: 8px;
+      padding: 36px 8px 9px;
+      background: linear-gradient(to top, rgba(12,11,10,0.94) 0%, transparent 88%);
+      font-size: 7.5px;
       font-weight: 800;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(247,245,239,0.96);
+      color: rgba(247,245,239,0.97);
       line-height: 1.25;
-      border-radius: 0 0 16px 16px;
+      border-radius: 0 0 14px 14px;
       text-align: center;
     }
 
     @media (max-width: 520px) {
-      .hero-r .hm.hero-marquee-card {
-        width: clamp(108px, 31vw, 148px);
+      .hero-wheel-stage {
+        --wheel-tz: min(30vw, 168px);
+        min-height: clamp(268px, 72vw, 360px);
+        perspective-origin: 50% 40%;
+      }
+      .hero-wheel-tilt {
+        min-height: clamp(268px, 72vw, 360px);
+        transform: rotateX(11deg);
+      }
+      .hero-wheel-rotor-wrap { top: 42%; }
+      .hero-r .hm.hero-wheel-card {
+        width: clamp(102px, 28vw, 138px);
         border-radius: 14px;
       }
-      .hero-marquee-seq { gap: 8px; padding-right: 8px; }
+      .hero-wheel-card-face { border-radius: 13px; }
+      .hero-wheel-card .hm-label { font-size: 7px; letter-spacing: 0.14em; padding-top: 32px; }
     }
 
-    @keyframes heroMarqueeExit {
+    @keyframes heroWheelExit {
       to { opacity: 0; }
     }
-    body.page-leaving .hero-marquee-card {
-      animation: heroMarqueeExit 0.38s ease forwards !important;
+    body.page-leaving .hero-wheel-card {
+      animation: heroWheelExit 0.38s ease forwards !important;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-r .hm.hero-marquee-card { transition-duration: 0.12s; }
-      .hero-r .hm.hero-marquee-card:hover img.hero-rot-img { transform: none; }
+      .hero-wheel-tilt { transform: none; }
+      .hero-wheel-stage {
+        perspective: none;
+        min-height: 0;
+        --wheel-tz: 0px;
+      }
+      .hero-wheel-ground { display: none; }
+      .hero-wheel-rotor-wrap {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        transform: none;
+      }
+      .hero-wheel-rotor {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        transform: none !important;
+        animation: none !important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 10px;
+        padding: 8px 0 4px;
+      }
+      .hero-r .hm.hero-wheel-card {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 0;
+        transform: none !important;
+        width: clamp(104px, 29vw, 140px);
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+      }
+      .hero-r .hm.hero-wheel-card:hover .hero-wheel-card-face { transform: none; }
+      .hero-r .hm.hero-wheel-card:hover img.hero-rot-img { transform: none; }
     }
 
 
@@ -2481,8 +2575,13 @@
   <div class="hero-r hero-r-marquee" id="heroR" role="region" aria-label="Featured shopping picks">
     <p class="hero-stack-title">Shop these picks</p>
     <div class="hero-stack-shell">
-      <div class="hero-marquee-viewport">
-        <div class="hero-marquee-strip" id="heroMarqueeStrip"></div>
+      <div class="hero-wheel-stage" id="heroWheelStage">
+        <div class="hero-wheel-ground" aria-hidden="true"></div>
+        <div class="hero-wheel-tilt">
+          <div class="hero-wheel-rotor-wrap">
+            <div class="hero-wheel-rotor" id="heroWheelRotor"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2522,7 +2621,7 @@
       _heroHud.setAttribute('aria-live', 'polite');
       _heroHud.setAttribute('aria-atomic', 'true');
       _heroHud.style.cssText = 'position:fixed;bottom:10px;right:10px;z-index:99998;max-width:min(100vw - 20px,320px);padding:8px 10px;border-radius:10px;font:11px/1.35 ui-monospace,monospace;pointer-events:auto;background:rgba(17,16,14,.92);color:#f7f5ef;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(247,245,239,.12)';
-      _heroHud.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px"><span style="font-weight:700;letter-spacing:.04em">Hero marquee</span><button type="button" class="ordrpe-hero-hud-x" style="all:unset;cursor:pointer;opacity:.75;padding:0 4px" aria-label="Close debug panel">×</button></div><div class="ordrpe-hero-hud-line"></div>';
+      _heroHud.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px"><span style="font-weight:700;letter-spacing:.04em">Hero wheel</span><button type="button" class="ordrpe-hero-hud-x" style="all:unset;cursor:pointer;opacity:.75;padding:0 4px" aria-label="Close debug panel">×</button></div><div class="ordrpe-hero-hud-line"></div>';
       document.body.appendChild(_heroHud);
       var bx = _heroHud.querySelector('.ordrpe-hero-hud-x');
       if (bx) {
@@ -2544,9 +2643,9 @@
 
   var root = document.getElementById('heroR');
   if (!root) { heroDbg.initError = 'no #heroR'; return; }
-  var strip = document.getElementById('heroMarqueeStrip');
-  var view = root.querySelector('.hero-marquee-viewport');
-  if (!strip || !view) { heroDbg.initError = 'no marquee strip'; return; }
+  var stage = document.getElementById('heroWheelStage');
+  var rotor = document.getElementById('heroWheelRotor');
+  if (!stage || !rotor) { heroDbg.initError = 'no hero wheel'; return; }
 
   var wa = function (path) { return 'https://wa.me/923218705726?text=' + encodeURIComponent(path); };
   var POOL = [
@@ -2571,20 +2670,22 @@
     { id: 'gifts', href: wa("Hi Ordrpe! I'm looking for gift bundles & gifting ideas."), ext: true, label: 'Gift Ideas', alt: 'Gifts', img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345e?w=900&q=85', aria: 'Gift ideas on WhatsApp' },
     { id: 'wellness', href: wa("Hi Ordrpe! I'm looking for supplements & wellness."), ext: true, label: 'Wellness', alt: 'Wellness', img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85', aria: 'Order Wellness on WhatsApp' }
   ];
-  var L = POOL.length;
+  /* Fixed six “Shop these picks” cards (hero top strip): stable order, no shuffle. Extra categories stay in POOL for search / future use. */
+  var _heroPoolById = {};
+  for (var _pi = 0; _pi < POOL.length; _pi++) _heroPoolById[POOL[_pi].id] = _pi;
+  var HERO_TOP_IDS = ['makeup', 'fragrance', 'shoes', 'bags', 'intimates', 'tech'];
   var ring = [];
-  (function shuffleRing() {
-    for (var ii = 0; ii < L; ii++) ring.push(ii);
-    for (var a = ring.length - 1; a > 0; a--) {
-      var bb = Math.floor(Math.random() * (a + 1));
-      var tmp = ring[a]; ring[a] = ring[bb]; ring[bb] = tmp;
-    }
-  })();
+  for (var _ti = 0; _ti < HERO_TOP_IDS.length; _ti++) {
+    var _idx = _heroPoolById[HERO_TOP_IDS[_ti]];
+    if (_idx !== undefined) ring.push(_idx);
+  }
+  var L = ring.length;
 
   function makeCard(pi, ix) {
     var item = POOL[pi];
     var el = document.createElement('a');
-    el.className = 'hm hero-marquee-card';
+    el.className = 'hm hero-wheel-card';
+    el.style.setProperty('--wheel-i', String(ix));
     el.setAttribute('data-ordrpe-cat', item.id);
     el.href = item.href;
     if (item.ext) { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener'); }
@@ -2605,29 +2706,21 @@
     lab.className = 'hm-label';
     lab.innerHTML = item.label;
 
-    el.appendChild(img);
-    el.appendChild(lab);
+    var face = document.createElement('span');
+    face.className = 'hero-wheel-card-face';
+    face.appendChild(img);
+    face.appendChild(lab);
+    el.appendChild(face);
     return el;
   }
 
-  function appendSequence(ringOrder) {
-    var seq = document.createElement('div');
-    seq.className = 'hero-marquee-seq';
-    for (var r = 0; r < ringOrder.length; r++) {
-      seq.appendChild(makeCard(ringOrder[r], r));
-    }
-    return seq;
+  rotor.innerHTML = '';
+  rotor.style.setProperty('--wheel-n', String(L));
+  for (var r = 0; r < ring.length; r++) {
+    rotor.appendChild(makeCard(ring[r], r));
   }
 
-  strip.innerHTML = '';
-  strip.appendChild(appendSequence(ring));
-
-  var seqB = strip.firstChild.cloneNode(true);
-  seqB.classList.add('duplicate-seq');
-  seqB.setAttribute('aria-hidden', 'true');
-  strip.appendChild(seqB);
-
-  var secs = Math.round(Math.min(96, Math.max(44, L * 2.6)) * 10) / 10;
+  var secs = Math.round(Math.min(76, Math.max(48, L * 8.2)) * 10) / 10;
   heroDbg.pickCount = L;
   heroDbg.secondsPerLap = secs;
   heroDbg.slotCount = L;
@@ -2638,23 +2731,23 @@
   heroDbg.inited = true;
   heroDbg.log = heroLog;
   heroDbg.howToDebug = 'localhost / file · ?heroDebug=1 · console: __ordrpeHeroDebug';
-  heroDbg.stripEl = strip;
+  heroDbg.rotorEl = rotor;
   heroDbg.shuffleOrder = ring.slice();
 
-  view.style.setProperty('--hero-marquee-dur', secs + 's');
-  root.setAttribute('data-ordrpe-rot', 'marquee-live');
+  stage.style.setProperty('--hero-wheel-dur', secs + 's');
+  root.setAttribute('data-ordrpe-rot', 'wheel-live');
 
   ordrpeHeroUpdateHud();
-  heroLog('marquee', { picks: L, secondsPerLoop: secs, order: heroDbg.lastIds });
+  heroLog('wheel', { picks: L, secondsPerLoop: secs, order: heroDbg.lastIds });
 
   window.__ordrpeHeroDebug.periodMs = 0;
   window.__ordrpeHeroDebug.rotMs = 0;
   window.__ordrpeHeroDebug._iv = null;
   window._ordrpeHeroStop = function () {
-    if (strip) strip.style.animation = 'none';
+    if (rotor) rotor.style.animation = 'none';
   };
   if (!_heroDebugOn && window.console) {
-    try { console.info('[ordrpe] Hero horizontal marquee · ' + L + ' picks · ~' + secs + 's per loop · ?heroDebug=1'); } catch (e3) {}
+    try { console.info('[ordrpe] Hero 3D wheel · ' + L + ' picks · ~' + secs + 's per loop · ?heroDebug=1'); } catch (e3) {}
   }
 })();
 </script>
@@ -4074,7 +4167,7 @@ function finderSearchPreview() {
   });
 })();
 
-/* Hero marquee: continuous horizontal carousel — runs inline right after #heroR (script after hero) */
+/* Hero picks: 3D wheel carousel — runs inline right after #heroR (script after hero) */
 
 /* ─────────────────────────────────────────────
    THE EDIT — full-width swipeable carousel

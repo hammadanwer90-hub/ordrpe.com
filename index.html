@@ -328,7 +328,7 @@
 
     .hero-stack-shell {
       width: 100%;
-      max-width: min(720px, 100%);
+      max-width: min(680px, 100%);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -340,11 +340,11 @@
     .hero-wheel-stage {
       --hero-wheel-dur: 52s;
       --wheel-n: 6;
-      --wheel-tz: min(38vw, 248px);
+      --wheel-tz: min(36vw, 236px);
       position: relative;
       width: 100%;
-      min-height: clamp(320px, 52vw, 460px);
-      perspective: min(1280px, 145vw);
+      min-height: clamp(300px, 50vw, 430px);
+      perspective: min(1260px, 142vw);
       perspective-origin: 50% 42%;
       overflow: visible;
       user-select: none;
@@ -375,7 +375,7 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      min-height: clamp(320px, 52vw, 460px);
+      min-height: clamp(300px, 50vw, 430px);
       transform-style: preserve-3d;
       transform: rotateX(14deg);
     }
@@ -420,7 +420,7 @@
       left: 0;
       top: 0;
       display: block;
-      width: clamp(128px, 22vw, 188px);
+      width: clamp(120px, 21vw, 176px);
       aspect-ratio: 3 / 4;
       border-radius: 16px;
       overflow: visible;
@@ -523,17 +523,17 @@
 
     @media (max-width: 520px) {
       .hero-wheel-stage {
-        --wheel-tz: min(34vw, 188px);
-        min-height: clamp(288px, 76vw, 400px);
+        --wheel-tz: min(32vw, 178px);
+        min-height: clamp(276px, 74vw, 380px);
         perspective-origin: 50% 40%;
       }
       .hero-wheel-tilt {
-        min-height: clamp(288px, 76vw, 400px);
+        min-height: clamp(276px, 74vw, 380px);
         transform: rotateX(11deg);
       }
       .hero-wheel-rotor-wrap { top: 42%; }
       .hero-r .hm.hero-wheel-card {
-        width: clamp(114px, 30vw, 152px);
+        width: clamp(108px, 29vw, 146px);
         border-radius: 14px;
       }
       .hero-wheel-card-face { border-radius: 13px; }
@@ -2671,45 +2671,54 @@
     { id: 'gifts', href: wa("Hi Ordrpe! I'm looking for gift bundles & gifting ideas."), ext: true, label: 'Gift Ideas', alt: 'Gifts', img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345e?w=900&q=85', aria: 'Gift ideas on WhatsApp' },
     { id: 'wellness', href: wa("Hi Ordrpe! I'm looking for supplements & wellness."), ext: true, label: 'Wellness', alt: 'Wellness', img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85', aria: 'Order Wellness on WhatsApp' }
   ];
-  /* Full POOL on the wheel (~5–6 visible at once); shuffled order so every category passes as it spins. */
+  /* Six slots on the wheel only; a shuffled list cycles — each tick one new category, one drops off. */
+  var SLOT = 6;
   var L = POOL.length;
-  var ring = [];
-  for (var ii = 0; ii < L; ii++) ring.push(ii);
-  for (var a = ring.length - 1; a > 0; a--) {
+  var order = [];
+  for (var ii = 0; ii < L; ii++) order.push(ii);
+  for (var a = order.length - 1; a > 0; a--) {
     var bb = Math.floor(Math.random() * (a + 1));
-    var tmp = ring[a]; ring[a] = ring[bb]; ring[bb] = tmp;
+    var tmp = order[a]; order[a] = order[bb]; order[bb] = tmp;
   }
-  var cardEstPx = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 126 : 172;
-  var tzMax = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 300 : 440;
-  var tzMin = window.matchMedia && window.matchMedia('(max-width: 520px)').matches ? 168 : 200;
-  var tzPx = Math.round(Math.min(tzMax, Math.max(tzMin, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / Math.max(L, 2))))));
+  var winBase = 0;
+  var isNarrow = window.matchMedia && window.matchMedia('(max-width: 520px)').matches;
+  var cardEstPx = isNarrow ? 122 : 164;
+  var tzPx = Math.round(Math.min(isNarrow ? 288 : 400, Math.max(isNarrow ? 172 : 198, (cardEstPx * 1.12) / (2 * Math.sin(Math.PI / SLOT)))));
   stage.style.setProperty('--wheel-tz', tzPx + 'px');
 
-  function makeCard(pi, ix) {
+  function imgUrl(item) {
+    var u = item.img.indexOf('?') >= 0 ? item.img + '&v=marq1' : item.img + '?v=marq1';
+    return u;
+  }
+
+  function applyCard(el, pi) {
     var item = POOL[pi];
-    var el = document.createElement('a');
-    el.className = 'hm hero-wheel-card';
-    el.style.setProperty('--wheel-i', String(ix));
     el.setAttribute('data-ordrpe-cat', item.id);
     el.href = item.href;
     if (item.ext) { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener'); }
     else { el.removeAttribute('target'); el.removeAttribute('rel'); }
     el.setAttribute('aria-label', item.aria);
+    var img = el.querySelector('img.hero-rot-img');
+    var lab = el.querySelector('.hm-label');
+    if (img) {
+      img.alt = item.alt || '';
+      var nu = imgUrl(item);
+      if (img.getAttribute('src') !== nu) img.src = nu;
+    }
+    if (lab) lab.innerHTML = item.label;
+  }
 
+  function makeCardShell(ix) {
+    var el = document.createElement('a');
+    el.className = 'hm hero-wheel-card';
+    el.style.setProperty('--wheel-i', String(ix));
     var img = document.createElement('img');
     img.className = 'hero-rot-img';
-    img.alt = item.alt || '';
     img.decoding = 'async';
-    img.loading = ix < 6 ? 'eager' : 'lazy';
-    if (ix < 2) {
-      img.setAttribute('fetchpriority', 'high');
-    }
-    img.src = item.img.indexOf('?') >= 0 ? item.img + '&v=marq1' : item.img + '?v=marq1';
-
+    img.loading = ix < 4 ? 'eager' : 'lazy';
+    if (ix < 2) img.setAttribute('fetchpriority', 'high');
     var lab = document.createElement('div');
     lab.className = 'hm-label';
-    lab.innerHTML = item.label;
-
     var face = document.createElement('span');
     face.className = 'hero-wheel-card-face';
     face.appendChild(img);
@@ -2718,40 +2727,71 @@
     return el;
   }
 
-  rotor.innerHTML = '';
-  rotor.style.setProperty('--wheel-n', String(L));
-  for (var r = 0; r < ring.length; r++) {
-    rotor.appendChild(makeCard(ring[r], r));
+  function currentSixIds() {
+    var out = [];
+    for (var i = 0; i < SLOT; i++) {
+      out.push(POOL[order[(winBase + i) % L]].id);
+    }
+    return out;
   }
 
-  var secs = Math.round(Math.min(108, Math.max(56, L * 4.15)) * 10) / 10;
+  function syncAllSlots(slotEls) {
+    for (var i = 0; i < SLOT; i++) {
+      var pi = order[(winBase + i) % L];
+      applyCard(slotEls[i], pi);
+    }
+    heroDbg.lastIds = currentSixIds();
+    heroDbg.lastApply = Date.now();
+    ordrpeHeroUpdateHud();
+  }
+
+  rotor.innerHTML = '';
+  rotor.style.setProperty('--wheel-n', String(SLOT));
+  var slotEls = [];
+  for (var r = 0; r < SLOT; r++) {
+    var shell = makeCardShell(r);
+    rotor.appendChild(shell);
+    slotEls.push(shell);
+  }
+  syncAllSlots(slotEls);
+
+  var secs = Math.round(Math.min(84, Math.max(50, SLOT * 8.4)) * 10) / 10;
+  var advanceMs = 6200;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    advanceMs = 10000;
+  }
+  var slotIv = window.setInterval(function () {
+    winBase = (winBase + 1) % L;
+    syncAllSlots(slotEls);
+  }, advanceMs);
+
   heroDbg.pickCount = L;
   heroDbg.secondsPerLap = secs;
-  heroDbg.slotCount = L;
-  heroDbg.lastIds = ring.map(function (rdi) {
-    return POOL[rdi].id;
-  });
-  heroDbg.lastApply = Date.now();
+  heroDbg.slotCount = SLOT;
+  heroDbg.slotAdvanceMs = advanceMs;
+  heroDbg.shuffleOrder = order.slice();
+  heroDbg.lastIds = currentSixIds();
   heroDbg.inited = true;
   heroDbg.log = heroLog;
   heroDbg.howToDebug = 'localhost / file · ?heroDebug=1 · console: __ordrpeHeroDebug';
   heroDbg.rotorEl = rotor;
-  heroDbg.shuffleOrder = ring.slice();
+  heroDbg.slotIv = slotIv;
 
   stage.style.setProperty('--hero-wheel-dur', secs + 's');
   root.setAttribute('data-ordrpe-rot', 'wheel-live');
 
   ordrpeHeroUpdateHud();
-  heroLog('wheel', { picks: L, secondsPerLoop: secs, order: heroDbg.lastIds });
+  heroLog('wheel', { picks: L, slots: SLOT, secondsPerLoop: secs, advanceMs: advanceMs, visible: heroDbg.lastIds });
 
   window.__ordrpeHeroDebug.periodMs = 0;
   window.__ordrpeHeroDebug.rotMs = 0;
-  window.__ordrpeHeroDebug._iv = null;
+  window.__ordrpeHeroDebug._iv = slotIv;
   window._ordrpeHeroStop = function () {
     if (rotor) rotor.style.animation = 'none';
+    if (heroDbg.slotIv) { try { clearInterval(heroDbg.slotIv); } catch (eZ) {} heroDbg.slotIv = null; }
   };
   if (!_heroDebugOn && window.console) {
-    try { console.info('[ordrpe] Hero 3D wheel · ' + L + ' picks · ~' + secs + 's per loop · ?heroDebug=1'); } catch (e3) {}
+    try { console.info('[ordrpe] Hero wheel · ' + SLOT + ' slots · ' + L + ' picks · ~' + secs + 's spin · swap ' + advanceMs + 'ms'); } catch (e3) {}
   }
 })();
 </script>

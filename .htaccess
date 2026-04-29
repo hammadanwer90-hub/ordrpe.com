@@ -2,8 +2,4 @@ Options -Indexes
 RewriteEngine On
 
 # Pretty URLs
-RewriteRule ^calculator$ calculator.html [L]
 RewriteRule ^membership$ membership.html [L]
-
-# Custom 404
-ErrorDocument 404 /404.html

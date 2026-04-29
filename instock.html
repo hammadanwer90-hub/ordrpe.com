@@ -1988,7 +1988,7 @@ function loadRecentlyViewed() {
 
 function saveRecentlyViewed() {
   try {
-    const payload = recentlyViewed.slice(0, 10).map((p) => ({ name: p.name, img: p.img, pkr: p.pkr }));
+    const payload = recentlyViewed.slice(0, 10).map((p) => p.name);
     localStorage.setItem(RV_KEY, JSON.stringify(payload));
   } catch (_) {}
 }

@@ -278,7 +278,7 @@
         lab.className = 'fx-wheel-label' + (dark ? ' dark-text' : '');
         lab.textContent = p.label;
         const angle = i * seg + seg / 2 - 90;
-        lab.style.transform = `rotate(${angle}deg) translate(86px) rotate(90deg)`;
+        lab.style.transform = `rotate(${angle}deg) translate(80px) rotate(90deg) translateX(-50%)`;
         wheel.appendChild(lab);
       });
     }

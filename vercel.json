@@ -2,5 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": null,
-  "buildCommand": null
+  "buildCommand": null,
+  "rewrites": [
+    { "source": "/calculator", "destination": "/calculator.html" },
+    { "source": "/membership", "destination": "/membership.html" }
+  ],
+  "redirects": [
+    { "source": "/Ordrpe.html", "destination": "/", "permanent": true },
+    { "source": "/ordrpe.html", "destination": "/", "permanent": true },
+    { "source": "/instock", "destination": "/instock.html", "permanent": true }
+  ]
 }

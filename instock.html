@@ -138,7 +138,7 @@
     body, nav, section, article, aside, footer, header, main {
       transition: background-color var(--motion-mid) var(--motion-soft), color var(--motion-mid) var(--motion-soft), border-color var(--motion-mid) var(--motion-soft), box-shadow var(--motion-mid) var(--motion-soft);
     }
-    button, .pc-add, .pc-buy, .modal-order-btn, .cart-wa-btn, .cart-continue-btn, .wa-btn, .nav-cta, input, select, textarea {
+    button, .pc-add, .pc-buy, .modal-order-btn, .modal-share-link, .cart-wa-btn, .cart-continue-btn, .cart-share-link-btn, .wa-btn, .nav-cta, input, select, textarea {
       transition: background-color var(--motion-fast) var(--motion-soft), color var(--motion-fast) var(--motion-soft), border-color var(--motion-fast) var(--motion-soft), box-shadow var(--motion-fast) var(--motion-soft), transform var(--motion-fast) var(--motion-lux), opacity var(--motion-fast) var(--motion-soft);
     }
     p, h1, h2, h3, h4, h5, h6, span, li, a, label, strong, em, small {
@@ -551,6 +551,9 @@
     .pay-desc { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
     .modal-order-btn { width: 100%; padding: 14px; background: #25d366; color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .modal-order-btn:hover { background: #1ebe5d; }
+    .modal-share-link { width: 100%; margin-top: 8px; padding: 11px 12px; background: transparent; border: 1px dashed var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+    .modal-share-link:hover { background: #f7f7f7; color: var(--dark); border-style: solid; }
+    .modal-share-link svg { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.75; }
 
     /* ── CTA ── */
     .cta-strip { background: var(--dark); max-width: 1400px; margin: 20px auto; border-radius: 16px; padding: 44px 5%; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; position: relative; z-index: 10; }
@@ -758,6 +761,8 @@
     .cart-wa-btn:hover { background: #1ebe5d; }
     .cart-continue-btn { width: 100%; padding: 10px; background: transparent; border: 1px solid var(--border); border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; color: var(--muted); transition: background 0.15s; }
     .cart-continue-btn:hover { background: #f5f5f5; }
+    .cart-share-link-btn { width: 100%; padding: 10px; background: transparent; border: 1px dashed var(--border); border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--dark); transition: background 0.15s, border-color 0.15s; }
+    .cart-share-link-btn:hover { background: #fafafa; border-style: solid; }
 
     /* modal social proof */
     .modal-sp-bar { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 10px 13px; background: #fafafa; border-radius: 10px; border: 1px solid var(--border); }
@@ -1270,6 +1275,10 @@
     html[data-theme="dark"] .cart-foot { border-color: #2a2824; background: #1c1a17; }
     html[data-theme="dark"] .cart-continue-btn { border-color: #2a2824; color: #d8d1c5; }
     html[data-theme="dark"] .cart-continue-btn:hover { background: #14130f; }
+    html[data-theme="dark"] .cart-share-link-btn { border-color: #3a3832; color: #e8e3d8; }
+    html[data-theme="dark"] .cart-share-link-btn:hover { background: #14130f; border-style: solid; }
+    html[data-theme="dark"] .modal-share-link { border-color: #3a3832; color: #b9b3a6; }
+    html[data-theme="dark"] .modal-share-link:hover { background: #14130f; color: #f7f5ef; border-style: solid; }
     html[data-theme="dark"] .stock-bar { background: #2a2824; }
     /* Inputs */
     html[data-theme="dark"] input,
@@ -1406,6 +1415,7 @@
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L.057 23.926a.75.75 0 00.912.919l6.227-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.497-5.264-1.373l-.378-.218-3.924 1.032 1.012-3.836-.234-.39A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Share Cart on WhatsApp
     </button>
+    <button type="button" class="cart-share-link-btn" onclick="shareCartPageLink()">Copy link to this cart</button>
     <button class="cart-continue-btn" onclick="closeCartDrawer()">Continue Shopping</button>
   </div>
 </div>
@@ -2267,7 +2277,8 @@ function openModal(idx) {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
       <button class="pc-add" style="padding:13px;font-size:11px;border-radius:10px" onclick="addToCart(${idx},this);closeModalDirect()">Add to Cart</button>
       <button class="modal-order-btn" onclick="orderItem('${esc(p.name)}','${esc(p.brand)}',${p.pkr})">${waIcon} Reserve on WhatsApp</button>
-    </div>`;
+    </div>
+    <button type="button" class="modal-share-link" onclick="event.stopPropagation();shareProductPageLink(${pi})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Copy link to this item</button>`;
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   bindAmazonZoom();
@@ -2677,8 +2688,183 @@ function shareCartOnWhatsApp() {
   } else {
     msg += `Delivery: standard\n`;
   }
-  msg += `Cart Total: PKR ${subtotal.toLocaleString()}\n\nPlease confirm availability and payment details. Thank you!`;
+  msg += `Cart Total: PKR ${subtotal.toLocaleString()}\n\n`;
+  try {
+    const linkRows = cart.map((c) => ({ n: c.p.name, q: Math.max(1, Math.min(99, c.qty | 0)) }));
+    msg += `Open this cart on the site:\n${buildCartShareUrlFromPayload(linkRows)}\n\n`;
+  } catch (_) {}
+  msg += `Please confirm availability and payment details. Thank you!`;
   window.open(`https://wa.me/923218705726?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function instockPageBaseUrl() {
+  const path = window.location.pathname || '/instock.html';
+  return window.location.origin + path.replace(/[?#].*$/, '');
+}
+
+function buildProductShareUrl(productIndex) {
+  const u = new URL(instockPageBaseUrl());
+  u.searchParams.set('item', String(productIndex));
+  return u.toString();
+}
+
+function buildCartShareUrlFromPayload(rows) {
+  const json = JSON.stringify(rows);
+  const b64 = btoa(unescape(encodeURIComponent(json)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const u = new URL(instockPageBaseUrl());
+  u.searchParams.set('cart', b64);
+  return u.toString();
+}
+
+function parseCartShareParam(enc) {
+  try {
+    if (!enc || typeof enc !== 'string') return null;
+    let b64 = enc.trim().replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) b64 += '=';
+    const json = decodeURIComponent(escape(atob(b64)));
+    const data = JSON.parse(json);
+    return Array.isArray(data) ? data : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
+  }
+  return new Promise((resolve) => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      resolve(ok);
+    } catch (_) {
+      resolve(false);
+    }
+  });
+}
+
+function showShareToast(title, sub) {
+  const container = document.getElementById('cartToast');
+  if (!container) return;
+  const bubble = document.createElement('div');
+  bubble.className = 'ct-bubble';
+  bubble.innerHTML = `
+    <div class="ct-text">
+      <div class="ct-title">${title}</div>
+      ${sub ? `<div class="ct-sub">${sub}</div>` : ''}
+    </div>`;
+  container.innerHTML = '';
+  container.appendChild(bubble);
+  setTimeout(() => {
+    bubble.classList.add('out');
+    setTimeout(() => { if (container.contains(bubble)) container.removeChild(bubble); }, 250);
+  }, 2800);
+}
+
+async function shareProductPageLink(globalIndex) {
+  const p = products[globalIndex];
+  if (!p) return;
+  const url = buildProductShareUrl(globalIndex);
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'ordrpe — ' + p.name, text: p.name + ' — ' + p.brand, url });
+      return;
+    }
+  } catch (_) {}
+  const ok = await copyTextToClipboard(url);
+  showShareToast(ok ? 'Link copied' : 'Could not copy', ok ? 'Paste it in chat or email.' : 'Select and copy from the address bar.');
+}
+
+async function shareCartPageLink() {
+  if (!cart.length) {
+    showShareToast('Cart is empty', 'Add items to share your cart.');
+    return;
+  }
+  const rows = cart.map((c) => ({ n: c.p.name, q: Math.max(1, Math.min(99, c.qty | 0)) }));
+  const url = buildCartShareUrlFromPayload(rows);
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'ordrpe — My cart', text: 'Open this link to see my cart on ordrpe.', url });
+      return;
+    }
+  } catch (_) {}
+  const ok = await copyTextToClipboard(url);
+  showShareToast(ok ? 'Cart link copied' : 'Could not copy', ok ? 'Anyone can open it to load this cart.' : 'Try again or share on WhatsApp.');
+}
+
+function applyCartFromUrlIfPresent() {
+  const params = new URLSearchParams(window.location.search);
+  const enc = params.get('cart');
+  if (!enc || !String(enc).trim()) return false;
+  const rows = parseCartShareParam(enc);
+  if (!rows || !rows.length) return false;
+  const next = [];
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    const name = typeof row.n === 'string' ? row.n : (typeof row.name === 'string' ? row.name : '');
+    const q = Math.max(1, Math.min(99, Number(row.q) || 1));
+    const prod = name ? products.find((x) => x.name === name) : null;
+    if (prod) next.push({ p: prod, q });
+  }
+  if (!next.length) return false;
+  cart = next;
+  return true;
+}
+
+function applyProductItemFromUrlIfPresent() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get('item');
+  if (raw === null || String(raw).trim() === '') return false;
+  const pi = parseInt(raw, 10);
+  if (isNaN(pi) || pi < 0 || pi >= products.length) return false;
+  const prod = products[pi];
+  activeCat = prod.cat;
+  activeBrands.clear();
+  searchQ = '';
+  const searchInputClear = document.getElementById('sbSearchInput');
+  if (searchInputClear) searchInputClear.value = '';
+  const catIdx = CAT_ORDER.indexOf(activeCat);
+  document.querySelectorAll('.sb-cat').forEach((b) => b.classList.remove('active'));
+  const sbBtns = document.querySelectorAll('.sb-cat');
+  if (sbBtns[catIdx]) sbBtns[catIdx].classList.add('active');
+  document.querySelectorAll('.mob-cat-pill').forEach((b) => b.classList.remove('active'));
+  const pills = document.querySelectorAll('.mob-cat-pill');
+  if (pills[catIdx]) pills[catIdx].classList.add('active');
+  applyTheme(activeCat);
+  renderBrandChips();
+  renderAndCount();
+  updateCartUI();
+  const fi = currentFiltered.indexOf(prod);
+  if (fi < 0) return true;
+  requestAnimationFrame(() => {
+    openModal(fi);
+    const cards = document.querySelectorAll('#grid .pc');
+    const card = cards[fi];
+    if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
+  showShareToast('Shared product', 'We opened it from your link.');
+  return true;
+}
+
+function stripShareQueryParamsFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has('item') && !params.has('cart')) return;
+  params.delete('item');
+  params.delete('cart');
+  const qs = params.toString();
+  const path = (window.location.pathname || '') + (qs ? ('?' + qs) : '') + (window.location.hash || '');
+  try {
+    history.replaceState(null, '', path);
+  } catch (_) {}
 }
 
 /* Mobile category pill sync */
@@ -2795,10 +2981,15 @@ initPriceCounts();
 initCatCounts();
 recentlyViewed = loadRecentlyViewed();
 cart = loadCart();
+if (applyCartFromUrlIfPresent()) {
+  /* cart replaced from ?cart= */
+}
 applyTheme(activeCat);
 renderBrandChips();
 renderAndCount();
 updateCartUI();
+applyProductItemFromUrlIfPresent();
+stripShareQueryParamsFromUrl();
 
 // Back to top helper
 const backTopBtnStock = document.getElementById('backTopBtnStock');

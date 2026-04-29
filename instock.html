@@ -1469,13 +1469,13 @@
 
     <div class="sb-section">
       <div class="sb-label">Category</div>
-      <button class="sb-cat active" onclick="setFilter('cat','all',this)">All Products <span class="sb-count" id="countAll">32</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','makeup',this)">Makeup &amp; Beauty <span class="sb-count">10</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','fragrance',this)">Fragrance <span class="sb-count">2</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','shoes',this)">Shoes <span class="sb-count">6</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','bags',this)">Bags &amp; Wallets <span class="sb-count">9</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','intimates',this)">Intimates <span class="sb-count">2</span></button>
-      <button class="sb-cat" onclick="setFilter('cat','tech',this)">Tech &amp; Electronics <span class="sb-count">3</span></button>
+      <button class="sb-cat active" onclick="setFilter('cat','all',this)">All Products <span class="sb-count" id="countAll">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','makeup',this)">Makeup &amp; Beauty <span class="sb-count" id="countMakeup">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','fragrance',this)">Fragrance <span class="sb-count" id="countFragrance">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','shoes',this)">Shoes <span class="sb-count" id="countShoes">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','bags',this)">Bags &amp; Wallets <span class="sb-count" id="countBags">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','intimates',this)">Intimates <span class="sb-count" id="countIntimates">0</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','tech',this)">Tech &amp; Electronics <span class="sb-count" id="countTech">0</span></button>
     </div>
 
     <div class="sb-section">
@@ -1755,8 +1755,8 @@ const themes = {
   fragrance: {
     label: 'Fragrance',
     titleHTML: 'Fine <em>Fragrance</em>',
-    subtitle: 'Sol de Janeiro · Sephora Favorites · Jo Malone · Gucci · Marc Jacobs.',
-    brands: 'Sol de Janeiro · Sephora Favorites · Jo Malone · Gucci · Marc Jacobs',
+    subtitle: 'Sol de Janeiro · Sephora Favorites — designer fragrances, USA originals.',
+    brands: 'Sol de Janeiro · Sephora Favorites',
     from: '#11100e', to: '#2a2824',
     accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
     decor: 'SCENT',
@@ -1765,8 +1765,8 @@ const themes = {
   shoes: {
     label: 'Shoes & Sneakers',
     titleHTML: 'Shoes <em>& Sneakers</em>',
-    subtitle: 'Tory Burch · Michael Kors · Tommy Hilfiger · Alo Yoga — USA originals.',
-    brands: 'Tory Burch · Michael Kors · Tommy Hilfiger · Alo Yoga',
+    subtitle: 'Tory Burch · Michael Kors · Tommy Hilfiger · Alo Yoga · Adidas · Birkenstock — USA originals.',
+    brands: 'Tory Burch · Michael Kors · Tommy Hilfiger · Alo Yoga · Adidas · Birkenstock',
     from: '#11100e', to: '#2a2824',
     accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
     decor: 'STEP',
@@ -1775,8 +1775,8 @@ const themes = {
   bags: {
     label: 'Bags & Wallets',
     titleHTML: 'Bags <em>& Wallets</em>',
-    subtitle: 'Michael Kors · Coach · Tory Burch — designer originals from the USA.',
-    brands: 'Michael Kors · Coach · Tory Burch · Kurt Geiger · Imported',
+    subtitle: 'Michael Kors · Coach · Kurt Geiger — designer originals from the USA.',
+    brands: 'Michael Kors · Coach · Kurt Geiger',
     from: '#11100e', to: '#2a2824',
     accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
     decor: 'LUXE',
@@ -1939,8 +1939,8 @@ const products = [
   { cat:'makeup',    name:'imPRESS Press-On Falsies — Chic Wispy',           brand:'KISS',                         img:'images/instock-cutouts/IMG_0761.png', usd:13,  pkr:3750,  stock:'in',  rating:4.4, reviews:1823 },
   { cat:'makeup',    name:"What's in My Bag? Beauty Set",                     brand:'Sephora Favorites',            img:'images/instock-cutouts/IMG_0750.png', usd:101, pkr:28000, stock:'low', rating:4.7, reviews:672  },
   { cat:'fragrance', name:'Cheirosa Perfume Mist Discovery Set',              brand:'Sol de Janeiro',               img:'images/instock-cutouts/IMG_0741.png', usd:72,  pkr:20000, stock:'in',  rating:4.9, reviews:1567 },
-  { cat:'fragrance', name:'Deluxe Perfume Sampler — 7 Fragrances (PKR 5,000 ea · set 29,500)', brand:'Sephora Favorites', img:'images/instock-cutouts/IMG_0742.png', usd:106, pkr:29500, stock:'low', rating:4.5, reviews:834  },
-  { cat:'shoes',     name:'Miller Ballet Flat — Black Leather Gold Logo · very good price', brand:'Tory Burch', img:'images/instock-cutouts/30f0b55d-3a61-4f30-9d48-d5530332c95e.png', usd:160, pkr:44500, stock:'in', rating:4.7, reviews:2198 },
+  { cat:'fragrance', name:'Deluxe Perfume Sampler — 7 Fragrances',                         brand:'Sephora Favorites', img:'images/instock-cutouts/IMG_0742.png', usd:106, pkr:29500, stock:'low', rating:4.5, reviews:834  },
+  { cat:'shoes',     name:'Miller Ballet Flat — Black Leather Gold Logo',                   brand:'Tory Burch', img:'images/instock-cutouts/30f0b55d-3a61-4f30-9d48-d5530332c95e.png', usd:160, pkr:44500, stock:'in', rating:4.7, reviews:2198 },
   { cat:'shoes',     name:'MK Logo Thong Sandal — Vanilla/Gold',             brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0751.png', usd:102, pkr:28500, stock:'in',  rating:4.4, reviews:743  },
   { cat:'shoes',     name:'Hilfiger Logo Slides — Black',                    brand:'Tommy Hilfiger',               img:'images/instock-cutouts/IMG_0752.png', usd:34,  pkr:9350,  stock:'in',  rating:4.3, reviews:1102 },
   { cat:'shoes',     name:'Progression Runner Sneaker — Black',              brand:'Alo Yoga',                     img:'images/instock-cutouts/IMG_0753.png', usd:209, pkr:58000, stock:'in',  rating:4.8, reviews:567  },
@@ -2008,6 +2008,16 @@ function initPriceCounts() {
   document.getElementById('pcount-mid').textContent = priceBucketCount(5000, 15000);
   document.getElementById('pcount-high').textContent = priceBucketCount(15000, 40000);
   document.getElementById('pcount-top').textContent = priceBucketCount(40000, Infinity);
+}
+
+function initCatCounts() {
+  document.getElementById('countAll').textContent = products.length;
+  const cats = ['makeup','fragrance','shoes','bags','intimates','tech'];
+  const ids = { makeup:'countMakeup', fragrance:'countFragrance', shoes:'countShoes', bags:'countBags', intimates:'countIntimates', tech:'countTech' };
+  cats.forEach(c => {
+    const el = document.getElementById(ids[c]);
+    if (el) el.textContent = products.filter(p => p.cat === c).length;
+  });
 }
 
 function starsHTML(r) {
@@ -2782,6 +2792,7 @@ function renderAndCount() {
 })();
 
 initPriceCounts();
+initCatCounts();
 recentlyViewed = loadRecentlyViewed();
 cart = loadCart();
 applyTheme(activeCat);

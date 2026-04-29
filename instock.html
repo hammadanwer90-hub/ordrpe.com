@@ -1389,6 +1389,7 @@
     <button class="mob-cat-pill" onclick="mobSetCat('shoes',this)">Shoes</button>
     <button class="mob-cat-pill" onclick="mobSetCat('bags',this)">Bags & Wallets</button>
     <button class="mob-cat-pill" onclick="mobSetCat('intimates',this)">Intimates</button>
+    <button class="mob-cat-pill" onclick="mobSetCat('tech',this)">Tech</button>
   </div>
   <div class="mob-filter-bar">
     <select onchange="sortProducts(this.value)" id="mobSortSelect">
@@ -1427,12 +1428,13 @@
 
     <div class="sb-section">
       <div class="sb-label">Category</div>
-      <button class="sb-cat active" onclick="setFilter('cat','all',this)">All Products <span class="sb-count" id="countAll">29</span></button>
+      <button class="sb-cat active" onclick="setFilter('cat','all',this)">All Products <span class="sb-count" id="countAll">32</span></button>
       <button class="sb-cat" onclick="setFilter('cat','makeup',this)">Makeup &amp; Beauty <span class="sb-count">10</span></button>
       <button class="sb-cat" onclick="setFilter('cat','fragrance',this)">Fragrance <span class="sb-count">2</span></button>
       <button class="sb-cat" onclick="setFilter('cat','shoes',this)">Shoes <span class="sb-count">6</span></button>
       <button class="sb-cat" onclick="setFilter('cat','bags',this)">Bags &amp; Wallets <span class="sb-count">9</span></button>
       <button class="sb-cat" onclick="setFilter('cat','intimates',this)">Intimates <span class="sb-count">2</span></button>
+      <button class="sb-cat" onclick="setFilter('cat','tech',this)">Tech &amp; Electronics <span class="sb-count">3</span></button>
     </div>
 
     <div class="sb-section">
@@ -1733,7 +1735,7 @@ const themes = {
     label: 'Bags & Wallets',
     titleHTML: 'Bags <em>& Wallets</em>',
     subtitle: 'Michael Kors · Coach · Tory Burch — designer originals from the USA.',
-    brands: 'Michael Kors · Coach · Tory Burch · Imported',
+    brands: 'Michael Kors · Coach · Tory Burch · Kurt Geiger · Imported',
     from: '#11100e', to: '#2a2824',
     accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
     decor: 'LUXE',
@@ -1748,6 +1750,16 @@ const themes = {
     accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
     decor: 'SOFT',
     illustration: makeIntimatesIllustration('#7f786c'),
+  },
+  tech: {
+    label: 'Tech & Electronics',
+    titleHTML: 'Tech <em>& Electronics</em>',
+    subtitle: 'Apple, Sony — USA retail, sealed originals.',
+    brands: 'Apple · Sony',
+    from: '#11100e', to: '#2a2824',
+    accent: '#7f786c', accentBg: '#eeebe4', accentText: '#2a2824',
+    decor: 'TECH',
+    illustration: makeDiamondGrid('#7f786c'),
   }
 };
 
@@ -1872,37 +1884,41 @@ function applyTheme(cat) {
 }
 
 /* ── PRODUCTS ── */
-const catLabel = { makeup:'Makeup & Beauty', fragrance:'Fragrance', shoes:'Shoes', bags:'Bags & Wallets', intimates:'Intimates' };
+const catLabel = { makeup:'Makeup & Beauty', fragrance:'Fragrance', shoes:'Shoes', bags:'Bags & Wallets', intimates:'Intimates', tech:'Tech & Electronics' };
+const CAT_ORDER = ['all','makeup','fragrance','shoes','bags','intimates','tech'];
 const products = [
-  { cat:'makeup',    name:"On 'Til Dawn Setting Spray — Big & Bitty Set",    brand:'ONE/SIZE by Patrick Starrr',   img:'images/instock-cutouts/IMG_0743.png', usd:38,  pkr:10640, stock:'in',  rating:4.7, reviews:312  },
-  { cat:'makeup',    name:"Fenty's Finest 3-Piece Face, Eye & Lip Kit",       brand:'Fenty Beauty',                 img:'images/instock-cutouts/IMG_0744.png', usd:42,  pkr:11760, stock:'in',  rating:4.8, reviews:891  },
-  { cat:'makeup',    name:'Lined + Luminized 2-Piece Lip Set',                brand:'Fenty Beauty',                 img:'images/instock-cutouts/IMG_0745.png', usd:28,  pkr:7840,  stock:'in',  rating:4.6, reviews:534  },
-  { cat:'makeup',    name:'Easy Bake Setting Spray 100ml',                    brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0746.png', usd:32,  pkr:8960,  stock:'in',  rating:4.5, reviews:1204 },
-  { cat:'makeup',    name:'Creamy Obsessions Palette — Chocolate',            brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0747.png', usd:35,  pkr:9800,  stock:'in',  rating:4.9, reviews:2341 },
-  { cat:'makeup',    name:'Creamy Obsessions Palette — Nude',                 brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0748.png', usd:35,  pkr:9800,  stock:'in',  rating:4.8, reviews:1876 },
-  { cat:'makeup',    name:"Lash 'N Roll Mascara",                             brand:'e.l.f. Cosmetics',             img:'images/instock-cutouts/IMG_0749.png', usd:12,  pkr:3360,  stock:'in',  rating:4.3, reviews:2109 },
-  { cat:'makeup',    name:'Faux Mink Lashes #812',                            brand:'Ardell Professional',          img:'images/instock-cutouts/IMG_0760.png', usd:8,   pkr:2240,  stock:'in',  rating:4.6, reviews:3421 },
-  { cat:'makeup',    name:'imPRESS Press-On Falsies — Chic Wispy',           brand:'KISS',                         img:'images/instock-cutouts/IMG_0761.png', usd:10,  pkr:2800,  stock:'in',  rating:4.4, reviews:1823 },
-  { cat:'makeup',    name:"What's in My Bag? Beauty Set",                     brand:'Sephora Favorites',            img:'images/instock-cutouts/IMG_0750.png', usd:42,  pkr:11760, stock:'low', rating:4.7, reviews:672  },
-  { cat:'fragrance', name:'Cheirosa Perfume Mist Discovery Set',              brand:'Sol de Janeiro',               img:'images/instock-cutouts/IMG_0741.png', usd:48,  pkr:13440, stock:'in',  rating:4.9, reviews:1567 },
-  { cat:'fragrance', name:'Deluxe Perfume Sampler — 7 Fragrances',           brand:'Sephora Favorites',            img:'images/instock-cutouts/IMG_0742.png', usd:35,  pkr:9800,  stock:'low', rating:4.5, reviews:834  },
-  { cat:'shoes',     name:'Miller Ballet Flat — Black Leather Gold Logo',     brand:'Tory Burch',                   img:'images/instock-cutouts/30f0b55d-3a61-4f30-9d48-d5530332c95e.png', usd:228, pkr:63840, stock:'in', rating:4.7, reviews:2198 },
-  { cat:'shoes',     name:'MK Logo Thong Sandal — Vanilla/Gold',             brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0751.png', usd:89,  pkr:24920, stock:'in',  rating:4.4, reviews:743  },
-  { cat:'shoes',     name:'Hilfiger Logo Slides — Black',                    brand:'Tommy Hilfiger',               img:'images/instock-cutouts/IMG_0752.png', usd:55,  pkr:15400, stock:'in',  rating:4.3, reviews:1102 },
-  { cat:'shoes',     name:'Progression Runner Sneaker — Black',              brand:'Alo Yoga',                     img:'images/instock-cutouts/IMG_0753.png', usd:148, pkr:41440, stock:'in',  rating:4.8, reviews:567  },
-  { cat:'shoes',     name:'Lillie Logo Flat — Brown MK Monogram',            brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0754.png', usd:79,  pkr:22120, stock:'low', rating:4.5, reviews:921  },
-  { cat:'shoes',     name:'TH Monogram Thong Sandal — White',               brand:'Tommy Hilfiger',               img:'images/instock-cutouts/IMG_0756.png', usd:48,  pkr:13440, stock:'in',  rating:4.2, reviews:445  },
-  { cat:'bags',      name:'Hazel Small Satchel — Vanilla MK Monogram',       brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0755.png', usd:248, pkr:69440, stock:'in',  rating:4.8, reviews:1342 },
-  { cat:'bags',      name:'Jet Set Large Crossbody — Vanilla/Gold Chain',    brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0767.png', usd:198, pkr:55440, stock:'in',  rating:4.7, reviews:2187 },
-  { cat:'bags',      name:'Jet Set Large Tote — Brown MK Monogram',          brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0768.png', usd:298, pkr:83440, stock:'in',  rating:4.9, reviews:3012 },
-  { cat:'bags',      name:'Jet Set Large Tote — Vanilla MK Monogram',        brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0769.png', usd:298, pkr:83440, stock:'in',  rating:4.9, reviews:2876 },
-  { cat:'bags',      name:'Large 3-in-1 Continental Wallet — Brown',         brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0762.png', usd:148, pkr:41440, stock:'in',  rating:4.6, reviews:1654 },
-  { cat:'bags',      name:'Embossed Snake Card Holder — Black',              brand:'Imported',                     img:'images/instock-cutouts/IMG_0763.png', usd:35,  pkr:9800,  stock:'in',  rating:4.3, reviews:287  },
-  { cat:'bags',      name:'Nolita 19 Shoulder Bag — Signature Brown',        brand:'Coach',                        img:'images/instock-cutouts/IMG_0764.png', usd:195, pkr:54600, stock:'in',  rating:4.8, reviews:1923 },
-  { cat:'bags',      name:'Nolita 19 Shoulder Bag — Floral Print',           brand:'Coach',                        img:'images/instock-cutouts/IMG_0765.png', usd:195, pkr:54600, stock:'low', rating:4.7, reviews:891  },
-  { cat:'bags',      name:'Snap Wallet — Brown Coach Signature',             brand:'Coach',                        img:'images/instock-cutouts/IMG_0766.png', usd:95,  pkr:26600, stock:'in',  rating:4.6, reviews:1102 },
-  { cat:'intimates', name:'PINK 5-Pack Mix Lace Panties',                    brand:"Victoria's Secret PINK",       img:'images/instock-cutouts/IMG_0757.png', usd:45,  pkr:12600, stock:'in',  rating:4.5, reviews:3891 },
-  { cat:'intimates', name:'Signature 4-Pack Cotton Brief Set',               brand:"Victoria's Secret",            img:'images/instock-cutouts/f5ac08a0-c72d-4301-b5e4-89e3bd8f66b0.png', usd:38, pkr:10640, stock:'in', rating:4.6, reviews:2134 },
+  { cat:'makeup',    name:"On 'Til Dawn Setting Spray — Big & Bitty Set",    brand:'ONE/SIZE by Patrick Starrr',   img:'images/instock-cutouts/IMG_0743.png', usd:66,  pkr:18350, stock:'in',  rating:4.7, reviews:312  },
+  { cat:'makeup',    name:"Fenty's Finest 3-Piece Face, Eye & Lip Kit",       brand:'Fenty Beauty',                 img:'images/instock-cutouts/IMG_0744.png', usd:57,  pkr:15750, stock:'in',  rating:4.8, reviews:891  },
+  { cat:'makeup',    name:'Lined + Luminized 2-Piece Lip Set',                brand:'Fenty Beauty',                 img:'images/instock-cutouts/IMG_0745.png', usd:39,  pkr:10850, stock:'in',  rating:4.6, reviews:534  },
+  { cat:'makeup',    name:'Easy Bake Setting Spray 100ml',                    brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0746.png', usd:48,  pkr:13450, stock:'in',  rating:4.5, reviews:1204 },
+  { cat:'makeup',    name:'Creamy Obsessions Palette — Chocolate',            brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0747.png', usd:40,  pkr:11150, stock:'in',  rating:4.9, reviews:2341 },
+  { cat:'makeup',    name:'Creamy Obsessions Palette — Nude',                 brand:'Huda Beauty',                  img:'images/instock-cutouts/IMG_0748.png', usd:40,  pkr:11150, stock:'in',  rating:4.8, reviews:1876 },
+  { cat:'makeup',    name:"Lash 'N Roll Mascara",                             brand:'e.l.f. Cosmetics',             img:'images/instock-cutouts/IMG_0749.png', usd:13,  pkr:3550,  stock:'in',  rating:4.3, reviews:2109 },
+  { cat:'makeup',    name:'Faux Mink Lashes #812',                            brand:'Ardell Professional',          img:'images/instock-cutouts/IMG_0760.png', usd:9,   pkr:2450,  stock:'in',  rating:4.6, reviews:3421 },
+  { cat:'makeup',    name:'imPRESS Press-On Falsies — Chic Wispy',           brand:'KISS',                         img:'images/instock-cutouts/IMG_0761.png', usd:13,  pkr:3750,  stock:'in',  rating:4.4, reviews:1823 },
+  { cat:'makeup',    name:"What's in My Bag? Beauty Set",                     brand:'Sephora Favorites',            img:'images/instock-cutouts/IMG_0750.png', usd:101, pkr:28000, stock:'low', rating:4.7, reviews:672  },
+  { cat:'fragrance', name:'Cheirosa Perfume Mist Discovery Set',              brand:'Sol de Janeiro',               img:'images/instock-cutouts/IMG_0741.png', usd:72,  pkr:20000, stock:'in',  rating:4.9, reviews:1567 },
+  { cat:'fragrance', name:'Deluxe Perfume Sampler — 7 Fragrances (PKR 5,000 ea · set 29,500)', brand:'Sephora Favorites', img:'images/instock-cutouts/IMG_0742.png', usd:106, pkr:29500, stock:'low', rating:4.5, reviews:834  },
+  { cat:'shoes',     name:'Miller Ballet Flat — Black Leather Gold Logo · very good price', brand:'Tory Burch', img:'images/instock-cutouts/30f0b55d-3a61-4f30-9d48-d5530332c95e.png', usd:160, pkr:44500, stock:'in', rating:4.7, reviews:2198 },
+  { cat:'shoes',     name:'MK Logo Thong Sandal — Vanilla/Gold',             brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0751.png', usd:102, pkr:28500, stock:'in',  rating:4.4, reviews:743  },
+  { cat:'shoes',     name:'Hilfiger Logo Slides — Black',                    brand:'Tommy Hilfiger',               img:'images/instock-cutouts/IMG_0752.png', usd:34,  pkr:9350,  stock:'in',  rating:4.3, reviews:1102 },
+  { cat:'shoes',     name:'Progression Runner Sneaker — Black',              brand:'Alo Yoga',                     img:'images/instock-cutouts/IMG_0753.png', usd:209, pkr:58000, stock:'in',  rating:4.8, reviews:567  },
+  { cat:'shoes',     name:'Lillie Logo Flat — Brown MK Monogram',            brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0754.png', usd:88,  pkr:24500, stock:'low', rating:4.5, reviews:921  },
+  { cat:'shoes',     name:'TH Monogram Thong Sandal — White',               brand:'Tommy Hilfiger',               img:'images/instock-cutouts/IMG_0756.png', usd:67,  pkr:18500, stock:'in',  rating:4.2, reviews:445  },
+  { cat:'bags',      name:'Hazel Small Satchel — Vanilla MK Monogram',       brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0755.png', usd:100, pkr:27900, stock:'in',  rating:4.8, reviews:1342 },
+  { cat:'bags',      name:'Jet Set Large Crossbody — Vanilla/Gold Chain',    brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0767.png', usd:79,  pkr:22000, stock:'in',  rating:4.7, reviews:2187 },
+  { cat:'bags',      name:'Jet Set Large Tote — Brown MK Monogram',          brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0768.png', usd:122, pkr:34000, stock:'in',  rating:4.9, reviews:3012 },
+  { cat:'bags',      name:'Jet Set Large Tote — Vanilla MK Monogram',        brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0769.png', usd:122, pkr:34000, stock:'in',  rating:4.9, reviews:2876 },
+  { cat:'bags',      name:'Large 3-in-1 Continental Wallet — Brown',         brand:'Michael Kors',                 img:'images/instock-cutouts/IMG_0762.png', usd:72,  pkr:20000, stock:'in',  rating:4.6, reviews:1654 },
+  { cat:'bags',      name:'Embossed Snake Card Holder — Black',              brand:'Kurt Geiger',                  img:'images/instock-cutouts/IMG_0763.png', usd:167, pkr:46500, stock:'in',  rating:4.3, reviews:287  },
+  { cat:'bags',      name:'Nolita 19 Shoulder Bag — Signature Brown',        brand:'Coach',                        img:'images/instock-cutouts/IMG_0764.png', usd:81,  pkr:22500, stock:'in',  rating:4.8, reviews:1923 },
+  { cat:'bags',      name:'Nolita 19 Shoulder Bag — Floral Print',           brand:'Coach',                        img:'images/instock-cutouts/IMG_0765.png', usd:85,  pkr:23500, stock:'low', rating:4.7, reviews:891  },
+  { cat:'bags',      name:'Snap Wallet — Brown Coach Signature',             brand:'Coach',                        img:'images/instock-cutouts/IMG_0766.png', usd:92,  pkr:25500, stock:'in',  rating:4.6, reviews:1102 },
+  { cat:'intimates', name:'PINK 5-Pack Mix Lace Panties',                    brand:"Victoria's Secret PINK",       img:'images/instock-cutouts/IMG_0757.png', usd:41,  pkr:11500, stock:'in',  rating:4.5, reviews:3891 },
+  { cat:'intimates', name:'Signature 5-Pack Cotton Brief Set',               brand:"Victoria's Secret",            img:'images/instock-cutouts/f5ac08a0-c72d-4301-b5e4-89e3bd8f66b0.png', usd:41, pkr:11500, stock:'in', rating:4.6, reviews:2134 },
+  { cat:'tech',      name:'AirPods 4 — Active Noise Cancellation',           brand:'Apple',                        img:'images/favicon/logo-transparent-1024.png', usd:180, pkr:49999, stock:'in',  rating:4.9, reviews:2103 },
+  { cat:'tech',      name:'Mac mini — Apple M4, 256GB SSD',                   brand:'Apple',                        img:'images/favicon/logo-transparent-1024.png', usd:676, pkr:188000, stock:'in', rating:4.8, reviews:892  },
+  { cat:'tech',      name:'PlayStation 5 — Slim Digital Edition (100GB)',      brand:'Sony',                         img:'images/favicon/logo-transparent-1024.png', usd:712, pkr:198000, stock:'low', rating:4.9, reviews:5641 },
 ];
 
 let activeCat = 'all', activeStock = 'all', activeSort = 'default', searchQ = '';
@@ -1958,7 +1974,7 @@ function starsHTML(r) {
 function quickShop(cat) {
   activeCat = cat;
   document.querySelectorAll('.sb-cat').forEach(b => b.classList.remove('active'));
-  const map = ['all','makeup','fragrance','shoes','bags','intimates'];
+  const map = CAT_ORDER;
   const idx = map.indexOf(cat);
   const btns = document.querySelectorAll('.sb-cat');
   if (btns[idx]) btns[idx].classList.add('active');
@@ -2234,6 +2250,10 @@ function setFilter(type, value, el) {
     activeCat = value;
     activeBrands.clear();
     document.querySelectorAll('.sb-cat').forEach(b => b.classList.remove('active'));
+    const i = CAT_ORDER.indexOf(value);
+    document.querySelectorAll('.mob-cat-pill').forEach(b => b.classList.remove('active'));
+    const pills = document.querySelectorAll('.mob-cat-pill');
+    if (pills[i]) pills[i].classList.add('active');
     applyTheme(value);
     renderBrandChips();
   } else {
@@ -2616,7 +2636,7 @@ function mobSetCat(cat, el) {
   el.classList.add('active');
   // sync desktop sidebar
   document.querySelectorAll('.sb-cat').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.sb-cat')[['all','makeup','fragrance','shoes','bags','intimates'].indexOf(cat)].classList.add('active');
+  document.querySelectorAll('.sb-cat')[CAT_ORDER.indexOf(cat)].classList.add('active');
   applyTheme(cat);
   renderBrandChips();
   renderAndCount();
@@ -2700,7 +2720,7 @@ function renderAndCount() {
   const cat = p.get('cat');
   const q = p.get('search');
   // Must match the sidebar/mobile-pill order exactly.
-  const validCats = ['all','makeup','fragrance','shoes','bags','intimates'];
+  const validCats = CAT_ORDER;
   if (cat && validCats.includes(cat)) {
     activeCat = cat;
     const idx = validCats.indexOf(cat);
@@ -2866,7 +2886,7 @@ document.querySelectorAll('img').forEach((img, idx) => {
     if (!window.FX) return;
     startObservers();
     FX.makeMagnetic('.cart-wa-btn, .nav-cta');
-    FX.attachSurprise(['makeup','fragrance','shoes','bags','intimates']);
+    FX.attachSurprise(['makeup','fragrance','shoes','bags','intimates','tech']);
     const cat = (typeof activeCat !== 'undefined') ? activeCat : 'all';
     FX.startDwellReward(cat);
     if (typeof FX.runPendingSurprise === 'function') FX.runPendingSurprise();

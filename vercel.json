@@ -3,7 +3,6 @@
   "framework": null,
   "installCommand": null,
   "buildCommand": null,
-  "rewrites": [{ "source": "/membership", "destination": "/membership.html" }],
   "redirects": [
     { "source": "/Ordrpe.html", "destination": "/", "permanent": true },
     { "source": "/ordrpe.html", "destination": "/", "permanent": true },

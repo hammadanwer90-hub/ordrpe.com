@@ -1,5 +1,1 @@
 Options -Indexes
-RewriteEngine On
-
-# Pretty URLs
-RewriteRule ^membership$ membership.html [L]

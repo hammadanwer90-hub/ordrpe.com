@@ -178,7 +178,12 @@
       transition: opacity 0.2s; line-height: 0;
     }
     .logo:hover { opacity: 0.85; }
-    .logo-img { height: 26px; width: auto; display: block; border-radius: 6px; }
+    .logo-img { height: 26px; width: auto; display: block; }
+    /* Wordmark tuned for dark surfaces (nav / drawer / footer) */
+    nav .logo-img,
+    .ndr-head .logo-img {
+      filter: drop-shadow(0 1px 14px rgba(0, 0, 0, 0.55));
+    }
     .nav-c { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-c a { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.82); letter-spacing: 0.3px; transition: color 0.2s; }
     .nav-c a:hover { color: #fff; }
@@ -869,7 +874,10 @@
     footer { background: #120d04; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-top { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 28px; margin-bottom: 32px; }
     .footer-brand .logo { margin-bottom: 8px; }
-    .footer-brand .logo-img { height: 28px; }
+    .footer-brand .logo-img {
+      height: 28px;
+      filter: drop-shadow(0 1px 12px rgba(0, 0, 0, 0.5));
+    }
     .footer-brand p { font-size: 12px; color: rgba(253,248,243,0.7); line-height: 1.7; max-width: 220px; }
     .footer-hq { font-size: 11px; color: rgba(253,248,243,0.62); margin-top: 10px; letter-spacing: 0.3px; }
     .footer-hq span { color: rgba(196,154,80,0.85); }
@@ -2417,7 +2425,7 @@
 <div class="nav-overlay" id="navOverlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="ndr-head">
-    <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+    <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
     <button class="ndr-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
   </div>
   <div class="ndr-body">
@@ -2489,7 +2497,7 @@
   <button class="nav-ham" id="navHam" onclick="openDrawer()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
   <a href="https://wa.me/923202508684" class="nav-mob-order" target="_blank">Get PKR Quote</a>
   <ul class="nav-c">
     <li class="nav-dd-wrap" id="navDdWrap">
@@ -3473,7 +3481,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="logo"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
+      <div class="logo"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
       <p>USA products delivered to Pakistan. Honest pricing, real receipts, zero surprises.</p>
       <div class="footer-hq">Headquarters: <span>Karachi, Pakistan</span></div>
       <div class="social-row" style="margin-top:16px;">

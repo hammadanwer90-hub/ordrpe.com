@@ -199,17 +199,31 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 900;
-      height: 60px; display: flex; align-items: center; justify-content: space-between;
+      height: 70px; display: flex; align-items: center; justify-content: space-between;
       padding: 0 28px; background: #11100e;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .logo {
-      display: inline-flex; align-items: center; text-decoration: none;
+      display: inline-grid;
+      place-items: center;
+      text-decoration: none;
       transition: opacity 0.2s; line-height: 0;
     }
     .logo:hover { opacity: 0.85; }
-    .logo-img { height: 24px; width: auto; display: block; }
-    nav .logo-img { filter: drop-shadow(0 1px 12px rgba(0, 0, 0, 0.5)); }
+    .logo > .logo-img {
+      grid-area: 1 / 1;
+      height: 36px;
+      width: auto;
+      display: none;
+    }
+    .logo--on-dark .logo-img--light { display: block; }
+    .logo--on-dark .logo-img--dark { display: none; }
+    .logo--on-light .logo-img--dark { display: block; }
+    .logo--on-light .logo-img--light { display: none; }
+    nav .logo--on-dark .logo-img,
+    footer .logo--on-dark .logo-img {
+      filter: drop-shadow(0 1px 16px rgba(0, 0, 0, 0.55));
+    }
     .nav-c { display: flex; align-items: center; gap: 20px; list-style: none; }
     .nav-c a { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.65); transition: color 0.2s; }
     .nav-c a:hover { color: #fff; }
@@ -569,8 +583,8 @@
 
     /* ── FOOTER ── */
     footer { background: #120d04; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; }
-    footer .logo { margin-bottom: 4px; }
-    footer .logo-img { height: 26px; filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.45)); }
+    footer .logo { margin-bottom: 6px; }
+    footer .logo > .logo-img { height: 40px; }
     footer p { font-size: 12px; color: rgba(255,255,255,0.58); }
     footer .fl { display: flex; gap: 20px; }
     footer .fl a { font-size: 12px; color: rgba(255,255,255,0.65); transition: color 0.2s; }
@@ -834,8 +848,8 @@
     .mobile-top { display: none; }
 
     @media (max-width: 768px) {
-      nav { height: 58px; padding: 0 12px; }
-      .logo-img { height: 22px; }
+      nav { height: 64px; padding: 0 12px; }
+      .logo > .logo-img { height: 28px; }
       .nav-c { gap: 10px; }
       .nav-c > li:nth-child(1),
       .nav-c > li:nth-child(2) { display: none; } /* Home/Contact redundant with bottom nav — keep Cart + Theme + Quote */
@@ -843,7 +857,7 @@
       .nav-cart { width: 34px; height: 34px; }
 
       /* show mobile header elements */
-      .mobile-top { display: block; position: sticky; top: 58px; z-index: 200; background: var(--mob-surface, #fff); border-bottom: 1px solid var(--border); }
+      .mobile-top { display: block; position: sticky; top: 64px; z-index: 200; background: var(--mob-surface, #fff); border-bottom: 1px solid var(--border); }
 
       /* horizontal category pill scroller */
       .mob-cats {
@@ -1025,9 +1039,9 @@
     /* ── PHONE LANDSCAPE POLISH ── */
     @media (max-height: 520px) and (orientation: landscape) and (max-width: 950px) {
       .ticker-wrap { display: none; }
-      nav { height: 54px; padding: 0 10px; }
-      .logo-img { height: 20px; }
-      .mobile-top { top: 54px; }
+      nav { height: 58px; padding: 0 10px; }
+      .logo > .logo-img { height: 24px; }
+      .mobile-top { top: 58px; }
       .page-header { padding: 10px 0 12px; }
       .page-header-content { padding: 0 10px; }
       .mob-cats { padding: 7px 10px; gap: 6px; }
@@ -1369,7 +1383,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+  <a href="index.html" class="logo logo--on-dark" aria-label="ordrpe home">
+    <img class="logo-img logo-img--dark" src="images/brand/ordrpe-logo.png" alt="" width="799" height="342" decoding="async">
+    <img class="logo-img logo-img--light" src="images/brand/ordrpe-logo-light.png" alt="" width="799" height="342" decoding="async">
+  </a>
   <ul class="nav-c">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#contact">Contact</a></li>
@@ -1586,7 +1603,10 @@
 </div>
 
 <footer>
-  <div class="logo"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
+  <div class="logo logo--on-dark" role="img" aria-label="ordrpe">
+    <img class="logo-img logo-img--dark" src="images/brand/ordrpe-logo.png" alt="" width="799" height="342" decoding="async">
+    <img class="logo-img logo-img--light" src="images/brand/ordrpe-logo-light.png" alt="" width="799" height="342" decoding="async">
+  </div>
   <p>© 2026 ordrpe · Led by girls, built for all Pakistanis.</p>
   <div class="fl">
     <a href="index.html">Home</a>

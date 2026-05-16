@@ -168,21 +168,34 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 900;
-      height: 64px; display: flex; align-items: center;
+      height: 72px; display: flex; align-items: center;
       justify-content: space-between; padding: 0 5%;
       background: linear-gradient(165deg, #0d0c0b 0%, var(--nav-hero-bg2) 100%);
       border-bottom: 1px solid rgba(247,245,239,0.12);
     }
+    /* Stacked PNG wordmarks: --on-dark = light letters, --on-light = dark letters */
     .logo {
-      display: inline-flex; align-items: center; text-decoration: none;
-      transition: opacity 0.2s; line-height: 0;
+      display: inline-grid;
+      place-items: center;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      line-height: 0;
     }
     .logo:hover { opacity: 0.85; }
-    .logo-img { height: 26px; width: auto; display: block; }
-    /* Wordmark tuned for dark surfaces (nav / drawer / footer) */
-    nav .logo-img,
-    .ndr-head .logo-img {
-      filter: drop-shadow(0 1px 14px rgba(0, 0, 0, 0.55));
+    .logo > .logo-img {
+      grid-area: 1 / 1;
+      height: 38px;
+      width: auto;
+      display: none;
+    }
+    .logo--on-dark .logo-img--light { display: block; }
+    .logo--on-dark .logo-img--dark { display: none; }
+    .logo--on-light .logo-img--dark { display: block; }
+    .logo--on-light .logo-img--light { display: none; }
+    nav .logo--on-dark .logo-img,
+    .ndr-head .logo--on-dark .logo-img,
+    footer .footer-brand .logo--on-dark .logo-img {
+      filter: drop-shadow(0 1px 18px rgba(0, 0, 0, 0.58));
     }
     .nav-c { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-c a { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.82); letter-spacing: 0.3px; transition: color 0.2s; }
@@ -223,7 +236,7 @@
     .ndr-theme-btn:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.42); }
 
     /* ── HERO ── */
-    .hero { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); min-height: calc(100vh - 64px); overflow: hidden; background: #ffffff; }
+    .hero { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); min-height: calc(100vh - 72px); overflow: hidden; background: #ffffff; }
     .hero-l { display: flex; flex-direction: column; justify-content: center; padding: 56px 6% 56px 8%; background: #ffffff; position: relative; overflow: hidden; }
     .hero-l::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(17,16,14,0.08); pointer-events: none; }
     .hero-kicker { font-size: 11px; font-weight: 800; letter-spacing: 3.2px; text-transform: uppercase; color: #3b3832; margin-bottom: 20px; }
@@ -873,11 +886,8 @@
     /* ── FOOTER ── */
     footer { background: #120d04; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-top { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 28px; margin-bottom: 32px; }
-    .footer-brand .logo { margin-bottom: 8px; }
-    .footer-brand .logo-img {
-      height: 28px;
-      filter: drop-shadow(0 1px 12px rgba(0, 0, 0, 0.5));
-    }
+    .footer-brand .logo { margin-bottom: 10px; }
+    .footer-brand .logo > .logo-img { height: 42px; }
     .footer-brand p { font-size: 12px; color: rgba(253,248,243,0.7); line-height: 1.7; max-width: 220px; }
     .footer-hq { font-size: 11px; color: rgba(253,248,243,0.62); margin-top: 10px; letter-spacing: 0.3px; }
     .footer-hq span { color: rgba(196,154,80,0.85); }
@@ -1700,7 +1710,7 @@
       padding: 18px 18px 14px; display: flex; align-items: center;
       justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.07); flex-shrink: 0;
     }
-    .ndr-head .logo-img { height: 24px; }
+    .ndr-head .logo > .logo-img { height: 32px; }
     .ndr-close {
       background: none; border: 1px solid rgba(255,255,255,0.14);
       color: rgba(255,255,255,0.5); width: 32px; height: 32px;
@@ -1777,7 +1787,7 @@
       .nav-c { display: none; }
       .nav-mob-order { display: inline-block; }
       nav { padding: 0 10px; gap: 6px; }
-      .logo-img { height: 22px; }
+      .logo > .logo-img { height: 30px; }
 
       /* hero mobile */
       .hero-l { padding: 44px 5% 52px; min-height: auto; }
@@ -1924,9 +1934,9 @@
     /* ── PHONE LANDSCAPE POLISH ── */
     @media (max-height: 520px) and (orientation: landscape) and (max-width: 950px) {
       .marquee-wrap { display: none; }
-      nav { height: 56px; }
+      nav { height: 60px; }
       .hero-l {
-        min-height: calc(100vh - 56px);
+        min-height: calc(100vh - 60px);
         padding: 20px 5% 22px;
       }
       .hero h1 { font-size: clamp(30px, 5.2vw, 46px); margin-bottom: 8px; }
@@ -2425,7 +2435,10 @@
 <div class="nav-overlay" id="navOverlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="ndr-head">
-    <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+    <a href="index.html" class="logo logo--on-dark" aria-label="ordrpe home">
+      <img class="logo-img logo-img--dark" src="images/brand/ordrpe-logo.png" alt="" width="799" height="342" decoding="async">
+      <img class="logo-img logo-img--light" src="images/brand/ordrpe-logo-light.png" alt="" width="799" height="342" decoding="async">
+    </a>
     <button class="ndr-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
   </div>
   <div class="ndr-body">
@@ -2497,7 +2510,10 @@
   <button class="nav-ham" id="navHam" onclick="openDrawer()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+  <a href="index.html" class="logo logo--on-dark" aria-label="ordrpe home">
+    <img class="logo-img logo-img--dark" src="images/brand/ordrpe-logo.png" alt="" width="799" height="342" decoding="async">
+    <img class="logo-img logo-img--light" src="images/brand/ordrpe-logo-light.png" alt="" width="799" height="342" decoding="async">
+  </a>
   <a href="https://wa.me/923202508684" class="nav-mob-order" target="_blank">Get PKR Quote</a>
   <ul class="nav-c">
     <li class="nav-dd-wrap" id="navDdWrap">
@@ -3481,7 +3497,10 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="logo"><img src="images/brand/ordrpe-logo-nav.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
+      <div class="logo logo--on-dark" role="img" aria-label="ordrpe">
+        <img class="logo-img logo-img--dark" src="images/brand/ordrpe-logo.png" alt="" width="799" height="342" decoding="async">
+        <img class="logo-img logo-img--light" src="images/brand/ordrpe-logo-light.png" alt="" width="799" height="342" decoding="async">
+      </div>
       <p>USA products delivered to Pakistan. Honest pricing, real receipts, zero surprises.</p>
       <div class="footer-hq">Headquarters: <span>Karachi, Pakistan</span></div>
       <div class="social-row" style="margin-top:16px;">

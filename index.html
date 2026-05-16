@@ -173,9 +173,12 @@
       background: linear-gradient(165deg, #0d0c0b 0%, var(--nav-hero-bg2) 100%);
       border-bottom: 1px solid rgba(247,245,239,0.12);
     }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .logo {
+      display: inline-flex; align-items: center; text-decoration: none;
+      transition: opacity 0.2s; line-height: 0;
+    }
     .logo:hover { opacity: 0.85; }
-    .logo span { color: #d8d1c5; }
+    .logo-img { height: 26px; width: auto; display: block; border-radius: 6px; }
     .nav-c { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-c a { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.82); letter-spacing: 0.3px; transition: color 0.2s; }
     .nav-c a:hover { color: #fff; }
@@ -865,7 +868,8 @@
     /* ── FOOTER ── */
     footer { background: #120d04; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-top { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 28px; margin-bottom: 32px; }
-    .footer-brand .logo { color: var(--bg); font-size: 22px; margin-bottom: 8px; }
+    .footer-brand .logo { margin-bottom: 8px; }
+    .footer-brand .logo-img { height: 28px; }
     .footer-brand p { font-size: 12px; color: rgba(253,248,243,0.7); line-height: 1.7; max-width: 220px; }
     .footer-hq { font-size: 11px; color: rgba(253,248,243,0.62); margin-top: 10px; letter-spacing: 0.3px; }
     .footer-hq span { color: rgba(196,154,80,0.85); }
@@ -1688,7 +1692,7 @@
       padding: 18px 18px 14px; display: flex; align-items: center;
       justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.07); flex-shrink: 0;
     }
-    .ndr-head .logo { font-size: 22px; }
+    .ndr-head .logo-img { height: 24px; }
     .ndr-close {
       background: none; border: 1px solid rgba(255,255,255,0.14);
       color: rgba(255,255,255,0.5); width: 32px; height: 32px;
@@ -1765,6 +1769,7 @@
       .nav-c { display: none; }
       .nav-mob-order { display: inline-block; }
       nav { padding: 0 10px; gap: 6px; }
+      .logo-img { height: 22px; }
 
       /* hero mobile */
       .hero-l { padding: 44px 5% 52px; min-height: auto; }
@@ -2412,7 +2417,7 @@
 <div class="nav-overlay" id="navOverlay" onclick="closeDrawer()"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="ndr-head">
-    <a href="index.html" class="logo">Ordr<span>pe</span></a>
+    <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
     <button class="ndr-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
   </div>
   <div class="ndr-body">
@@ -2424,7 +2429,7 @@
         </span>
         Browse In Stock
       </a>
-      <a href="https://wa.me/923218705726" class="ndr-item" target="_blank" onclick="closeDrawer()">
+      <a href="https://wa.me/923202508684" class="ndr-item" target="_blank" onclick="closeDrawer()">
         <span class="ndr-item-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </span>
@@ -2475,7 +2480,7 @@
     </div>
   </div>
   <div class="ndr-footer">
-    <a href="https://wa.me/923218705726" class="ndr-cta" onclick="closeDrawer()" target="_blank">Get PKR Quote</a>
+    <a href="https://wa.me/923202508684" class="ndr-cta" onclick="closeDrawer()" target="_blank">Get PKR Quote</a>
   </div>
 </div>
 
@@ -2484,8 +2489,8 @@
   <button class="nav-ham" id="navHam" onclick="openDrawer()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="index.html" class="logo">Ordr<span>pe</span></a>
-  <a href="https://wa.me/923218705726" class="nav-mob-order" target="_blank">Get PKR Quote</a>
+  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
+  <a href="https://wa.me/923202508684" class="nav-mob-order" target="_blank">Get PKR Quote</a>
   <ul class="nav-c">
     <li class="nav-dd-wrap" id="navDdWrap">
       <button class="nav-dd-btn" id="navDdBtn" type="button" onclick="toggleNavDd(event)" aria-haspopup="true" aria-expanded="false">
@@ -2496,7 +2501,7 @@
         <div class="nav-dd-section">
           <a href="instock.html" class="nav-dd-item instock-trigger" onclick="closeNavDd()" role="menuitem">Browse In Stock</a>
           <button class="nav-dd-item" type="button" onclick="closeNavDd();setTimeout(()=>document.getElementById('searchInput').focus(),200)" role="menuitem">Find a Product</button>
-          <a href="https://wa.me/923218705726" class="nav-dd-item" onclick="closeNavDd()" target="_blank" rel="noopener" role="menuitem">Order on WhatsApp</a>
+          <a href="https://wa.me/923202508684" class="nav-dd-item" onclick="closeNavDd()" target="_blank" rel="noopener" role="menuitem">Order on WhatsApp</a>
         </div>
         <div class="nav-dd-section">
           <a href="#how-it-works" class="nav-dd-item" onclick="closeNavDd()" role="menuitem">How It Works</a>
@@ -2512,7 +2517,7 @@
         <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
     </li>
-    <li><a href="https://wa.me/923218705726" class="nav-cta" target="_blank">Get PKR Quote</a></li>
+    <li><a href="https://wa.me/923202508684" class="nav-cta" target="_blank">Get PKR Quote</a></li>
   </ul>
 </nav>
 <a href="instock.html" class="scroll-instock-pill instock-trigger" id="scrollInStockPill" aria-label="Browse in stock items now">
@@ -2569,7 +2574,7 @@
     <p class="hero-tagline">Jo bhi chahye, Ordrpe mangwalo.</p>
     <p class="hero-desc">Anything from the USA, delivered to Pakistan with one clear PKR quote.</p>
     <div class="hero-btns">
-      <a href="https://wa.me/923218705726" class="btn-gold" target="_blank">Get My PKR Quote</a>
+      <a href="https://wa.me/923202508684" class="btn-gold" target="_blank">Get My PKR Quote</a>
       <a href="instock.html" class="btn-outline-w instock-trigger instock-spotlight">Browse In-Stock Now</a>
     </div>
     <div class="hero-micro">Average WhatsApp response time: under 5 minutes.</div>
@@ -2655,7 +2660,7 @@
   var rotor = document.getElementById('heroWheelRotor');
   if (!stage || !rotor) { heroDbg.initError = 'no hero wheel'; return; }
 
-  var wa = function (path) { return 'https://wa.me/923218705726?text=' + encodeURIComponent(path); };
+  var wa = function (path) { return 'https://wa.me/923202508684?text=' + encodeURIComponent(path); };
   var POOL = [
     { id: 'makeup', href: 'instock.html?cat=makeup', ext: false, label: 'Makeup &amp; Beauty', alt: 'Makeup &amp; Beauty', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&q=85', aria: 'Browse Makeup and Beauty in stock' },
     { id: 'fragrance', href: 'instock.html?cat=fragrance', ext: false, label: 'Fragrance', alt: 'Fragrance', img: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&q=85', aria: 'Browse Fragrance in stock' },
@@ -2894,7 +2899,7 @@
           <span class="edit-slide-cta">Shop In Stock</span>
         </div>
       </a>
-      <a class="edit-slide" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27d%20like%20a%20custom%20wishlist%20quote." target="_blank" rel="noopener" aria-label="Build a custom wishlist on WhatsApp">
+      <a class="edit-slide" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27d%20like%20a%20custom%20wishlist%20quote." target="_blank" rel="noopener" aria-label="Build a custom wishlist on WhatsApp">
         <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=85" alt="Custom wishlist lifestyle" loading="lazy" decoding="async">
         <div class="edit-slide-overlay">
           <span class="edit-slide-cat">Your Wishlist</span>
@@ -3055,7 +3060,7 @@
         <img class="par-img" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=85" alt="Makeup &amp; Beauty" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">In Stock</div><h3>Makeup &amp; Beauty</h3></div>
       </a>
-      <a class="cat-card sr sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Skincare" target="_blank" rel="noopener" aria-label="Order Skincare">
+      <a class="cat-card sr sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Skincare" target="_blank" rel="noopener" aria-label="Order Skincare">
         <img class="par-img" src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=85" alt="Skincare" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Skincare</h3></div>
       </a>
@@ -3063,7 +3068,7 @@
         <img class="par-img" src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=85" alt="Perfume &amp; Fragrance" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">In Stock</div><h3>Perfume &amp; Fragrance</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Haircare%20%26%20Hair%20Tools" target="_blank" rel="noopener" aria-label="Order Haircare &amp; Hair Tools">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Haircare%20%26%20Hair%20Tools" target="_blank" rel="noopener" aria-label="Order Haircare &amp; Hair Tools">
         <img class="par-img" src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&q=85" alt="Haircare &amp; Hair Tools" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Haircare &amp; Tools</h3></div>
       </a>
@@ -3075,31 +3080,31 @@
         <img class="par-img" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=85" alt="Bags &amp; Wallets" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">In Stock</div><h3>Bags &amp; Wallets</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Watches%20%26%20Jewelry" target="_blank" rel="noopener" aria-label="Order Watches &amp; Jewelry">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Watches%20%26%20Jewelry" target="_blank" rel="noopener" aria-label="Order Watches &amp; Jewelry">
         <img class="par-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=85" alt="Watches &amp; Jewelry" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Watches &amp; Jewelry</h3></div>
       </a>
-      <a class="cat-card sr sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Sunglasses%20%26%20Eyewear" target="_blank" rel="noopener" aria-label="Order Sunglasses &amp; Eyewear">
+      <a class="cat-card sr sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Sunglasses%20%26%20Eyewear" target="_blank" rel="noopener" aria-label="Order Sunglasses &amp; Eyewear">
         <img class="par-img" src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&q=85" alt="Sunglasses &amp; Eyewear" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Sunglasses</h3></div>
       </a>
-      <a class="cat-card sr sr-d3" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Electronics%20%26%20Tech" target="_blank" rel="noopener" aria-label="Order Electronics &amp; Tech">
+      <a class="cat-card sr sr-d3" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Electronics%20%26%20Tech" target="_blank" rel="noopener" aria-label="Order Electronics &amp; Tech">
         <img class="par-img" src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=85" alt="Electronics &amp; Tech" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Electronics &amp; Tech</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Smartphones%20%26%20Phone%20Accessories" target="_blank" rel="noopener" aria-label="Order Smartphones &amp; Accessories">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Smartphones%20%26%20Phone%20Accessories" target="_blank" rel="noopener" aria-label="Order Smartphones &amp; Accessories">
         <img class="par-img" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&q=85" alt="Smartphones &amp; Accessories" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Phones &amp; Accessories</h3></div>
       </a>
-      <a class="cat-card sr sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Headphones%20or%20Audio" target="_blank" rel="noopener" aria-label="Order Headphones &amp; Audio">
+      <a class="cat-card sr sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Headphones%20or%20Audio" target="_blank" rel="noopener" aria-label="Order Headphones &amp; Audio">
         <img class="par-img" src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=85" alt="Headphones &amp; Audio" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Headphones &amp; Audio</h3></div>
       </a>
-      <a class="cat-card sr sr-d3" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Women%27s%20Fashion" target="_blank" rel="noopener" aria-label="Order Women's Fashion">
+      <a class="cat-card sr sr-d3" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Women%27s%20Fashion" target="_blank" rel="noopener" aria-label="Order Women's Fashion">
         <img class="par-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=85" alt="Women's Fashion" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Women's Fashion</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Men%27s%20Fashion" target="_blank" rel="noopener" aria-label="Order Men's Fashion">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Men%27s%20Fashion" target="_blank" rel="noopener" aria-label="Order Men's Fashion">
         <img class="par-img" src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=600&q=85" alt="Men's Fashion" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Men's Fashion</h3></div>
       </a>
@@ -3107,34 +3112,34 @@
         <img class="par-img" src="https://images.unsplash.com/photo-1768696082668-411638a55476?w=600&q=85" alt="Intimates &amp; Lounge" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">In Stock</div><h3>Intimates &amp; Lounge</h3></div>
       </a>
-      <a class="cat-card sr sr-d3" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Kids%20%26%20Baby%20items" target="_blank" rel="noopener" aria-label="Order Kids &amp; Baby">
+      <a class="cat-card sr sr-d3" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Kids%20%26%20Baby%20items" target="_blank" rel="noopener" aria-label="Order Kids &amp; Baby">
         <img class="par-img" src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600&q=85" alt="Kids &amp; Baby" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Kids &amp; Baby</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Toys%20%26%20Games" target="_blank" rel="noopener" aria-label="Order Toys &amp; Games">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Toys%20%26%20Games" target="_blank" rel="noopener" aria-label="Order Toys &amp; Games">
         <img class="par-img" src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&q=85" alt="Toys &amp; Games" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Toys &amp; Games</h3></div>
       </a>
-      <a class="cat-card sr sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Home%20%26%20Lifestyle%20items" target="_blank" rel="noopener" aria-label="Order Home &amp; Lifestyle">
+      <a class="cat-card sr sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Home%20%26%20Lifestyle%20items" target="_blank" rel="noopener" aria-label="Order Home &amp; Lifestyle">
         <img class="par-img" src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=85" alt="Home &amp; Lifestyle" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Home &amp; Lifestyle</h3></div>
       </a>
-      <a class="cat-card sr sr-d3" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Kitchen%20%26%20Drinkware" target="_blank" rel="noopener" aria-label="Order Kitchen &amp; Drinkware">
+      <a class="cat-card sr sr-d3" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Kitchen%20%26%20Drinkware" target="_blank" rel="noopener" aria-label="Order Kitchen &amp; Drinkware">
         <img class="par-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85" alt="Kitchen &amp; Drinkware" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Kitchen &amp; Drinkware</h3></div>
       </a>
-      <a class="cat-card sr sr-d1" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Fitness%20%26%20Activewear" target="_blank" rel="noopener" aria-label="Order Fitness &amp; Activewear">
+      <a class="cat-card sr sr-d1" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Fitness%20%26%20Activewear" target="_blank" rel="noopener" aria-label="Order Fitness &amp; Activewear">
         <img class="par-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85" alt="Fitness &amp; Activewear" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Fitness &amp; Activewear</h3></div>
       </a>
-      <a class="cat-card sr sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Vitamins%20%26%20Wellness" target="_blank" rel="noopener" aria-label="Order Vitamins &amp; Wellness">
+      <a class="cat-card sr sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Vitamins%20%26%20Wellness" target="_blank" rel="noopener" aria-label="Order Vitamins &amp; Wellness">
         <img class="par-img" src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=85" alt="Vitamins &amp; Wellness" loading="lazy" decoding="async">
         <div class="cat-card-label"><div class="cl-sub">Order on WhatsApp</div><h3>Vitamins &amp; Wellness</h3></div>
       </a>
     </div>
     <div class="cats-cta sr">
       <span>Don't see your category?</span>
-      <a href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20" target="_blank" rel="noopener">Ask on WhatsApp →</a>
+      <a href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20" target="_blank" rel="noopener">Ask on WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -3178,7 +3183,7 @@
         </div>
       </a>
       <div class="fh-side">
-        <a class="fh-sm sr sr-x-right sr-d2" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Skincare%20from%20the%20Her%20Edit" target="_blank" rel="noopener" aria-label="Order Skincare on WhatsApp">
+        <a class="fh-sm sr sr-x-right sr-d2" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Skincare%20from%20the%20Her%20Edit" target="_blank" rel="noopener" aria-label="Order Skincare on WhatsApp">
           <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=85" alt="Skincare">
           <div class="fh-sm-label">
             <span class="fh-sm-name">Skincare</span>
@@ -3192,7 +3197,7 @@
             <span class="fh-sm-brands">Coach · Kate Spade · MK · Tory Burch</span>
           </div>
         </a>
-        <a class="fh-sm sr sr-x-right sr-d4" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Women%27s%20Fashion%20from%20the%20Her%20Edit" target="_blank" rel="noopener" aria-label="Order Fashion on WhatsApp">
+        <a class="fh-sm sr sr-x-right sr-d4" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20looking%20for%20Women%27s%20Fashion%20from%20the%20Her%20Edit" target="_blank" rel="noopener" aria-label="Order Fashion on WhatsApp">
           <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&q=85" alt="Fashion">
           <div class="fh-sm-label">
             <span class="fh-sm-name">Fashion</span>
@@ -3203,7 +3208,7 @@
     </div>
     <div class="fh-cta sr">
       <p class="fh-cta-text">Send any product link — full PKR price in minutes.</p>
-      <a href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%27m%20shopping%20from%20the%20Her%20Edit%20%F0%9F%8C%B8" class="fh-btn" target="_blank">Shop Her Edit on WhatsApp</a>
+      <a href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%27m%20shopping%20from%20the%20Her%20Edit%20%F0%9F%8C%B8" class="fh-btn" target="_blank">Shop Her Edit on WhatsApp</a>
       <a href="instock.html" class="fh-btn-outline instock-trigger">Browse In Stock</a>
     </div>
   </div>
@@ -3438,7 +3443,7 @@
       <h3>Buying for your<br><em>store or business?</em></h3>
       <p>Bulk rates, priority handling, and business invoices.</p>
     </div>
-    <a href="https://wa.me/923218705726" class="rs-btn">
+    <a href="https://wa.me/923202508684" class="rs-btn">
       Get Wholesale Pricing
       <span class="rs-btn-sub">Chat with us on WhatsApp</span>
     </a>
@@ -3458,7 +3463,7 @@
     <p class="cta-tagline">Jo bhi chahye, Ordrpe mangwalo.</p>
     <p>Send a link. Get PKR quote. We handle the rest.</p>
     <div class="cta-btns">
-      <a href="https://wa.me/923218705726" class="wa-btn">Get My PKR Quote</a>
+      <a href="https://wa.me/923202508684" class="wa-btn">Get My PKR Quote</a>
       <a href="instock.html" class="btn-gold instock-trigger">Browse In-Stock Now</a>
     </div>
   </div>
@@ -3468,7 +3473,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="logo">Order<span>Pe</span></div>
+      <div class="logo"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
       <p>USA products delivered to Pakistan. Honest pricing, real receipts, zero surprises.</p>
       <div class="footer-hq">Headquarters: <span>Karachi, Pakistan</span></div>
       <div class="social-row" style="margin-top:16px;">
@@ -3481,7 +3486,7 @@
         <a href="https://facebook.com/ordrpe" class="soc" title="Facebook" aria-label="Facebook" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <a href="https://wa.me/923218705726" class="soc" title="WhatsApp" aria-label="WhatsApp" target="_blank">
+        <a href="https://wa.me/923202508684" class="soc" title="WhatsApp" aria-label="WhatsApp" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
         <a href="https://youtube.com/@ordrpe" class="soc" title="YouTube" aria-label="YouTube" target="_blank">
@@ -3512,7 +3517,7 @@
   </div>
 </footer>
 
-<a class="wa-help-fab" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%20need%20help%20placing%20an%20order." target="_blank" aria-label="Need help on WhatsApp">
+<a class="wa-help-fab" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%20need%20help%20placing%20an%20order." target="_blank" aria-label="Need help on WhatsApp">
   Need help fast? WhatsApp
 </a>
 <div class="help-hub" id="helpHub">
@@ -3522,7 +3527,7 @@
 <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
   <a href="#top">Home</a>
   <a href="instock.html">In Stock</a>
-  <a href="https://wa.me/923218705726" target="_blank">WhatsApp</a>
+  <a href="https://wa.me/923202508684" target="_blank">WhatsApp</a>
   <a href="#faq">FAQs</a>
 </nav>
 
@@ -3604,7 +3609,7 @@
     <button class="ai-chip" onclick="sendChip('Delivery time?')">Delivery time?</button>
     <button class="ai-chip" onclick="sendChip('COD details?')">COD details?</button>
     <button class="ai-chip" onclick="openPriceMatch()">Found it cheaper?</button>
-    <button class="ai-chip" onclick="window.open('https://wa.me/923218705726','_blank')">Talk to Human on WhatsApp</button>
+    <button class="ai-chip" onclick="window.open('https://wa.me/923202508684','_blank')">Talk to Human on WhatsApp</button>
   </div>
   <div class="ai-input-row">
     <input type="text" id="aiInput" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendAiMsg()">
@@ -3780,7 +3785,7 @@ function spType() {
   const waMsg  = isLink
     ? `Hi ordrpe! I want to order this: ${raw}`
     : `Hi ordrpe! I'm looking for: ${raw}`;
-  const waLink = 'https://wa.me/923218705726?text=' + encodeURIComponent(waMsg);
+  const waLink = 'https://wa.me/923202508684?text=' + encodeURIComponent(waMsg);
   const gLink  = 'https://www.google.com/search?q=' + encodeURIComponent(raw + ' price buy USA');
 
   let html = '';
@@ -3803,7 +3808,7 @@ function spType() {
       </div>`;
       }
       return `
-      <div class="sp-result-item" onclick="window.open('https://wa.me/923218705726?text=${encodeURIComponent("Hi ordrpe! I'm looking for: " + m.n)}','_blank');spClose()">
+      <div class="sp-result-item" onclick="window.open('https://wa.me/923202508684?text=${encodeURIComponent("Hi ordrpe! I'm looking for: " + m.n)}','_blank');spClose()">
         <div class="sp-result-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/><path d="M3 7l9-5 9 5"/></svg>
         </div>
@@ -3898,7 +3903,7 @@ function sendPriceMatch() {
   if (store) msg += '\nFound at: ' + store;
   if (price) msg += '\nTheir price: PKR ' + price;
   msg += '\n\nCan you match or beat this price?';
-  window.open('https://wa.me/923218705726?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/923202508684?text=' + encodeURIComponent(msg), '_blank');
   closePriceMatch();
 }
 
@@ -4106,7 +4111,7 @@ function ordrpeSearchGo(q) {
   const r = ordrpeSearchResolve(q);
   if (r.empty) return;
   if (r.kind === 'link') {
-    window.open('https://wa.me/923218705726?text=' + encodeURIComponent('Hi ordrpe! I want to order this: ' + r.raw), '_blank');
+    window.open('https://wa.me/923202508684?text=' + encodeURIComponent('Hi ordrpe! I want to order this: ' + r.raw), '_blank');
     return;
   }
   const topHit = r.top;
@@ -4134,11 +4139,11 @@ function doProductSearch(preset) {
   }
   const result = document.getElementById('finderResult');
   const gLink = 'https://www.google.com/search?q=' + encodeURIComponent(raw + ' buy USA');
-  const waHref = 'https://wa.me/923218705726?text=' + encodeURIComponent(`Hi ordrpe! I'm looking for: ${raw}`);
+  const waHref = 'https://wa.me/923202508684?text=' + encodeURIComponent(`Hi ordrpe! I'm looking for: ${raw}`);
 
   const r = ordrpeSearchResolve(raw);
   if (r.kind === 'link') {
-    result.innerHTML = `<div class="fr-card fr-link"><div class="fr-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11-11"/><path d="M21 3v7a2 2 0 0 1-2 2H12"/></svg></div><div><div class="fr-title">Perfect — we can source that!</div><div class="fr-sub">Send this link on WhatsApp. We'll quote you the full PKR price within minutes.</div><a href="https://wa.me/923218705726?text=${encodeURIComponent('Hi ordrpe! I want to order this: ' + raw)}" class="fr-btn fr-btn-wa" target="_blank">Send Link on WhatsApp →</a></div></div>`;
+    result.innerHTML = `<div class="fr-card fr-link"><div class="fr-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11-11"/><path d="M21 3v7a2 2 0 0 1-2 2H12"/></svg></div><div><div class="fr-title">Perfect — we can source that!</div><div class="fr-sub">Send this link on WhatsApp. We'll quote you the full PKR price within minutes.</div><a href="https://wa.me/923202508684?text=${encodeURIComponent('Hi ordrpe! I want to order this: ' + raw)}" class="fr-btn fr-btn-wa" target="_blank">Send Link on WhatsApp →</a></div></div>`;
     return;
   }
   if (found) {
@@ -4157,7 +4162,7 @@ function doProductSearch(preset) {
     return;
   }
   if (top && top.type === 'product' && top.k && _catParam[top.k]) {
-    result.innerHTML = `<div class="fr-card fr-found"><div class="fr-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.8L22 9.3l-5 3.9L18.2 22 12 18.6 5.8 22 7 13.2 2 9.3l7.4-0.5L12 2z"/></svg></div><div><div class="fr-title">We can help with “${top.n}”</div><div class="fr-sub">Browse our ${_catLabel[top.k]} collection or message us for a PKR quote.</div><a href="instock.html?cat=${_catParam[top.k]}" class="fr-btn fr-btn-gold" style="margin-right:8px">Browse ${_catLabel[top.k]} →</a><a href="https://wa.me/923218705726?text=${encodeURIComponent(`Hi ordrpe! I'm looking for: ${top.n}`)}" class="fr-btn fr-btn-wa" target="_blank">WhatsApp quote →</a></div></div>`;
+    result.innerHTML = `<div class="fr-card fr-found"><div class="fr-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.8L22 9.3l-5 3.9L18.2 22 12 18.6 5.8 22 7 13.2 2 9.3l7.4-0.5L12 2z"/></svg></div><div><div class="fr-title">We can help with “${top.n}”</div><div class="fr-sub">Browse our ${_catLabel[top.k]} collection or message us for a PKR quote.</div><a href="instock.html?cat=${_catParam[top.k]}" class="fr-btn fr-btn-gold" style="margin-right:8px">Browse ${_catLabel[top.k]} →</a><a href="https://wa.me/923202508684?text=${encodeURIComponent(`Hi ordrpe! I'm looking for: ${top.n}`)}" class="fr-btn fr-btn-wa" target="_blank">WhatsApp quote →</a></div></div>`;
     return;
   }
   const prodHint = hits.filter(h => h.type === 'product').slice(0, 3);
@@ -4169,7 +4174,7 @@ function doProductSearch(preset) {
         const href = h.href.includes('index.html#') ? h.href.replace('index.html', '') : h.href;
         return `<a href="${href}" class="fr-btn fr-btn-gold" style="margin:4px 6px 0 0;display:inline-flex;font-size:11px">${h.n} →</a>`;
       }).join('') +
-      prodHint.map(h => `<a href="https://wa.me/923218705726?text=${encodeURIComponent(`Hi ordrpe! I'm looking for: ${h.n}`)}" class="fr-btn fr-btn-wa" target="_blank" style="margin:4px 6px 0 0;display:inline-flex;font-size:11px">Ask: ${h.n} →</a>`).join('') +
+      prodHint.map(h => `<a href="https://wa.me/923202508684?text=${encodeURIComponent(`Hi ordrpe! I'm looking for: ${h.n}`)}" class="fr-btn fr-btn-wa" target="_blank" style="margin:4px 6px 0 0;display:inline-flex;font-size:11px">Ask: ${h.n} →</a>`).join('') +
       '</div>';
   }
   result.innerHTML = `<div class="fr-card fr-custom"><div class="fr-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="fr-title">We'll help you find it</div><div class="fr-sub">Search on Google for US prices and reviews, or ask us to source it — we deliver from the USA to Pakistan.</div><a href="${gLink}" target="_blank" class="fr-btn fr-btn-gold" style="margin-right:8px">Search on Google →</a><a href="${waHref}" class="fr-btn fr-btn-wa" target="_blank">Ask on WhatsApp →</a>${hintHtml}</div></div>`;
@@ -4201,7 +4206,7 @@ function finderSearchPreview() {
       const href = h.href.includes('index.html#') ? h.href.replace('index.html', '') : h.href;
       return `<button type="button" class="fr-suggest-row" onclick="window.location.href=${JSON.stringify(href)}"><span class="fr-suggest-t">${h.n.replace(/\x3c/g, '&lt;')}</span><span class="fr-suggest-a">On this site</span></button>`;
     }
-    const wa = 'https://wa.me/923218705726?text=' + encodeURIComponent(`Hi ordrpe! I'm looking for: ${h.n}`);
+    const wa = 'https://wa.me/923202508684?text=' + encodeURIComponent(`Hi ordrpe! I'm looking for: ${h.n}`);
     if (h.k && _catParam[h.k]) {
       const catu = 'instock.html?cat=' + _catParam[h.k];
       return `<button type="button" class="fr-suggest-row" onclick="window.location.href=${JSON.stringify(catu)}"><span class="fr-suggest-t">${h.n.replace(/\x3c/g, '&lt;')}</span><span class="fr-suggest-a">In Stock · ${_catLabel[h.k]}</span></button>`;
@@ -4504,7 +4509,7 @@ function updateLaunchUxBits() {
   if (y > 2200) active = '#contact';
   mobileBottomLinks.forEach(a => {
     const href = a.getAttribute('href');
-    a.classList.toggle('active', href === active || (active === '#contact' && href === 'https://wa.me/923218705726'));
+    a.classList.toggle('active', href === active || (active === '#contact' && href === 'https://wa.me/923202508684'));
   });
 }
 if (backTopBtn) {

@@ -203,9 +203,12 @@
       padding: 0 28px; background: #11100e;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; text-decoration: none; transition: opacity 0.2s; }
+    .logo {
+      display: inline-flex; align-items: center; text-decoration: none;
+      transition: opacity 0.2s; line-height: 0;
+    }
     .logo:hover { opacity: 0.85; }
-    .logo span { color: #d8d1c5; }
+    .logo-img { height: 24px; width: auto; display: block; border-radius: 6px; }
     .nav-c { display: flex; align-items: center; gap: 20px; list-style: none; }
     .nav-c a { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.65); transition: color 0.2s; }
     .nav-c a:hover { color: #fff; }
@@ -565,7 +568,8 @@
 
     /* ── FOOTER ── */
     footer { background: #120d04; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; }
-    footer .logo { color: #fff; font-size: 20px; }
+    footer .logo { margin-bottom: 4px; }
+    footer .logo-img { height: 26px; }
     footer p { font-size: 12px; color: rgba(255,255,255,0.58); }
     footer .fl { display: flex; gap: 20px; }
     footer .fl a { font-size: 12px; color: rgba(255,255,255,0.65); transition: color 0.2s; }
@@ -830,7 +834,7 @@
 
     @media (max-width: 768px) {
       nav { height: 58px; padding: 0 12px; }
-      .logo { font-size: 20px; letter-spacing: 1px; }
+      .logo-img { height: 22px; }
       .nav-c { gap: 10px; }
       .nav-c > li:nth-child(1),
       .nav-c > li:nth-child(2) { display: none; } /* Home/Contact redundant with bottom nav — keep Cart + Theme + Quote */
@@ -1021,7 +1025,7 @@
     @media (max-height: 520px) and (orientation: landscape) and (max-width: 950px) {
       .ticker-wrap { display: none; }
       nav { height: 54px; padding: 0 10px; }
-      .logo { font-size: 18px; letter-spacing: 0.8px; }
+      .logo-img { height: 20px; }
       .mobile-top { top: 54px; }
       .page-header { padding: 10px 0 12px; }
       .page-header-content { padding: 0 10px; }
@@ -1364,7 +1368,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo">Order<span>Pe</span></a>
+  <a href="index.html" class="logo" aria-label="ordrpe home"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></a>
   <ul class="nav-c">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#contact">Contact</a></li>
@@ -1385,7 +1389,7 @@
         <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
     </li>
-    <li><a href="https://wa.me/923218705726" class="nav-cta">Get My Quote</a></li>
+    <li><a href="https://wa.me/923202508684" class="nav-cta">Get My Quote</a></li>
   </ul>
 </nav>
 
@@ -1574,14 +1578,14 @@
     <h3>Don't see it? <em>We'll source it fast.</em></h3>
     <p>Send any US link now - get a clear PKR quote and availability check in minutes.</p>
   </div>
-  <a href="https://wa.me/923218705726" class="wa-btn">
+  <a href="https://wa.me/923202508684" class="wa-btn">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L.057 23.926a.75.75 0 0 0 .912.919l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.497-5.264-1.373l-.378-.218-3.924 1.032 1.012-3.836-.234-.39A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     Get My Fast PKR Quote
   </a>
 </div>
 
 <footer>
-  <div class="logo">Order<span style="color:var(--gold)">Pe</span></div>
+  <div class="logo"><img src="images/brand/ordrpe-logo.png" alt="ordrpe" class="logo-img" width="799" height="342" decoding="async"></div>
   <p>© 2026 ordrpe · Led by girls, built for all Pakistanis.</p>
   <div class="fl">
     <a href="index.html">Home</a>
@@ -1590,12 +1594,12 @@
     <a href="refunds.html">Refunds</a>
   </div>
 </footer>
-<a class="wa-help-fab" href="https://wa.me/923218705726?text=Hi%20Ordrpe!%20I%20need%20help%20with%20an%20in-stock%20order." target="_blank" aria-label="Need help on WhatsApp">
+<a class="wa-help-fab" href="https://wa.me/923202508684?text=Hi%20Ordrpe!%20I%20need%20help%20with%20an%20in-stock%20order." target="_blank" aria-label="Need help on WhatsApp">
   Need help fast? WhatsApp
 </a>
 <div class="help-hub" id="helpHubStock">
   <div class="help-hub-panel">
-    <a class="help-hub-action" href="https://wa.me/923218705726" target="_blank">Get Quote on WhatsApp</a>
+    <a class="help-hub-action" href="https://wa.me/923202508684" target="_blank">Get Quote on WhatsApp</a>
     <button class="help-hub-action" type="button" onclick="openPriceMatchStock();toggleHelpHubStock(false)">Claim Price Match</button>
   </div>
   <button class="help-hub-main" type="button" onclick="toggleHelpHubStock()">Quote</button>
@@ -1606,7 +1610,7 @@
   <button type="button" onclick="openCartDrawer()" aria-label="Open cart">
     Cart<span class="mob-bn-count empty" id="mobBnCount">0</span>
   </button>
-  <a href="https://wa.me/923218705726" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="https://wa.me/923202508684" target="_blank" rel="noopener">WhatsApp</a>
   <a href="#pageHeader">Top</a>
 </nav>
 <button id="backTopBtnStock" class="back-top-btn" aria-label="Back to top">↑</button>
@@ -1721,7 +1725,7 @@ function sendPriceMatchStock() {
   if (store) msg += '\n🏪 Found at: ' + store;
   if (price) msg += '\n💰 Their price: PKR ' + price;
   msg += '\n\nCan you match or beat this price?';
-  window.open('https://wa.me/923218705726?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/923202508684?text=' + encodeURIComponent(msg), '_blank');
   closePriceMatchStock();
 }
 
@@ -2381,7 +2385,7 @@ function clearAll() {
 
 function orderItem(name, brand, pkr) {
   const msg = encodeURIComponent(`Hi ordrpe!\n\nI'd like to order:\n\n Product: ${name}\n Brand: ${brand}\n Price: PKR ${Number(pkr).toLocaleString()}\n\nPlease confirm availability and payment details. Thank you!`);
-  window.open(`https://wa.me/923218705726?text=${msg}`, '_blank');
+  window.open(`https://wa.me/923202508684?text=${msg}`, '_blank');
 }
 
 /* ─────────────────────────────────────────────
@@ -2694,7 +2698,7 @@ function shareCartOnWhatsApp() {
     msg += `Open this cart on the site:\n${buildCartShareUrlFromPayload(linkRows)}\n\n`;
   } catch (_) {}
   msg += `Please confirm availability and payment details. Thank you!`;
-  window.open(`https://wa.me/923218705726?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/923202508684?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function instockPageBaseUrl() {

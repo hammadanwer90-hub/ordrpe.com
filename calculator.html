@@ -14,7 +14,7 @@
     gtag('config', 'G-HVSSBKJ6D9');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -185,6 +185,7 @@
       box-shadow: 0 0 0 3px rgba(0,198,94,0.07);
     }
     .form-input.error { border-color: rgba(255,80,80,0.55); }
+    .form-input:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .form-row {
       display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
@@ -200,6 +201,12 @@
 
     /* helper utilities used by the calculator form (moved from inline) */
     .muted-note { color: var(--text-faint); font-size: 9px; letter-spacing: 1px; }
+    .weight-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.5;
+    }
     .hstack { display:flex; align-items:center; gap:10px; }
 
     .form-error {
@@ -208,21 +215,19 @@
     }
     .form-error.show { display: block; }
 
-    /* ── TIER SELECTOR ── */
-    .tier-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    .toggle-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 20px; cursor: pointer;
     }
-    .tier-btn {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 8px;
-      cursor: pointer; text-align: center;
-      transition: border-color 0.2s, background 0.2s;
+    .toggle-row input[type="checkbox"] {
+      width: 18px; height: 18px; accent-color: var(--green);
+      cursor: pointer; flex-shrink: 0; margin-top: 2px;
     }
-    .tier-btn:hover { border-color: var(--border-light); }
-    .tier-btn.selected { border-color: var(--green); background: rgba(0,198,94,0.06); }
-    .tier-btn-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-    .tier-btn-fee { font-size: 10px; color: var(--text-faint); }
-    .tier-btn.selected .tier-btn-name { color: var(--green); }
+    .toggle-label { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+    .rates-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-faint); margin-bottom: 12px;
+    }
 
     /* ── BUTTON ── */
     .calc-btn {
@@ -357,6 +362,9 @@
       margin-top: 20px;
       font-size: 11px; color: var(--text-faint); text-align: center; line-height: 1.7;
     }
+    .disclaimer a { color: var(--green); }
+
+    .form-row-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 64px 48px 48px; }
@@ -386,6 +394,8 @@
       padding-top: 32px; border-top: 1px solid var(--border);
     }
     .footer-bottom p { font-size: 11px; color: var(--text-faint); letter-spacing: 0.5px; }
+    .legal-fine-print { font-size: 10px; color: var(--text-faint); opacity: 0.5; }
+    .legal-fine-print a { color: inherit; text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -393,8 +403,8 @@
       .nav-links { display: none; }
       .page-wrap { padding: 100px 20px 60px; }
       .calc-card, .result-card { padding: 28px 20px; }
-      .tier-grid { grid-template-columns: repeat(2, 1fr); }
       .form-row { grid-template-columns: 1fr; }
+      .form-row-4 { grid-template-columns: 1fr 1fr; }
       .total-number { font-size: 40px; }
       .result-cta { flex-direction: column; }
       footer { padding: 48px 24px 32px; }
@@ -405,30 +415,11 @@
       .footer-top { grid-template-columns: 1fr; }
     }
 
-    /* ─── SITEWIDE INTERACTIVE FEEL ─── */
-    .nav-pill,
-    .btn-calc,
-    .reset-btn {
-      will-change: transform;
-    }
-    .nav-pill { transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s cubic-bezier(.23,1,.32,1); }
-    .nav-pill:not(.cta):hover { transform: translateY(-1px); }
-    .nav-pill.cta:hover       { transform: translateY(-1px); }
-    .btn-calc:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,198,94,0.25); }
-
-    .nav-pill:active,
-    .btn-calc:active,
-    .reset-btn:active {
-      transform: scale(0.95) translateY(1px) !important;
-      transition: transform 0.08s ease !important;
-    }
   </style>
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/scroll-motion.css">
 </head>
 <body>
-
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- NAV -->
   <nav id="mainNav">
     <a href="index.html" class="logo-wrap">
@@ -476,28 +467,42 @@
             <input type="number" id="productWeight" class="form-input kg" placeholder="0.0" min="0.01" step="0.1">
           </div>
           <div class="form-error" id="weightErr">Enter a weight greater than 0 kg.</div>
+          <p class="weight-note">Weight may be rounded up to the next whole kilogram for carry charges.</p>
+        </div>
+      </div>
+
+      <label class="toggle-row">
+        <input type="checkbox" id="taxIncluded">
+        <span class="toggle-label">Price already includes sales tax — don't add tax on top</span>
+      </label>
+
+      <div class="form-group">
+        <label class="form-label" for="shippingFee">Shipping Fee (USD) <span class="muted-note">(optional)</span></label>
+        <div class="prefix-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="shippingFee" class="form-input" placeholder="Leave blank if none" min="0" step="0.01">
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Your Membership Tier</label>
-        <div class="tier-grid">
-          <button class="tier-btn" data-tier="free" type="button">
-            <div class="tier-btn-name">Free</div>
-            <div class="tier-btn-fee">No fee</div>
-          </button>
-          <button class="tier-btn" data-tier="x" type="button">
-            <div class="tier-btn-name">Tier X</div>
-            <div class="tier-btn-fee">$4.99 / mo</div>
-          </button>
-          <button class="tier-btn selected" data-tier="s" type="button">
-            <div class="tier-btn-name">Tier S</div>
-            <div class="tier-btn-fee">$19.99 / mo</div>
-          </button>
-          <button class="tier-btn" data-tier="y" type="button">
-            <div class="tier-btn-name">Tier Y</div>
-            <div class="tier-btn-fee">$49.99 / mo</div>
-          </button>
+        <p class="rates-label">Rates <span class="muted-note">(edit if needed)</span></p>
+        <div class="form-row form-row-4">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="taxRate">Tax %</label>
+            <input type="number" id="taxRate" class="form-input" value="10.7" min="0" step="0.1">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="feeRate">Service fee %</label>
+            <input type="number" id="feeRate" class="form-input" value="15" min="0" step="0.1">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="carryKg">Carry $/kg</label>
+            <input type="number" id="carryKg" class="form-input" value="25" min="0" step="0.01">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="exRate">Rate PKR</label>
+            <input type="number" id="exRate" class="form-input" value="295" min="1" step="1">
+          </div>
         </div>
       </div>
 
@@ -509,43 +514,19 @@
     <div class="result-card" id="resultCard">
       <div class="result-header">
         <div class="result-label">Cost Breakdown</div>
-        <div class="hstack">
-          <div class="currency-toggle">
-            <button class="cur-btn active" id="curPKR" onclick="setCurrency('PKR')">PKR</button>
-            <button class="cur-btn" id="curUSD" onclick="setCurrency('USD')">USD</button>
-          </div>
-          <div class="result-tier-badge" id="resTierBadge">Tier S</div>
+        <div class="currency-toggle">
+          <button class="cur-btn active" id="curPKR" type="button">PKR</button>
+          <button class="cur-btn" id="curUSD" type="button">USD</button>
         </div>
       </div>
 
-      <div class="breakdown">
-        <div class="br-row">
-          <span class="br-key">Product price</span>
-          <span class="br-val" id="resProduct">—</span>
-        </div>
-        <div class="br-row">
-          <span class="br-key">US sales tax (10.6%)</span>
-          <span class="br-val" id="resTax">—</span>
-        </div>
-        <div class="br-row">
-          <span class="br-key">Service fee (<span id="resFeeRate">—</span>)</span>
-          <span class="br-val" id="resFee">—</span>
-        </div>
-        <div class="br-row">
-          <span class="br-key">Carry charge (<span id="resKg">—</span>/kg)</span>
-          <span class="br-val" id="resCarry">—</span>
-        </div>
-        <div class="br-row">
-          <span class="br-key">Exchange rate</span>
-          <span class="br-val dim" id="resRate">—</span>
-        </div>
-      </div>
+      <div class="breakdown" id="breakdown"></div>
 
       <div class="total-block">
         <div class="total-eyebrow">Total Landed Cost</div>
         <div class="total-amount">
-          <span class="total-currency">PKR</span>
-          <span class="total-number" id="resTotalPKR">0</span>
+          <span class="total-currency" id="totalCur">PKR</span>
+          <span class="total-number" id="resTotal">0</span>
         </div>
         <div class="total-sub" id="resTotalSub">—</div>
       </div>
@@ -561,7 +542,7 @@
       </div>
     </div>
 
-    <p class="disclaimer">Estimates only — exchange rates and carry charges may vary slightly. Final invoice confirmed on WhatsApp before payment.</p>
+    <p class="disclaimer">Estimates only — not a binding quote. Final invoice confirmed on WhatsApp before payment.</p>
 
   </div>
 
@@ -604,90 +585,69 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Shoppish. All rights reserved.</p>
+        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms &amp; Conditions</a></span></p>
         <p>Made for Pakistani shoppers (PK)</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Cursor
-    const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    document.addEventListener('mousemove', e => {
-      cur.style.transform  = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-      ring.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
-    });
-    document.querySelectorAll('a, button, input').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-
-    // Nav scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
-    });
-
-    // Tier selection
-    const TIERS = {
-      free: { name: 'Free',   fee: 0.15, rate: 295, carry: 25 },
-      x:    { name: 'Tier X', fee: 0.10, rate: 290, carry: 22 },
-      s:    { name: 'Tier S', fee: 0.08, rate: 288, carry: 21 },
-      y:    { name: 'Tier Y', fee: 0.06, rate: 285, carry: 20 },
-    };
-    let activeTier = 's';
-
-    document.querySelectorAll('.tier-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        activeTier = btn.dataset.tier;
-      });
-    });
-
-    // Helpers
     function usd(n) {
       return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
     function pkr(n) {
       return 'PKR\u202f' + Math.round(n).toLocaleString('en-PK');
     }
-
-    // Currency toggle state
-    var activeCurrency = 'PKR';
-    var lastCalc = null;
-
-    function setCurrency(cur) {
-      activeCurrency = cur;
-      document.getElementById('curPKR').classList.toggle('active', cur === 'PKR');
-      document.getElementById('curUSD').classList.toggle('active', cur === 'USD');
-      if (lastCalc) renderResults(lastCalc);
+    function num(id, fallback) {
+      const v = parseFloat(document.getElementById(id).value);
+      return isNaN(v) ? fallback : Math.max(0, v);
     }
+
+    let activeCurrency = 'PKR';
+    let lastCalc = null;
 
     function renderResults(c) {
       const inUSD = activeCurrency === 'USD';
-      document.getElementById('resTierBadge').textContent = c.tier.name;
-      document.getElementById('resProduct').textContent   = usd(c.price);
-      document.getElementById('resTax').textContent       = usd(c.tax);
-      document.getElementById('resFeeRate').textContent   = Math.round(c.tier.fee * 100) + '%';
-      document.getElementById('resFee').textContent       = usd(c.fee);
-      document.getElementById('resKg').textContent        = c.roundedKg + ' kg × $' + c.tier.carry;
-      document.getElementById('resCarry').textContent     = inUSD ? usd(c.carryPKR / c.tier.rate) : pkr(c.carryPKR);
-      document.getElementById('resRate').textContent      = '1 USD = PKR ' + c.tier.rate;
-
-      if (inUSD) {
-        const totalUSD = c.usdTotal + c.carryPKR / c.tier.rate;
-        document.querySelector('.total-currency').textContent = 'USD';
-        document.getElementById('resTotalPKR').textContent    = totalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('resTotalSub').textContent    = usd(c.usdTotal) + ' goods + ' + usd(c.carryPKR / c.tier.rate) + ' carry';
+      const rows = [['Product price', usd(c.price)]];
+      if (c.taxIncluded) {
+        rows.push(['Sales tax', 'Included in price']);
       } else {
-        document.querySelector('.total-currency').textContent = 'PKR';
-        document.getElementById('resTotalPKR').textContent    = Math.round(c.totalPKR).toLocaleString('en-PK');
-        document.getElementById('resTotalSub').textContent    = usd(c.usdTotal) + ' USD at ' + c.tier.rate + ' + ' + pkr(c.carryPKR) + ' carry';
+        rows.push(['Sales tax (' + c.taxPct + '%)', usd(c.checkout - c.price)]);
+      }
+      rows.push(['Checkout amount', usd(c.checkout)]);
+      rows.push(['Service fee (' + c.feePct + '%)', usd(c.fee)]);
+      if (c.shipping > 0) rows.push(['Shipping fee', usd(c.shipping)]);
+      rows.push(['Carry (' + c.billKg + ' kg × $' + c.carryKg + '/kg)', inUSD ? usd(c.carryUSD) : pkr(c.carryUSD * c.rate)]);
+      rows.push(['Exchange rate', '1 USD = PKR ' + c.rate]);
+
+      document.getElementById('breakdown').innerHTML = rows.map(([k, v]) =>
+        '<div class="br-row"><span class="br-key">' + k + '</span><span class="br-val' + (k === 'Exchange rate' ? ' dim' : '') + '">' + v + '</span></div>'
+      ).join('');
+
+      document.getElementById('totalCur').textContent = inUSD ? 'USD' : 'PKR';
+      if (inUSD) {
+        const totalUSD = c.goodsUSD + c.carryUSD;
+        document.getElementById('resTotal').textContent = totalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('resTotalSub').textContent = usd(c.goodsUSD) + ' goods + ' + usd(c.carryUSD) + ' carry';
+      } else {
+        document.getElementById('resTotal').textContent = Math.round(c.totalPKR).toLocaleString('en-PK');
+        document.getElementById('resTotalSub').textContent = usd(c.goodsUSD) + ' at ' + c.rate + ' + ' + pkr(c.carryUSD * c.rate) + ' carry';
       }
     }
 
-    // Calculate
+    document.getElementById('curPKR').addEventListener('click', () => {
+      activeCurrency = 'PKR';
+      document.getElementById('curPKR').classList.add('active');
+      document.getElementById('curUSD').classList.remove('active');
+      if (lastCalc) renderResults(lastCalc);
+    });
+    document.getElementById('curUSD').addEventListener('click', () => {
+      activeCurrency = 'USD';
+      document.getElementById('curUSD').classList.add('active');
+      document.getElementById('curPKR').classList.remove('active');
+      if (lastCalc) renderResults(lastCalc);
+    });
+
     document.getElementById('calcBtn').addEventListener('click', calculate);
     document.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
 
@@ -704,51 +664,62 @@
 
       const price  = parseFloat(priceInput.value);
       const weight = parseFloat(weightInput.value);
-      let ok = true;
+      if (!price || price <= 0) { priceInput.classList.add('error'); priceErr.classList.add('show'); return; }
+      if (!weight || weight <= 0) { weightInput.classList.add('error'); weightErr.classList.add('show'); return; }
 
-      if (!price || price <= 0) {
-        priceInput.classList.add('error'); priceErr.classList.add('show'); ok = false;
-      }
-      if (!weight || weight <= 0) {
-        weightInput.classList.add('error'); weightErr.classList.add('show'); ok = false;
-      }
-      if (!ok) return;
+      const taxIncluded = document.getElementById('taxIncluded').checked;
+      const taxPct = num('taxRate', 10.7);
+      const feePct = num('feeRate', 15);
+      const carryKg = num('carryKg', 25);
+      const rate = num('exRate', 295);
+      const shippingRaw = document.getElementById('shippingFee').value.trim();
+      const shipping = shippingRaw === '' ? 0 : Math.max(0, parseFloat(shippingRaw) || 0);
 
-      const tier       = TIERS[activeTier];
-      const tax        = price * 0.106;
-      const fee        = price * tier.fee;
-      const roundedKg  = Math.ceil(weight);
-      const carryPKR   = roundedKg * tier.carry * tier.rate;
-      const usdTotal   = price + tax + fee;
-      const totalPKR   = usdTotal * tier.rate + carryPKR;
+      const checkout = taxIncluded ? price : price * (1 + taxPct / 100);
+      const fee = price * (feePct / 100);
+      const billKg = Math.ceil(weight);
+      const carryUSD = billKg * carryKg;
+      const goodsUSD = checkout + fee + shipping;
+      const totalPKR = goodsUSD * rate + carryUSD * rate;
 
-      lastCalc = { price, tax, fee, roundedKg, carryPKR, usdTotal, totalPKR, tier };
+      lastCalc = { price, checkout, fee, feePct, taxPct, taxIncluded, shipping, billKg, carryKg, carryUSD, goodsUSD, totalPKR, rate };
       renderResults(lastCalc);
 
-      // Pre-fill WhatsApp message
       const link = document.getElementById('productLink').value.trim();
-      const msg  = encodeURIComponent(
+      const msg = encodeURIComponent(
         'Hi, I want to place an order.\n' +
         (link ? 'Product: ' + link + '\n' : '') +
-        'Price: ' + usd(price) + ' | Weight: ~' + weight + 'kg | Tier: ' + tier.name + '\n' +
+        'Price: ' + usd(price) + ' | Weight: ~' + weight + 'kg' +
+        (shipping > 0 ? ' | Shipping: ' + usd(shipping) : '') + '\n' +
         'Estimated landed cost: PKR ' + Math.round(totalPKR).toLocaleString('en-PK')
       );
       document.getElementById('waLink').href = 'https://wa.me/923143442661?text=' + msg;
 
-      // Show result
-      const card = document.getElementById('resultCard');
-      card.classList.add('visible');
-      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      document.getElementById('resultCard').classList.add('visible');
+      setTimeout(() => document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
     }
 
-    // Reset
+    function syncTaxField() {
+      const on = document.getElementById('taxIncluded').checked;
+      document.getElementById('taxRate').disabled = on;
+    }
+    document.getElementById('taxIncluded').addEventListener('change', syncTaxField);
+    syncTaxField();
+
     document.getElementById('resetBtn').addEventListener('click', () => {
-      document.getElementById('productPrice').value  = '';
-      document.getElementById('productWeight').value = '';
-      document.getElementById('productLink').value   = '';
+      ['productPrice', 'productWeight', 'shippingFee', 'productLink'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('taxRate').value = '10.7';
+      document.getElementById('feeRate').value = '15';
+      document.getElementById('carryKg').value = '25';
+      document.getElementById('exRate').value = '295';
+      document.getElementById('taxIncluded').checked = false;
+      syncTaxField();
       document.getElementById('resultCard').classList.remove('visible');
       document.querySelectorAll('.form-input').forEach(i => i.classList.remove('error'));
       document.querySelectorAll('.form-error').forEach(e => e.classList.remove('show'));
+      lastCalc = null;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
@@ -774,61 +745,6 @@
       });
     })();
   </script>
-
-  <!-- ═══ SITEWIDE HOVER EXPERIENCE ═══ -->
-  <style>
-    .cursor { box-shadow: 0 0 10px rgba(0,198,94,1), 0 0 20px rgba(0,198,94,0.5); }
-    .cursor-ring {
-      transition: width 0.25s cubic-bezier(.23,1,.32,1), height 0.25s cubic-bezier(.23,1,.32,1),
-                  border-color 0.25s, background 0.25s, transform 0.06s linear;
-    }
-    .cursor-ring.hover { width: 64px; height: 64px; border-color: rgba(0,198,94,0.9); background: rgba(0,198,94,0.08); }
-    .cursor-ring.click { width: 24px; height: 24px; border-color: var(--green); background: rgba(0,198,94,0.2); transition: width 0.08s, height 0.08s; }
-
-    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap) { transition: color 0.2s ease; }
-    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap):hover { color: var(--green); }
-    .footer-col li a { display:inline-block; transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important; }
-    .footer-col li a:hover { color: var(--green) !important; transform: translateX(5px) !important; }
-
-    .nav-pill:not(.cta):hover { transform: translateY(-2px) !important; }
-    .nav-pill.cta:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,198,94,0.4) !important; }
-    .btn-calc { transition: background 0.25s, transform 0.3s cubic-bezier(.23,1,.32,1), box-shadow 0.3s !important; }
-    .btn-calc:hover { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.4) !important; }
-  </style>
-
-  <script>
-    (function () {
-      var spot = document.createElement('div');
-      spot.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:0;transition:opacity 0.5s;';
-      document.body.appendChild(spot);
-      document.addEventListener('mousemove', function (e) {
-        spot.style.background = 'radial-gradient(700px circle at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(0,198,94,0.07), transparent 55%)';
-        spot.style.opacity = '1';
-      });
-      document.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
-
-      var ring = document.getElementById('cursorRing');
-      if (ring) {
-        document.addEventListener('mousedown', function () { ring.classList.add('click'); });
-        document.addEventListener('mouseup',   function () { ring.classList.remove('click'); });
-      }
-
-      document.querySelectorAll('.btn-calc,.nav-pill.cta').forEach(function (btn) {
-        btn.addEventListener('mousemove', function (e) {
-          var r = btn.getBoundingClientRect();
-          var x = (e.clientX - r.left - r.width  / 2) * 0.22;
-          var y = (e.clientY - r.top  - r.height / 2) * 0.22;
-          btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-          btn.style.transition = 'transform 0.15s ease, box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mouseleave', function () {
-          btn.style.transform = '';
-          btn.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mousedown', function () { btn.style.transform = 'scale(0.94)'; });
-        btn.addEventListener('mouseup',   function () { btn.style.transform = ''; });
-      });
-    })();
-  </script>
+  <script src="js/glass.js"></script>
 </body>
 </html>

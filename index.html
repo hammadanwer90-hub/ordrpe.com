@@ -37,7 +37,7 @@
     gtag('config', 'G-HVSSBKJ6D9');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -528,17 +528,6 @@
     /* ─── HOW IT WORKS ─── */
     .how-wrap { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    .step {
-      padding: 40px 32px;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-    .step:last-child { border-right: none; }
     .step-number {
       font-family: 'Cormorant Garamond', serif;
       font-size: 72px;
@@ -566,155 +555,6 @@
       color: var(--text-faint);
       line-height: 1.7;
     }
-    .step-connector {
-      position: absolute;
-      top: 50%; right: -1px;
-      transform: translateY(-50%);
-      width: 8px; height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      display: none;
-    }
-
-    /* ─── STEP SCENES ─── */
-    .step-scene {
-      width: 100%; height: 148px;
-      border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden; margin-bottom: 20px;
-      position: relative; background: #0a0a0a;
-      display: flex; flex-direction: column;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    /* ── sc1: Message thread ── */
-    .sc1-topbar {
-      height: 28px; background: #111;
-      display: flex; align-items: center; padding: 0 12px; gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05); flex-shrink:0;
-    }
-    .sc1-dot { width:5px; height:5px; border-radius:50%; background:#00c65e; }
-    .sc1-toplabel { font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#444; }
-    .sc1-body {
-      flex:1; display:flex; flex-direction:column;
-      justify-content:center; gap:8px; padding:10px 14px;
-    }
-    .sc1-row {
-      display:flex; align-items:flex-end; gap:8px;
-    }
-    .sc1-row.out { flex-direction:row-reverse; }
-    .sc1-bubble {
-      max-width:72%; padding:6px 10px; border-radius:10px;
-      font-size:8px; line-height:1.55; color:#ccc;
-      background:#1a1a1a; border:1px solid rgba(255,255,255,0.06);
-    }
-    .sc1-row.out .sc1-bubble { background:#0f2d1a; border-color:rgba(0,198,94,0.2); color:#c8f0d8; }
-    .sc1-time { font-size:6px; color:#333; flex-shrink:0; margin-bottom:2px; }
-    .sc1-row1 { opacity:0; animation: scFadeUp 5s infinite; }
-    .sc1-row2 { opacity:0; animation: scFadeUp 5s 1.2s infinite; }
-    .sc1-row3 { opacity:0; animation: scFadeUp 5s 2.2s infinite; }
-    @keyframes scFadeUp {
-      0%,5%   { opacity:0; transform:translateY(6px); }
-      18%,78% { opacity:1; transform:translateY(0); }
-      92%,100%{ opacity:0; }
-    }
-
-    /* ── sc2: Order progress ── */
-    .sc2-card {
-      flex:1; display:flex; flex-direction:column;
-      justify-content:center; padding:14px 16px; gap:10px;
-    }
-    .sc2-item { display:flex; justify-content:space-between; align-items:center; }
-    .sc2-iname { font-size:9px; font-weight:500; color:#e0e0e0; letter-spacing:0.2px; }
-    .sc2-iprice { font-size:11px; font-weight:700; color:#00c65e; letter-spacing:-0.3px; }
-    .sc2-track { display:flex; flex-direction:column; gap:5px; }
-    .sc2-track-label {
-      font-size:7px; letter-spacing:1.5px; text-transform:uppercase; color:#444;
-    }
-    .sc2-bar-wrap {
-      height:4px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden;
-    }
-    .sc2-bar-fill {
-      height:100%; background:#00c65e; border-radius:2px; width:0%;
-      animation: sc2BarFill 3.5s infinite;
-    }
-    .sc2-status {
-      font-size:8px; font-weight:600; color:#aaa; letter-spacing:0.3px;
-      animation: sc2StatusPulse 3.5s ease-in-out infinite;
-    }
-    @keyframes sc2BarFill {
-      0%,5%   { width:0%; }
-      60%,78% { width:100%; }
-      88%,100%{ width:0%; }
-    }
-    @keyframes sc2StatusPulse {
-      0%,100% { opacity: 0.5; }
-      50%     { opacity: 1; }
-    }
-
-    /* ── sc3: Shipping tracker ── */
-    .sc3-card {
-      flex:1; display:flex; flex-direction:column;
-      justify-content:center; padding:12px 16px; gap:12px;
-    }
-    .sc3-header { display:flex; justify-content:space-between; align-items:baseline; }
-    .sc3-title { font-size:9px; font-weight:600; color:#e0e0e0; letter-spacing:0.2px; }
-    .sc3-eta { font-size:7.5px; color:#555; letter-spacing:0.5px; }
-    .sc3-timeline { display:flex; align-items:center; gap:0; }
-    .sc3-step { display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; }
-    .sc3-node {
-      width:8px; height:8px; border-radius:50%;
-      border:1.5px solid #333; background:#0a0a0a;
-      position:relative; z-index:1;
-    }
-    .sc3-node.done { border-color:#00c65e; background:#00c65e; }
-    .sc3-node.active { border-color:#00c65e; background:#0a0a0a;
-      box-shadow: 0 0 0 3px rgba(0,198,94,0.15); animation: sc3Pulse 1.5s infinite; }
-    .sc3-slabel { font-size:6px; color:#444; letter-spacing:0.5px; text-align:center; white-space:nowrap; }
-    .sc3-slabel.done { color:#00c65e; }
-    .sc3-slabel.active { color:#aaa; }
-    .sc3-line {
-      flex:1; height:1.5px; background:#222; margin-top:-15px; position:relative; overflow:hidden;
-    }
-    .sc3-line.done { background:#00c65e; }
-    .sc3-progress {
-      position:absolute; top:0; left:0; height:100%; width:0%;
-      background:#00c65e; animation: sc3Progress 4s 0.5s infinite;
-    }
-    @keyframes sc3Pulse { 0%,100%{box-shadow:0 0 0 3px rgba(0,198,94,0.15);} 50%{box-shadow:0 0 0 5px rgba(0,198,94,0.25);} }
-    @keyframes sc3Progress { 0%,5%{width:0%;} 70%,90%{width:100%;} 100%{width:0%;} }
-
-    /* ── sc4: Delivery confirmation ── */
-    .sc4-card {
-      flex:1; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; gap:8px; padding:12px;
-    }
-    .sc4-badge {
-      display:flex; align-items:center; gap:6px;
-      background:#0f2d1a; border:1px solid rgba(0,198,94,0.2);
-      border-radius:8px; padding:6px 12px; width:100%;
-      animation: sc4SlideIn 4s infinite;
-      opacity:0; transform:translateY(10px);
-    }
-    .sc4-icon {
-      width:24px; height:24px; border-radius:50%;
-      background:rgba(0,198,94,0.15); border:1.5px solid #00c65e;
-      display:flex; align-items:center; justify-content:center; flex-shrink:0;
-    }
-    .sc4-info { flex:1; }
-    .sc4-ihead { font-size:9px; font-weight:600; color:#c8f0d8; letter-spacing:0.2px; }
-    .sc4-isub { font-size:7px; color:#4a8a5a; margin-top:1px; }
-    .sc4-tag {
-      font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
-      color:#00c65e; padding:2px 7px; border:1px solid rgba(0,198,94,0.3); border-radius:3px;
-      flex-shrink:0;
-    }
-    .sc4-tracking {
-      font-size:7px; color:#333; letter-spacing:1.5px; text-transform:uppercase;
-      opacity:0; animation: sc4TrackIn 4s 0.6s infinite;
-    }
-    @keyframes sc4SlideIn { 0%,8%{opacity:0;transform:translateY(10px);} 22%,78%{opacity:1;transform:translateY(0);} 90%,100%{opacity:0;} }
-    @keyframes sc4TrackIn { 0%,25%{opacity:0;} 40%,78%{opacity:1;} 90%,100%{opacity:0;} }
-
     /* ─── SERVICES ─── */
     .services-grid {
       display: grid;
@@ -750,12 +590,23 @@
 
     /* ─── SERVICE SCENES ─── */
     .svc-scene {
-      width:100%; height:120px; border-radius:8px;
+      width:100%; height:140px; border-radius:8px;
       border:1px solid rgba(255,255,255,0.07); overflow:hidden;
       margin-bottom:18px; position:relative; background:#0a0a0a;
-      display:flex; align-items:center; justify-content:center;
-      font-family:'DM Sans', sans-serif;
+      display:flex; align-items:center; justify-content:center; flex-direction:column;
+      font-family:'DM Sans', sans-serif; padding:12px 10px;
     }
+    .svc-icon {
+      width:84px; height:84px; display:block; opacity:0;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+      transition: transform 0.32s cubic-bezier(.2,.9,.3,1), opacity 0.3s;
+      transform-origin: center;
+      animation: svcFadeIn 0.6s ease forwards, svcFloat 4s ease-in-out 0.6s infinite;
+    }
+    .svc-scene:hover .svc-icon { transform: translateY(-6px) scale(1.02); }
+    .svc-caption { margin-top:8px; font-size:12px; color:var(--text-muted); text-align:center; max-width:180px; }
+    @keyframes svcFloat { 0%{transform:translateY(0);}50%{transform:translateY(-6px);}100%{transform:translateY(0);} }
+    @keyframes svcFadeIn { from{opacity:0; transform:translateY(8px) scale(0.98);} to{opacity:1; transform:translateY(0) scale(1);} }
 
     /* sv1 — Personal Shopping: shopping list */
     .sv1 { flex-direction:column; align-items:stretch; justify-content:center; padding:0; }
@@ -1208,6 +1059,8 @@
     }
     .footer-bottom p { font-size: 11px; color: var(--text-faint); letter-spacing: 0.5px; }
     .footer-flag { font-size: 13px; }
+    .legal-fine-print { font-size: 10px; color: var(--text-faint); opacity: 0.5; }
+    .legal-fine-print a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
@@ -1344,10 +1197,6 @@
       .nav-hamburger { display: flex; }
       .stats-wrap { padding: 0 24px; }
       .section-wrap { padding: 72px 24px; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .step { border-right: none; border-bottom: 1px solid var(--border); }
-      .step:nth-child(odd) { border-right: 1px solid var(--border); }
-      .step:last-child, .step:nth-last-child(2):nth-child(odd) { border-bottom: none; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .proof-grid { grid-template-columns: 1fr; }
       .tiers { grid-template-columns: 1fr 1fr; }
@@ -1373,9 +1222,6 @@
       footer { padding: 48px 24px 32px; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 8px; }
-      .steps { grid-template-columns: 1fr; }
-      .step { border-right: none; border-bottom: 1px solid var(--border); }
-      .step:last-child { border-bottom: none; }
     }
 
     @media (max-width: 480px) {
@@ -2108,38 +1954,6 @@
       cursor: pointer;
     }
 
-    /* ─── SITEWIDE INTERACTIVE FEEL ─── */
-    .nav-pill,
-    .btn-primary,
-    .btn-secondary,
-    .btn-whatsapp,
-    .tier-cta,
-    .exit-btn-primary,
-    .hero-calc-link,
-    #chat-send,
-    .api-key-submit {
-      will-change: transform;
-    }
-
-    .nav-pill { transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s cubic-bezier(.23,1,.32,1); }
-    .nav-pill:not(.cta):hover { transform: translateY(-1px); }
-    .nav-pill.cta:hover       { transform: translateY(-1px); }
-
-    .btn-primary:hover    { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,198,94,0.25); }
-    .btn-secondary:hover  { transform: translateY(-2px); }
-    .tier-cta:hover       { transform: translateY(-2px); }
-
-    .nav-pill:active,
-    .btn-primary:active,
-    .btn-secondary:active,
-    .btn-whatsapp:active,
-    .tier-cta:active,
-    .exit-btn-primary:active,
-    .hero-calc-link:active,
-    #chat-send:not(:disabled):active {
-      transform: scale(0.95) translateY(1px) !important;
-      transition: transform 0.08s ease !important;
-    }
   </style>
 
   <!-- ── ANALYTICS & HEATMAPS ── -->
@@ -2167,6 +1981,8 @@
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
   </script>
 
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/scroll-motion.css">
 </head>
 <body>
 
@@ -2183,11 +1999,6 @@
     </div>
     <div id="intro-skip">skip →</div>
   </div>
-
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- MOBILE MENU -->
   <div id="mobile-menu" aria-hidden="true">
     <ul class="mobile-menu-links">
@@ -2265,7 +2076,7 @@
 
 
   <!-- TICKER -->
-  <div class="ticker-wrap">
+  <div class="ticker-wrap" data-scroll="parallax-slow">
     <div class="ticker-track">
       <!-- set repeated twice for seamless loop -->
       <div class="ticker-item"><span>Personal Shopping</span><span class="ticker-dot"></span></div>
@@ -2287,7 +2098,7 @@
 
   <!-- STATS -->
   <div class="stats-wrap">
-    <div class="stats-card">
+    <div class="stats-card" data-scroll="fade-scale">
       <div class="stats-section">
         <div class="stat-block reveal">
           <div class="stat-num"><span class="counter" data-target="5000">0</span><sup>+</sup></div>
@@ -2315,112 +2126,53 @@
         <div class="section-meta-line"></div>
         <span class="section-eyebrow">Process</span>
       </div>
-      <div class="section-title reveal reveal-delay-1">How It <em>Works</em></div>
+      <div class="section-title reveal reveal-delay-1" data-scroll>How It <em>Works</em></div>
       <p class="section-sub reveal reveal-delay-2">You wish it. We ship it. Simple as that.</p>
-      <div class="steps">
-        <div class="step reveal reveal-delay-1">
-          <div class="step-scene">
-            <div class="sc1-topbar">
-              <div class="sc1-dot"></div>
-              <span class="sc1-toplabel">WhatsApp · Shoppish</span>
-            </div>
-            <div class="sc1-body">
-              <div class="sc1-row out sc1-row1">
-                <div class="sc1-bubble">Nike Dunk Low Panda SZ 10<br>nike.com/t/dunk-low/...</div>
-                <div class="sc1-time">11:42</div>
-              </div>
-              <div class="sc1-row sc1-row2">
-                <div class="sc1-bubble">Got it! Checking availability now.</div>
-                <div class="sc1-time">11:42</div>
-              </div>
-              <div class="sc1-row sc1-row3">
-                <div class="sc1-bubble">In stock — confirming your order ✓</div>
-                <div class="sc1-time">11:43</div>
-              </div>
-            </div>
+      <div class="process-flow">
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/process/step-1-whatsapp.jpg" alt="Person messaging a product link on WhatsApp" width="900" height="600" loading="lazy" data-scroll="parallax-img">
           </div>
-          <div class="step-number">01</div>
-          <div class="step-tag">Step One</div>
-          <h3>Send the Link</h3>
-          <p>Share any product link or name with us on WhatsApp. We handle the rest.</p>
-        </div>
-        <div class="step reveal reveal-delay-2">
-          <div class="step-scene">
-            <div class="sc2-card">
-              <div class="sc2-item">
-                <div class="sc2-iname">Nike Dunk Low Panda · US 10</div>
-                <div class="sc2-iprice">$129.99</div>
-              </div>
-              <div class="sc2-track">
-                <div class="sc2-track-label">Order Status</div>
-                <div class="sc2-bar-wrap"><div class="sc2-bar-fill"></div></div>
-                <div class="sc2-status"></div>
-              </div>
-            </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-number">01</div>
+            <div class="step-tag">Step one</div>
+            <h3>Send the link</h3>
+            <p>Share any product link or name with us on WhatsApp. We confirm availability and quote your landed cost before you pay.</p>
           </div>
-          <div class="step-number">02</div>
-          <div class="step-tag">Step Two</div>
-          <h3>We Purchase It</h3>
-          <p>Our team buys your item from any US store or website — in-person or online.</p>
-        </div>
-        <div class="step reveal reveal-delay-3">
-          <div class="step-scene">
-            <div class="sc3-card">
-              <div class="sc3-header">
-                <div class="sc3-title">Shipment Tracking</div>
-                <div class="sc3-eta">ETA: 8–12 days</div>
-              </div>
-              <div class="sc3-timeline">
-                <div class="sc3-step">
-                  <div class="sc3-node done"></div>
-                  <div class="sc3-slabel done">Ordered</div>
-                </div>
-                <div class="sc3-line done"></div>
-                <div class="sc3-step">
-                  <div class="sc3-node done"></div>
-                  <div class="sc3-slabel done">Packed</div>
-                </div>
-                <div class="sc3-line"><div class="sc3-progress"></div></div>
-                <div class="sc3-step">
-                  <div class="sc3-node active"></div>
-                  <div class="sc3-slabel active">In Transit</div>
-                </div>
-                <div class="sc3-line"></div>
-                <div class="sc3-step">
-                  <div class="sc3-node"></div>
-                  <div class="sc3-slabel">Pakistan</div>
-                </div>
-              </div>
-            </div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/process/step-2-shop.jpg" alt="Shopping and purchasing from a US store" width="900" height="601" loading="lazy" data-scroll="parallax-img">
           </div>
-          <div class="step-number">03</div>
-          <div class="step-tag">Step Three</div>
-          <h3>We Pack &amp; Ship</h3>
-          <p>Your order is carefully packed and shipped internationally from our US warehouse.</p>
-        </div>
-        <div class="step reveal reveal-delay-4">
-          <div class="step-scene">
-            <div class="sc4-card">
-              <div class="sc4-badge">
-                <div class="sc4-icon">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 6.5l2.5 2.5 5.5-5.5" stroke="#00c65e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div class="sc4-info">
-                  <div class="sc4-ihead">Your order has arrived</div>
-                  <div class="sc4-isub">Delivered to your address in Pakistan</div>
-                </div>
-                <div class="sc4-tag">Done</div>
-              </div>
-              <div class="sc4-tracking">TRK · SHP-2024-00847</div>
-            </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-number">02</div>
+            <div class="step-tag">Step two</div>
+            <h3>We purchase it</h3>
+            <p>Our team buys your item from any US store or website — online or in-person — once you've paid upfront.</p>
           </div>
-          <div class="step-number">04</div>
-          <div class="step-tag">Step Four</div>
-          <h3>You Receive It</h3>
-          <p>Delivered to your door in Pakistan. Fully tracked the entire way.</p>
-        </div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/process/step-3-ship.jpg" alt="Packages being prepared for international shipping" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+          </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-number">03</div>
+            <div class="step-tag">Step three</div>
+            <h3>We pack &amp; ship</h3>
+            <p>Your order is carefully packed at our US warehouse and shipped internationally via trusted carriers.</p>
+          </div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/process/step-4-deliver.jpg" alt="Package delivered to a doorstep" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+          </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-number">04</div>
+            <div class="step-tag">Step four</div>
+            <h3>You receive it</h3>
+            <p>Delivered to your door in Pakistan. Tracked the whole way — you always know where your order is.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -2432,120 +2184,53 @@
         <div class="section-meta-line"></div>
         <span class="section-eyebrow">Services</span>
       </div>
-      <div class="section-title reveal reveal-delay-1">What We <em>Offer</em></div>
+      <div class="section-title reveal reveal-delay-1" data-scroll>What We <em>Offer</em></div>
       <p class="section-sub reveal reveal-delay-2">Every way to shop America — we've got it covered.</p>
       <div class="services-grid">
         <div class="service reveal reveal-delay-1">
           <div class="svc-scene sv1">
-            <div class="sv1-header">
-              <span>Shopping List</span>
-              <span class="sv1-count">3 items</span>
-            </div>
-            <div class="sv1-list">
-              <div class="sv1-item i1">
-                <div class="sv1-check"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="M1 3.5l2 2 3-3" stroke="#00c65e" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-                <div class="sv1-iname">Nike Dunk Low Panda SZ 10</div>
-                <div class="sv1-iprice">$129</div>
-              </div>
-              <div class="sv1-item i2">
-                <div class="sv1-check"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="M1 3.5l2 2 3-3" stroke="#00c65e" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-                <div class="sv1-iname">Yeezy 350 V2 Bone SZ 9</div>
-                <div class="sv1-iprice">$230</div>
-              </div>
-              <div class="sv1-item i3">
-                <div class="sv1-check"></div>
-                <div class="sv1-iname">Supreme Box Logo Hoodie M</div>
-                <div class="sv1-iprice">$168</div>
-              </div>
-            </div>
+            <img src="images/icons/personal-shopping.svg" class="svc-icon" alt="Personal Shopping">
+            <div class="svc-caption">We buy it for you — link to order, we handle the rest.</div>
           </div>
           <h3>Personal Shopping</h3>
           <p>Send us a link. We buy it, pack it, ship it. You just wait at the door.</p>
         </div>
         <div class="service reveal reveal-delay-2">
           <div class="svc-scene sv2">
-            <div class="sv2-row sv2-row1">
-              <div class="sv2-label">3 separate shipments</div>
-              <div class="sv2-val">$186</div>
-            </div>
-            <div class="sv2-divider"></div>
-            <div class="sv2-row sv2-row2">
-              <div class="sv2-label">1 consolidated shipment</div>
-              <div class="sv2-val">$94</div>
-            </div>
-            <div class="sv2-divider"></div>
-            <div class="sv2-row sv2-row3">
-              <div class="sv2-label">You save</div>
-              <div class="sv2-val green">$92</div>
-            </div>
-            <div class="sv2-saving">Consolidation applied ✓</div>
+            <img src="images/icons/consolidation.svg" class="svc-icon" alt="Consolidation">
+            <div class="svc-caption">Combine multiple parcels into one shipment to save.</div>
           </div>
           <h3>Consolidation</h3>
           <p>Order from 10 different stores. Pay shipping once. The math does the rest.</p>
         </div>
         <div class="service reveal reveal-delay-3">
           <div class="svc-scene sv4">
-            <div class="sv4-cardrow">
-              <div class="sv4-card-mini">
-                <div class="sv4-chip-mini"></div>
-                <div class="sv4-card-name">SHOPPISH</div>
-              </div>
-              <div class="sv4-card-info">
-                <div class="sv4-card-label">Shoppish Card</div>
-                <div class="sv4-card-sub">Virtual US debit card</div>
-              </div>
-            </div>
-            <div class="sv4-approved-row">
-              <svg class="sv4-check-icon" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7" stroke="#00c65e" stroke-width="1.2" fill="rgba(0,198,94,0.1)"/>
-                <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke="#00c65e" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <div>
-                <div class="sv4-appr-text">Payment Approved</div>
-                <div class="sv4-appr-sub">$129.99 · nike.com</div>
-              </div>
-            </div>
+            <img src="images/icons/shoppish-card.svg" class="svc-icon" alt="Shoppish Card">
+            <div class="svc-caption">Virtual US debit card — pay at US checkout instantly.</div>
           </div>
           <h3>Shoppish Card</h3>
           <p>A US card in your pocket. Shop Nike, Amazon, Supreme — at the actual US price.</p>
         </div>
         <div class="service reveal reveal-delay-4">
           <div class="svc-scene sv5">
-            <div class="sv5-top">
-              <div class="sv5-badge">Limited Drop</div>
-              <div class="sv5-timer">00:04:22</div>
-            </div>
-            <div class="sv5-product">Jordan 4 Retro Thunder 2023</div>
-            <div class="sv5-stock">Only 3 pairs left · US 10</div>
-            <div class="sv5-secured">Secured ✓</div>
+            <img src="images/icons/preorders.svg" class="svc-icon" alt="Pre-orders">
+            <div class="svc-caption">Reserve limited drops and secure your pair before they sell out.</div>
           </div>
           <h3>Pre-Orders</h3>
           <p>Limited drop. 3 pairs left. We already got yours.</p>
         </div>
         <div class="service reveal reveal-delay-5">
           <div class="svc-scene sv3-scene">
-            <svg class="sv3-pin" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2C8.69 2 6 4.69 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.31-2.69-6-6-6z" fill="#00c65e" opacity="0.85"/>
-              <circle cx="12" cy="8" r="2.2" fill="#000" opacity="0.4"/>
-            </svg>
-            <div class="sv3-addr">
-              <div class="sv3-store">Nike Factory Store</div>
-              <div class="sv3-city">Portland, OR · USA</div>
-            </div>
-            <div class="sv3-status">We're there</div>
+            <img src="images/icons/in-store.svg" class="svc-icon" alt="In-Store Shopping">
+            <div class="svc-caption">Our team shops in-person at US stores for rare finds.</div>
           </div>
           <h3>In-Store Shopping</h3>
           <p>If it's not online, we walk in. Physically. In the US. For you.</p>
         </div>
         <div class="service reveal reveal-delay-6">
           <div class="svc-scene sv7">
-            <div class="sv7-title">Bulk Order · Tax Refund Applied</div>
-            <div class="sv7-rows">
-              <div class="sv7-row r1"><span>8 items subtotal</span><span class="sv7-row-val">$642.00</span></div>
-              <div class="sv7-row r2"><span>Sales tax (10.6%)</span><span class="sv7-row-val">$68.05</span></div>
-              <div class="sv7-row r3"><span>Total charged</span><span class="sv7-row-val">$710.05</span></div>
-              <div class="sv7-row r4"><span>Tax refund</span><span class="sv7-row-val">− $68.05 ✓</span></div>
-            </div>
+            <img src="images/icons/tax-refund.svg" class="svc-icon" alt="Tax Refund">
+            <div class="svc-caption">We reclaim eligible US sales tax on qualifying orders.</div>
           </div>
           <h3>Bulk &amp; Tax Refunds</h3>
           <p>We claim your US sales tax back. That's free money — we just get it for you.</p>
@@ -2790,8 +2475,7 @@
       </div>
 
       <p class="tier-disclaimer reveal">
-        <a href="https://shoppish.pk" target="_blank" rel="noopener">shoppish.pk</a> &nbsp;·&nbsp;
-        Rates indicative &amp; subject to change &nbsp;·&nbsp; T&amp;Cs apply
+        Rates indicative &amp; subject to change.
       </p>
     </div>
   </div>
@@ -2856,12 +2540,13 @@
             <li><a href="https://wa.me/923143442661?utm_source=website&utm_medium=footer&utm_campaign=whatsapp" target="_blank" rel="noopener">WhatsApp</a></li>
             <li><a href="https://instagram.com/shoppish.pk" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://shoppish.pk" target="_blank" rel="noopener">shoppish.pk</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
             <li><a href="#contact-placeholder">Contact</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Shoppish. All rights reserved.</p>
+        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms &amp; Conditions</a></span></p>
         <p class="footer-flag">Made for Pakistani shoppers (PK)</p>
       </div>
     </div>
@@ -2902,29 +2587,6 @@
   </div>
 
   <script>
-    // ─── CURSOR ───
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-    });
-
-    function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-
     // ─── SCROLL PROGRESS ───
     const progressBar = document.getElementById('scroll-progress');
     window.addEventListener('scroll', () => {
@@ -2933,46 +2595,11 @@
       progressBar.style.width = pct + '%';
     }, { passive: true });
 
-    // ─── SC2 STATUS CYCLE ───
-    (function() {
-      const statusEl = document.querySelector('.sc2-status');
-      if (!statusEl) return;
-      const labels = ['Queued', 'Purchasing…', 'Order Confirmed ✓'];
-      let idx = 0;
-      statusEl.textContent = labels[0];
-      setInterval(() => {
-        idx = (idx + 1) % labels.length;
-        statusEl.textContent = labels[idx];
-      }, 1200);
-    })();
-
     // ─── NAV SCROLL ───
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
-
-    // ─── MAGNETIC BUTTONS ───
-    if (!window.matchMedia('(hover: none)').matches) {
-      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-          const r  = btn.getBoundingClientRect();
-          const bx = r.left + r.width  / 2;
-          const by = r.top  + r.height / 2;
-          const dx = e.clientX - bx;
-          const dy = e.clientY - by;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 80;
-          if (dist < maxDist) {
-            const pull = (1 - dist / maxDist) * 12;
-            btn.style.transform = `translate(${(dx / dist) * pull}px, ${(dy / dist) * pull}px)`;
-          }
-        });
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = '';
-        });
-      });
-    }
 
     // ─── EMAIL STRIP ───
     function handleEmailStrip() {
@@ -3393,7 +3020,7 @@ Membership Tiers:
 - Tier ! — By invite only: Best rates, lowest fees, US wholesaler purchase, free PAK delivery, discounted US delivery, monthly 0% events, tax returns
 
 Contact / Order:
-- WhatsApp: +92 314 3442661 (primary way to place orders)
+- WhatsApp: 03143442661 (primary way to place orders)
 - Instagram: @shoppish.pk
 - Website: shoppish.pk
 
@@ -3687,136 +3314,7 @@ Guidelines:
       document.getElementById('exit-overlay').classList.remove('show');
     }
   </script>
-
-  <!-- ═══ SITEWIDE HOVER EXPERIENCE ═══ -->
-  <style>
-    /* Cursor glow dot */
-    .cursor { box-shadow: 0 0 10px rgba(0,198,94,1), 0 0 20px rgba(0,198,94,0.5); }
-
-    /* Cursor ring */
-    .cursor-ring {
-      transition: width 0.25s cubic-bezier(.23,1,.32,1),
-                  height 0.25s cubic-bezier(.23,1,.32,1),
-                  border-color 0.25s, background 0.25s,
-                  transform 0.06s linear;
-    }
-    .cursor-ring.hover {
-      width: 64px; height: 64px;
-      border-color: rgba(0,198,94,0.9);
-      background: rgba(0,198,94,0.08);
-    }
-    .cursor-ring.click {
-      width: 24px; height: 24px;
-      border-color: var(--green);
-      background: rgba(0,198,94,0.2);
-      transition: width 0.08s ease, height 0.08s ease;
-    }
-
-    /* Every plain link turns green */
-    a:not([class]):hover,
-    a.footer-link:hover,
-    .footer-col a:hover,
-    .faq-q:hover { color: var(--green) !important; }
-
-    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap):not(.mobile-menu-wa) {
-      transition: color 0.2s ease;
-    }
-
-    /* Nav links — letter-spacing nudge */
-    .nav-links a { transition: color 0.25s, letter-spacing 0.3s; }
-    .nav-links a:hover { color: var(--text) !important; letter-spacing: 2.5px; }
-
-    /* Footer links slide */
-    .footer-col li a {
-      display: inline-block;
-      transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important;
-    }
-    .footer-col li a:hover { color: var(--green) !important; transform: translateX(5px) !important; }
-
-    /* Buttons — bigger lift + glow */
-    .btn-primary:hover   { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.4) !important; }
-    .btn-secondary:hover { transform: translateY(-4px) !important; }
-    .btn-whatsapp:hover  { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.35) !important; }
-    .tier-cta:hover      { transform: translateY(-4px) !important; box-shadow: 0 8px 24px rgba(0,198,94,0.25) !important; }
-    .nav-pill:not(.cta):hover { transform: translateY(-2px) !important; }
-    .nav-pill.cta:hover  { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,198,94,0.4) !important; }
-    .exit-btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 8px 24px rgba(0,198,94,0.35) !important; }
-
-    /* Service cards */
-    .service {
-      transition: transform 0.4s cubic-bezier(.23,1,.32,1),
-                  background 0.3s, box-shadow 0.3s, border-color 0.3s !important;
-    }
-    .service:hover {
-      box-shadow: 0 0 0 1px rgba(0,198,94,0.3), 0 24px 64px rgba(0,0,0,0.5) !important;
-    }
-
-    /* Stat blocks */
-    .stat-block {
-      transition: transform 0.35s cubic-bezier(.23,1,.32,1), box-shadow 0.35s, background 0.3s !important;
-    }
-    .stat-block:hover {
-      transform: translateY(-5px) !important;
-      box-shadow: 0 0 0 1px rgba(0,198,94,0.2), 0 16px 40px rgba(0,0,0,0.4) !important;
-    }
-
-    /* Tier cards */
-    .tier {
-      transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s, background 0.3s !important;
-    }
-    .tier:hover {
-      transform: translateY(-8px) !important;
-      box-shadow: 0 0 0 1px rgba(0,198,94,0.25), 0 28px 70px rgba(0,0,0,0.5) !important;
-    }
-
-    /* Hero calc link */
-    .hero-calc-link { transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important; }
-    .hero-calc-link:hover { transform: translateX(4px) !important; }
-  </style>
-
-  <script>
-    (function () {
-      // ── Cursor spotlight ──
-      var spot = document.createElement('div');
-      spot.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:0;transition:opacity 0.5s;';
-      document.body.appendChild(spot);
-
-      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
-      function updateSpot() {
-        spot.style.background =
-          'radial-gradient(700px circle at ' + mx + 'px ' + my + 'px, rgba(0,198,94,0.07), transparent 55%)';
-      }
-      document.addEventListener('mousemove', function (e) {
-        mx = e.clientX; my = e.clientY;
-        updateSpot();
-        spot.style.opacity = '1';
-      });
-      document.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
-
-      // ── Cursor click pulse ──
-      var ring = document.getElementById('cursorRing');
-      if (ring) {
-        document.addEventListener('mousedown', function () { ring.classList.add('click'); });
-        document.addEventListener('mouseup',   function () { ring.classList.remove('click'); });
-      }
-
-      // ── Magnetic effect on CTAs ──
-      document.querySelectorAll('.btn-primary,.btn-secondary,.btn-whatsapp,.nav-pill.cta,.exit-btn-primary').forEach(function (btn) {
-        btn.addEventListener('mousemove', function (e) {
-          var r = btn.getBoundingClientRect();
-          var x = (e.clientX - r.left - r.width  / 2) * 0.22;
-          var y = (e.clientY - r.top  - r.height / 2) * 0.22;
-          btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-          btn.style.transition = 'transform 0.15s ease, box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mouseleave', function () {
-          btn.style.transform = '';
-          btn.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mousedown', function () { btn.style.transform = 'scale(0.94)'; });
-        btn.addEventListener('mouseup',   function () { btn.style.transform = ''; });
-      });
-    })();
-  </script>
+  <script src="js/glass.js"></script>
+  <script src="js/scroll-motion.js"></script>
 </body>
 </html>

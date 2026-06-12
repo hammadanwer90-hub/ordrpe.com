@@ -1,0 +1,179 @@
+/* Apple-style scroll-driven motion */
+
+:root {
+  --hero-p: 0;
+  --scroll-y: 0;
+}
+
+/* ── Hero breathes as you scroll ── */
+.hero-scroll-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  will-change: transform, opacity;
+  transform:
+    translate3d(0, calc(var(--hero-p) * -72px), 0)
+    scale(calc(1 - var(--hero-p) * 0.07));
+  opacity: calc(1 - var(--hero-p) * 0.92);
+}
+
+.hero-badge,
+.hero-scroll {
+  opacity: calc(1 - var(--hero-p) * 1.4);
+}
+
+/* ── Ambient parallax (set by JS) ── */
+.ambient-orb--a { transform: translate3d(0, calc(var(--orb-a-y, 0) * 1px), 0); }
+.ambient-orb--b { transform: translate3d(0, calc(var(--orb-b-y, 0) * 1px), 0); }
+.ambient-orb--c { transform: translate3d(0, calc(var(--orb-c-y, 0) * 1px), 0); }
+
+/* ── Scroll-linked elements ── */
+[data-scroll] {
+  --scroll-progress: 0;
+  will-change: transform, opacity;
+}
+
+[data-scroll="fade-up"] {
+  opacity: calc(0.25 + var(--scroll-progress) * 0.75);
+  transform: translate3d(0, calc((1 - var(--scroll-progress)) * 48px), 0);
+}
+
+[data-scroll="fade-scale"] {
+  opacity: calc(0.3 + var(--scroll-progress) * 0.7);
+  transform: scale(calc(0.94 + var(--scroll-progress) * 0.06));
+}
+
+[data-scroll="parallax-img"] {
+  transform: translate3d(0, calc((0.5 - var(--scroll-progress)) * 36px), 0) scale(1.08);
+}
+
+[data-scroll="parallax-slow"] {
+  transform: translate3d(0, calc((0.5 - var(--scroll-progress)) * -24px), 0);
+}
+
+/* ── Process flow (How it works) ── */
+.process-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  min-height: min(88vh, 760px);
+  padding: 72px 0;
+  border-bottom: 1px solid var(--glass-border-soft, var(--border));
+}
+
+.process-step:last-child { border-bottom: none; }
+
+.process-step:nth-child(even) .process-step-media { order: 2; }
+.process-step:nth-child(even) .process-step-copy { order: 1; }
+
+.process-step-media {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+.process-step-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+}
+
+.process-step-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  pointer-events: none;
+}
+
+.process-step-copy {
+  padding: 8px 0;
+}
+
+.process-step-copy .step-number {
+  font-size: clamp(56px, 8vw, 88px);
+  margin-bottom: -8px;
+}
+
+.process-step-copy .step-tag {
+  margin-bottom: 12px;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
+.process-step-copy h3 {
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.process-step-copy p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 38ch;
+}
+
+/* ── Section titles drift on scroll ── */
+.section-title[data-scroll],
+.page-title[data-scroll] {
+  transform: translate3d(0, calc((0.5 - var(--scroll-progress)) * 20px), 0);
+}
+
+/* ── Stats card lifts into view ── */
+.stats-card[data-scroll] {
+  transform: translate3d(0, calc((1 - var(--scroll-progress)) * 32px), 0);
+  opacity: calc(0.5 + var(--scroll-progress) * 0.5);
+}
+
+/* ── Ticker subtle parallax ── */
+.ticker-wrap[data-scroll] {
+  transform: translate3d(0, calc((0.5 - var(--scroll-progress)) * 12px), 0);
+}
+
+@media (max-width: 900px) {
+  .process-step {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: auto;
+    padding: 48px 0;
+  }
+  .process-step:nth-child(even) .process-step-media,
+  .process-step:nth-child(even) .process-step-copy {
+    order: unset;
+  }
+  .process-step-media { aspect-ratio: 16 / 10; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-layer,
+  [data-scroll],
+  .ambient-orb {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

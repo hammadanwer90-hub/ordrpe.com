@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shoppish Terms &amp; Conditions — shipping, ordering, membership, liability, and refund policies.">
+  <title>Terms &amp; Conditions — Shoppish</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVSSBKJ6D9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HVSSBKJ6D9');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green: #00c65e;
+      --bg: #080808;
+      --bg2: #121212;
+      --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.10);
+      --border-light: rgba(255,255,255,0.18);
+      --text: #ffffff;
+      --muted2: #b0b0b0;
+      --text-muted: #a0a0a0;
+      --text-faint: #888888;
+      --nav-bg: rgba(8,8,8,0.92);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f9f9f7; --bg2: #f2f2f0; --bg3: #e8e8e6;
+        --border: rgba(0,0,0,0.10); --border-light: rgba(0,0,0,0.18);
+        --text: #0d0d0d; --muted2: #555; --text-muted: #666; --text-faint: #777;
+        --nav-bg: rgba(249,249,247,0.92);
+      }
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .logo-wrap { flex-shrink: 0; min-width: 0; }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .logo-text em { font-style: normal; color: var(--green); }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--muted2); transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; gap: 12px; flex-shrink: 0; }
+    .nav-pill {
+      font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 9px 22px; border: 1px solid var(--border-light); border-radius: 100px;
+      transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
+    }
+    .nav-pill:hover { background: var(--text); color: var(--bg); }
+    .nav-pill.cta { background: var(--green); color: #000; border-color: var(--green); font-weight: 600; }
+    .page-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 100px 24px 48px;
+      width: 100%;
+    }
+    .page-eyebrow {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 16px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 300; line-height: 1.1; margin-bottom: 14px;
+    }
+    .page-title em { font-style: italic; color: var(--green); }
+    .page-intro { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.65; }
+    .toc {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px; margin-bottom: 40px;
+    }
+    .toc-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
+    .toc ul { list-style: none; }
+    .toc li { margin-bottom: 10px; }
+    .toc li:last-child { margin-bottom: 0; }
+    .toc a {
+      display: block;
+      font-size: 14px; color: var(--muted2);
+      line-height: 1.45; padding: 2px 0;
+      transition: color 0.2s;
+      word-break: break-word;
+    }
+    .toc a:hover { color: var(--green); }
+    .legal-section {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 88px;
+    }
+    .legal-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .legal-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 5vw, 28px); font-weight: 400;
+      margin-bottom: 16px; color: var(--text);
+      line-height: 1.2;
+    }
+    .legal-section h3 {
+      font-size: 13px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--green); margin: 24px 0 12px;
+    }
+    .legal-section p {
+      color: var(--text-muted); margin-bottom: 14px; font-size: 14px;
+      line-height: 1.65; word-wrap: break-word; overflow-wrap: break-word;
+    }
+    .legal-section ul { list-style: none; margin-bottom: 14px; }
+    .legal-section li {
+      font-size: 14px; color: var(--text-muted);
+      padding: 10px 0 10px 18px; position: relative;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.55; word-wrap: break-word; overflow-wrap: break-word;
+    }
+    .legal-section li:last-child { border-bottom: none; }
+    .legal-section li::before {
+      content: '•'; position: absolute; left: 0; color: var(--green);
+    }
+    .notice-box {
+      background: rgba(0,198,94,0.05);
+      border: 1px solid rgba(0,198,94,0.2);
+      border-radius: 12px; padding: 16px 18px; margin-bottom: 16px;
+    }
+    .notice-box p { margin-bottom: 0; font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--green); margin-top: 32px;
+    }
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px 36px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .site-footer p { font-size: 11px; color: var(--text-faint); line-height: 1.6; }
+    .legal-fine-print { font-size: 10px; opacity: 0.55; }
+    .legal-fine-print a { color: inherit; text-decoration: underline; }
+    @media (max-width: 768px) {
+      .site-nav { padding: 0 16px; height: 60px; }
+      .nav-links { display: none; }
+      .logo-text { font-size: 17px; letter-spacing: 2px; }
+      .nav-pill { font-size: 10px; padding: 8px 14px; letter-spacing: 1px; }
+      html { scroll-padding-top: 76px; }
+      .page-wrap { padding: 88px 16px 32px; }
+      .page-title { font-size: 32px; }
+      .page-intro { font-size: 13px; margin-bottom: 24px; }
+      .toc { padding: 16px 18px; margin-bottom: 32px; }
+      .toc a { font-size: 13px; }
+      .legal-section { scroll-margin-top: 76px; margin-bottom: 32px; padding-bottom: 32px; }
+      .legal-section h2 { font-size: 24px; }
+      .legal-section h3 { font-size: 11px; margin-top: 20px; }
+      .legal-section p, .legal-section li { font-size: 13px; }
+      .notice-box { padding: 14px 16px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/scroll-motion.css">
+</head>
+<body>
+  <header class="site-nav" id="mainNav">
+    <a href="index.html" class="logo-wrap"><span class="logo-text">SHOPP<em>I</em>SH</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#how">Process</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://wa.me/923143442661" class="nav-pill cta" target="_blank" rel="noopener">Join Now</a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">Terms &amp; <em>Conditions</em></h1>
+    <p class="page-intro">By using Shoppish, placing an order, or joining membership, you agree to these Terms &amp; Conditions. Please read them carefully. Last updated April 2026.</p>
+
+    <div class="notice-box">
+      <p><strong>Summary:</strong> Shoppish is a shopping and facilitation service — not a shipping carrier, retailer, or customs broker. Estimates on our website are not binding quotes. Shipping is handled by third parties. You pay 100% upfront; cancellations are not accepted after confirmation.</p>
+    </div>
+
+    <aside class="toc" aria-label="Table of contents">
+      <p class="toc-title">On this page</p>
+      <ul>
+        <li><a href="#acceptance">Agreement &amp; acceptance</a></li>
+        <li><a href="#shipping">Shipping &amp; delivery</a></li>
+        <li><a href="#ordering">Ordering rules</a></li>
+        <li><a href="#membership-card">Membership &amp; Shoppish Card</a></li>
+        <li><a href="#estimates">Estimates &amp; pricing</a></li>
+        <li><a href="#customs">Customs &amp; compliance</a></li>
+        <li><a href="#conduct">Member conduct</a></li>
+        <li><a href="#refunds">Refunds &amp; chargebacks</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#indemnity">Indemnification</a></li>
+        <li><a href="#termination">Suspension &amp; termination</a></li>
+        <li><a href="#general">General provisions</a></li>
+      </ul>
+    </aside>
+
+    <section class="legal-section" id="acceptance">
+      <h2>Agreement &amp; Acceptance</h2>
+      <p>These Terms &amp; Conditions ("Terms") govern your use of the Shoppish website (shoppish.pk), WhatsApp ordering channels, membership programs, Shoppish Card, calculators, and all related services (collectively, the "Services") operated by Shoppish ("we," "us," or "our").</p>
+      <p>By accessing the Services, requesting a quote, placing an order, paying any invoice, or activating membership, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, do not use the Services.</p>
+      <p>You represent that you are at least 18 years of age and legally able to enter into a binding agreement under applicable law in Pakistan or your jurisdiction of residence.</p>
+    </section>
+
+    <section class="legal-section" id="shipping">
+      <h2>Shipping &amp; Delivery</h2>
+      <div class="notice-box">
+        <p>Shipping is arranged through independent third-party individuals or vendors. Shoppish acts only as a facilitator and purchasing agent — not as a carrier, freight forwarder, insurer, or guarantor of delivery.</p>
+      </div>
+      <p>To the fullest extent permitted by law, Shoppish disclaims all responsibility and liability for delivery timelines, transit delays, misrouting, loss, theft, seizure, customs holds, duties, taxes, inspection, repackaging, damage in transit, or non-delivery — whether occurring in the United States, in transit, or in Pakistan.</p>
+      <p>No guaranteed delivery dates are provided under any circumstances. Members are advised not to place urgent, time-sensitive, or deadline-based orders.</p>
+      <p>Tracking information, where provided, is supplied on a best-effort basis from third parties and may be incomplete, delayed, or inaccurate.</p>
+      <p>Refund eligibility (after 6 months), where applicable, applies only to orders placed directly by Shoppish. Self-ordered items or independently arranged shipments are outside Shoppish's responsibility and refund scope.</p>
+    </section>
+
+    <section class="legal-section" id="ordering">
+      <h2>Ordering Rules</h2>
+      <ul>
+        <li>100% upfront payment is required before any order is confirmed or placed.</li>
+        <li>No cancellations, modifications, or holds after order confirmation.</li>
+        <li>You are responsible for verifying product links, sizes, colors, variants, and quantities before payment.</li>
+        <li>Refunds are available only when applicable under our policies — not as a matter of right in all cases.</li>
+        <li>Misuse of refund privileges, chargebacks, or dispute abuse may result in permanent loss of refund eligibility and account termination.</li>
+        <li>Shoppish may refuse, pause, or cancel any order at its sole discretion.</li>
+      </ul>
+      <p><strong>Order only when fully confirmed.</strong> By paying, you authorize Shoppish to purchase on your behalf at the prices and terms available at the time of purchase.</p>
+    </section>
+
+    <section class="legal-section" id="membership-card">
+      <h2>Shoppish Membership &amp; Card — Rules</h2>
+      <ul>
+        <li>Active membership required (currently $36/month as a launch offer; regular price is $100/month).</li>
+        <li>Card processing: $100 one-time (or 4 installments).</li>
+        <li>First deposit free; then $5 per $250 (waived on $2,500 multiples).</li>
+        <li>$35 overdraft fee if balance goes negative.</li>
+        <li>Card deactivates after 25 days of inactivity (reactivation may apply).</li>
+        <li>Deposit fee applies to total account usage, including card, membership, and installments, etc.</li>
+      </ul>
+      <p>We reserve the right to edit, suspend, or cancel any promotion, offer, rate, fee, or program at any time without prior notice. Card balances, rates, and features are not guaranteed.</p>
+      <p>Shoppish is not a bank or licensed financial institution. Card and wallet services are subject to third-party processor terms and availability.</p>
+    </section>
+
+    <section class="legal-section" id="estimates">
+      <h2>Estimates, Pricing &amp; Calculator</h2>
+      <p>All prices, exchange rates, carry charges, fees, and totals shown on our website, WhatsApp messages, or calculators (including landed-cost and tier-comparison tools) are <strong>estimates only</strong> and are not binding quotes or contracts.</p>
+      <ul>
+        <li>Final invoices are confirmed on WhatsApp before payment and may differ from any estimate.</li>
+        <li>Exchange rates, US checkout amounts, shipping fees, and weight (including round-up billing) may change without notice.</li>
+        <li>Shoppish is not liable for decisions you make based on estimates, comparisons, or projections on the site.</li>
+        <li>Promotional rates, tier benefits, and launch pricing may change or end at any time.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section" id="customs">
+      <h2>Customs, Duties &amp; Compliance</h2>
+      <p>You are solely responsible for compliance with import laws, customs regulations, restricted/prohibited items, and any duties, taxes, penalties, or seizures imposed by authorities in Pakistan or transit countries.</p>
+      <p>Shoppish does not guarantee customs clearance and is not responsible for items held, rejected, destroyed, or delayed by customs. Additional charges imposed after delivery are your responsibility unless explicitly agreed otherwise in writing.</p>
+      <p>You agree not to request purchase or shipment of illegal, counterfeit, hazardous, or restricted goods. Shoppish may report or refuse such requests.</p>
+    </section>
+
+    <section class="legal-section" id="conduct">
+      <h2>Member Conduct</h2>
+      <ul>
+        <li>Provide accurate information for orders, membership, and card use.</li>
+        <li>Do not use the Services for fraud, money laundering, resale of prohibited goods, or abuse of refunds/chargebacks.</li>
+        <li>Do not harass staff, impersonate others, or attempt to circumvent fees or policies.</li>
+        <li>Do not scrape, copy, or misuse website content, tools, or member data.</li>
+      </ul>
+      <p>Violation may result in immediate suspension or termination without refund.</p>
+    </section>
+
+    <section class="legal-section" id="refunds">
+      <h2>Refunds &amp; Chargebacks</h2>
+      <p>Where a refund is approved, processing times and methods are at Shoppish's discretion. Refunds may exclude non-recoverable costs (e.g. processing fees, FX movement, third-party charges) already incurred.</p>
+      <p>Initiating a chargeback or payment dispute without first contacting Shoppish may be treated as policy abuse and grounds for account closure. You remain liable for amounts owed on confirmed orders.</p>
+    </section>
+
+    <section class="legal-section" id="liability">
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law:</p>
+      <ul>
+        <li>The Services are provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, or non-infringement.</li>
+        <li>Shoppish does not warrant uninterrupted, error-free, or secure operation of the website, card, or third-party services.</li>
+        <li>Shoppish's total aggregate liability to you for any claim arising from the Services shall not exceed the amount you paid to Shoppish for the specific order giving rise to the claim in the three (3) months preceding the claim, or USD $100, whichever is less.</li>
+        <li>Shoppish shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including lost profits, lost data, emotional distress, or business interruption — even if advised of the possibility.</li>
+      </ul>
+      <p>Some jurisdictions do not allow certain limitations; in those cases, our liability is limited to the fullest extent permitted by law.</p>
+    </section>
+
+    <section class="legal-section" id="indemnity">
+      <h2>Indemnification</h2>
+      <p>You agree to indemnify, defend, and hold harmless Shoppish, its owners, employees, agents, and partners from any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from: (a) your use of the Services; (b) your orders, membership, or card activity; (c) your violation of these Terms or applicable law; (d) customs or import issues related to your goods; or (e) disputes with third-party sellers, carriers, or payment providers.</p>
+    </section>
+
+    <section class="legal-section" id="termination">
+      <h2>Suspension &amp; Termination</h2>
+      <p>We may suspend or terminate your access to membership, the Shoppish Card, or the Services at any time, with or without notice, for any reason including policy violations, inactivity, risk concerns, or non-payment.</p>
+      <p>Upon termination, outstanding balances, confirmed orders, and applicable fees remain due. Provisions that by nature should survive (including liability limits, indemnity, and governing law) will survive termination.</p>
+    </section>
+
+    <section class="legal-section" id="general">
+      <h2>General Provisions</h2>
+      <h3>Force majeure</h3>
+      <p>Shoppish is not liable for failure or delay due to events beyond reasonable control, including natural disasters, war, strikes, carrier failures, customs actions, pandemics, government orders, or internet outages.</p>
+      <h3>Intellectual property</h3>
+      <p>All website content, branding, and tools are owned by Shoppish or licensors. You may not reproduce or use them without written permission.</p>
+      <h3>Changes to terms</h3>
+      <p>We may update these Terms at any time. Continued use after changes constitutes acceptance. Material changes may be communicated via the website or WhatsApp where practicable.</p>
+      <h3>Governing law &amp; disputes</h3>
+      <p>These Terms are governed by the laws of Pakistan. You agree to first attempt good-faith resolution via WhatsApp. Unresolved disputes shall be subject to the exclusive jurisdiction of courts in Pakistan, unless otherwise required by mandatory local law.</p>
+      <h3>Entire agreement</h3>
+      <p>These Terms, together with order-specific confirmations on WhatsApp, constitute the entire agreement regarding the Services and supersede prior oral or written understandings on the same subject.</p>
+      <h3>Contact</h3>
+      <p>Questions about these Terms: contact us on WhatsApp at <a href="https://wa.me/923143442661" style="color:var(--green)" target="_blank" rel="noopener">03143442661</a> or Instagram @shoppish.pk.</p>
+    </section>
+
+    <a href="membership.html" class="back-link">← Back to Membership</a>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Shoppish. All rights reserved.</p>
+    <p style="margin-top:8px;"><a href="index.html" style="color:var(--text-faint);font-size:11px;">← Back to home</a></p>
+  </footer>
+  <script src="js/glass.js"></script>
+</body>
+</html>

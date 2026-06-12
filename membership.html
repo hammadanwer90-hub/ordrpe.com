@@ -14,7 +14,7 @@
     gtag('config', 'G-HVSSBKJ6D9');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -267,6 +267,166 @@
     }
     .tier-disclaimer a { color: var(--green); }
 
+    /* ── HOW IT WORKS ── */
+    .guide-section {
+      max-width: 1080px; margin: 0 auto;
+      padding: 0 48px 72px;
+    }
+    .section-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label-line { width: 28px; height: 1px; background: var(--green); }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 300; margin-bottom: 12px; line-height: 1.15;
+    }
+    .section-heading em { font-style: italic; color: var(--green); }
+    .section-lead {
+      font-size: 14px; color: var(--text-muted); max-width: 560px;
+      margin-bottom: 40px; line-height: 1.7;
+    }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .step-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 22px;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 300; color: var(--green);
+      line-height: 1; margin-bottom: 12px;
+    }
+    .step-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 8px; letter-spacing: 0.3px;
+    }
+    .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── TIER COMPARATOR ── */
+    .comparator-section {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 80px 48px;
+    }
+    .comparator-inner { max-width: 1080px; margin: 0 auto; }
+    .comparator-form {
+      display: grid; grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 16px; align-items: end;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; margin-bottom: 28px;
+    }
+    .cmp-group label {
+      display: block; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px;
+    }
+    .cmp-input {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+      outline: none;
+    }
+    .cmp-input:focus { border-color: rgba(0,198,94,0.5); }
+    .cmp-btn {
+      background: var(--green); color: #000; border: none; border-radius: 10px;
+      padding: 13px 24px; font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; cursor: pointer; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .cmp-btn:hover { background: #00e06a; }
+    .cmp-note { font-size: 11px; color: var(--text-faint); margin-top: -16px; margin-bottom: 24px; }
+    .cmp-results {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s, transform 0.4s;
+      pointer-events: none;
+    }
+    .cmp-results.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .cmp-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px 18px; text-align: center;
+      position: relative;
+    }
+    .cmp-card.best {
+      border-color: rgba(0,198,94,0.45);
+      background: rgba(0,198,94,0.05);
+    }
+    .cmp-card-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: #000;
+      font-size: 8px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 0 0 8px 8px;
+      display: none;
+    }
+    .cmp-card.best .cmp-card-badge { display: block; }
+    .cmp-tier-name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; margin-top: 8px; }
+    .cmp-total {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300; color: var(--text); line-height: 1.1;
+    }
+    .cmp-card.best .cmp-total { color: var(--green); }
+    .cmp-sub { font-size: 10px; color: var(--text-faint); margin-top: 8px; line-height: 1.5; }
+    .cmp-monthly { font-size: 11px; color: var(--text-muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* ── CARD DETAILS ── */
+    .details-section {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 80px 48px;
+    }
+    .details-inner { max-width: 1080px; margin: 0 auto; }
+    .details-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .detail-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 26px;
+    }
+    .detail-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 400; margin-bottom: 14px;
+    }
+    .detail-card ul { list-style: none; }
+    .detail-card li {
+      font-size: 13px; color: var(--text-muted);
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .detail-card li:last-child { border-bottom: none; }
+    .detail-card li strong { color: var(--text); font-weight: 500; }
+    .launch-tag {
+      display: inline-block; font-size: 9px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green);
+      border: 1px solid rgba(0,198,94,0.35); border-radius: 100px;
+      padding: 4px 10px; margin-bottom: 12px;
+    }
+    .terms-link-box {
+      margin-top: 24px; padding: 20px 24px;
+      background: rgba(0,198,94,0.04); border: 1px solid rgba(0,198,94,0.15);
+      border-radius: 12px; font-size: 13px; color: var(--text-muted);
+    }
+    .terms-link-box a { color: var(--green); font-weight: 500; }
+
+    /* ── FAQ ── */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 80px 48px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 20px 0;
+    }
+    .faq-q {
+      font-size: 14px; font-weight: 500; color: var(--text);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-q span { color: var(--green); font-size: 18px; font-weight: 300; transition: transform 0.25s; }
+    .faq-item.open .faq-q span { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      font-size: 13px; color: var(--text-muted); line-height: 1.7;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
     /* ── COMPARISON TABLE ── */
     .compare-section {
       padding: 0 48px 80px;
@@ -367,10 +527,16 @@
     .footer-col ul li a:hover { color: var(--text); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--border); }
     .footer-bottom p { font-size: 11px; color: var(--text-faint); letter-spacing: 0.5px; }
+    .legal-fine-print { font-size: 10px; color: var(--text-faint); opacity: 0.5; }
+    .legal-fine-print a { color: inherit; text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .tiers { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .cmp-results { grid-template-columns: repeat(2, 1fr); }
+      .comparator-form { grid-template-columns: 1fr 1fr; }
+      .comparator-form .cmp-btn { grid-column: 1 / -1; }
       .compare-section { padding: 0 24px 60px; }
       .compare-table th, .compare-table td { padding: 12px 12px; font-size: 12px; }
     }
@@ -379,7 +545,10 @@
       .nav-links { display: none; }
       .page-header { padding: 110px 24px 48px; }
       .section-wrap { padding: 60px 24px; }
+      .guide-section, .comparator-section, .details-section { padding-left: 24px; padding-right: 24px; }
+      .faq-section { padding: 60px 24px; }
       .tier-invite-row { grid-template-columns: 1fr; }
+      .details-grid { grid-template-columns: 1fr; }
       footer { padding: 48px 24px 32px; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .footer-bottom { flex-direction: column; gap: 8px; }
@@ -388,34 +557,18 @@
     }
     @media (max-width: 560px) {
       .tiers { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .cmp-results { grid-template-columns: 1fr; }
+      .comparator-form { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .compare-table { font-size: 11px; }
     }
 
-    /* ─── SITEWIDE INTERACTIVE FEEL ─── */
-    .nav-pill,
-    .tier-cta,
-    .btn-calc {
-      will-change: transform;
-    }
-    .nav-pill { transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s cubic-bezier(.23,1,.32,1); }
-    .nav-pill:not(.cta):hover { transform: translateY(-1px); }
-    .nav-pill.cta:hover       { transform: translateY(-1px); }
-    .tier-cta:hover  { transform: translateY(-2px); }
-
-    .nav-pill:active,
-    .tier-cta:active,
-    .btn-calc:active {
-      transform: scale(0.95) translateY(1px) !important;
-      transition: transform 0.08s ease !important;
-    }
   </style>
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/scroll-motion.css">
 </head>
 <body>
-
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- NAV -->
   <nav id="mainNav">
     <a href="index.html" class="logo-wrap">
@@ -436,8 +589,37 @@
   <div class="page-header">
     <div class="page-eyebrow"><span class="page-eyebrow-line"></span>Membership<span class="page-eyebrow-line"></span></div>
     <h1 class="page-title">Pick Your <em>Tier</em></h1>
-    <p class="page-sub">A plan for every kind of shopper — from occasional buyer to power importer.</p>
+    <p class="page-sub">Everything you need to know — how membership works, what each tier costs, and how to pick the right plan.</p>
   </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="guide-section">
+    <div class="section-label reveal"><span class="section-label-line"></span>Start to finish</div>
+    <h2 class="section-heading reveal reveal-delay-1">How Shoppish <em>membership</em> works</h2>
+    <p class="section-lead reveal reveal-delay-2">From your first message to delivery in Pakistan — here is the full journey, no guesswork.</p>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Choose your tier</div>
+        <p class="step-desc">Start free (Tier 3) or upgrade to X, S, or Y for lower fees, better exchange rates, and premium perks like the Shoppish Card.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-title">Send your order</div>
+        <p class="step-desc">Share the product link, price, and weight on WhatsApp — or shop yourself with the Shoppish Card on Tier S and above.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-title">Pay upfront</div>
+        <p class="step-desc">100% payment is required before we confirm. Your landed cost includes checkout amount, service fee, carry charge, and any shipping you add.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <div class="step-title">Receive in Pakistan</div>
+        <p class="step-desc">We purchase, consolidate, and ship via third-party carriers. Typical delivery is 8–14 days — no guaranteed dates for urgent orders.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- TIERS -->
   <div class="tiers-wrap">
@@ -513,11 +695,143 @@
       </div>
 
       <p class="tier-disclaimer reveal reveal-delay-2">
-        <a href="https://shoppish.pk" target="_blank" rel="noopener">shoppish.pk</a> &nbsp;·&nbsp;
-        Rates indicative &amp; subject to change &nbsp;·&nbsp; T&amp;Cs apply
+        Rates indicative &amp; subject to change.
       </p>
     </div>
   </div>
+
+
+  <!-- TIER COST COMPARATOR -->
+  <section class="comparator-section" id="compare-cost">
+    <div class="comparator-inner">
+      <div class="section-label reveal"><span class="section-label-line"></span>Compare costs</div>
+      <h2 class="section-heading reveal reveal-delay-1">See what you'd pay on <em>each tier</em></h2>
+      <p class="section-lead reveal reveal-delay-2">Enter a sample order to compare estimated landed cost across all tiers.</p>
+      <div class="comparator-form reveal reveal-delay-2">
+        <div class="cmp-group">
+          <label for="cmpPrice">Product price (USD)</label>
+          <input type="number" id="cmpPrice" class="cmp-input" placeholder="e.g. 150" min="0.01" step="0.01">
+        </div>
+        <div class="cmp-group">
+          <label for="cmpWeight">Weight (kg)</label>
+          <input type="number" id="cmpWeight" class="cmp-input" placeholder="e.g. 1.5" min="0.01" step="0.1">
+        </div>
+        <div class="cmp-group">
+          <label for="cmpShipping">Shipping (USD, optional)</label>
+          <input type="number" id="cmpShipping" class="cmp-input" placeholder="Blank if none" min="0" step="0.01">
+        </div>
+        <button type="button" class="cmp-btn" id="cmpBtn">Compare tiers</button>
+      </div>
+      <p class="cmp-note reveal reveal-delay-2">Estimates only — not binding. Uses checkout amount (10.7%), service fee, carry (weight rounded up), and tier rate. <a href="calculator.html" style="color:var(--green)">Full calculator →</a></p>
+      <div class="cmp-results" id="cmpResults">
+        <div class="cmp-card" data-tier="free">
+          <div class="cmp-card-badge">Lowest</div>
+          <div class="cmp-tier-name">Free · Tier 3</div>
+          <div class="cmp-total" id="cmpTotalFree">—</div>
+          <div class="cmp-sub" id="cmpSubFree">—</div>
+          <div class="cmp-monthly">No monthly fee</div>
+        </div>
+        <div class="cmp-card" data-tier="x">
+          <div class="cmp-card-badge">Lowest</div>
+          <div class="cmp-tier-name">Tier X</div>
+          <div class="cmp-total" id="cmpTotalX">—</div>
+          <div class="cmp-sub" id="cmpSubX">—</div>
+          <div class="cmp-monthly">+$4.99/mo</div>
+        </div>
+        <div class="cmp-card" data-tier="s">
+          <div class="cmp-card-badge">Lowest</div>
+          <div class="cmp-tier-name">Tier S</div>
+          <div class="cmp-total" id="cmpTotalS">—</div>
+          <div class="cmp-sub" id="cmpSubS">—</div>
+          <div class="cmp-monthly">+$19.99/mo</div>
+        </div>
+        <div class="cmp-card" data-tier="y">
+          <div class="cmp-card-badge">Lowest</div>
+          <div class="cmp-tier-name">Tier Y</div>
+          <div class="cmp-total" id="cmpTotalY">—</div>
+          <div class="cmp-sub" id="cmpSubY">—</div>
+          <div class="cmp-monthly">+$49.99/mo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP & CARD DETAILS -->
+  <section class="details-section">
+    <div class="details-inner">
+      <div class="section-label reveal"><span class="section-label-line"></span>Membership details</div>
+      <h2 class="section-heading reveal reveal-delay-1">Shoppish Card &amp; <em>membership</em></h2>
+      <p class="section-lead reveal reveal-delay-2">Key details for members. Please review all policies before joining or placing orders.</p>
+      <div class="details-grid reveal reveal-delay-2">
+        <div class="detail-card">
+          <span class="launch-tag">Launch offer</span>
+          <h3>Membership pricing</h3>
+          <ul>
+            <li><strong>Launch rate:</strong> $36/month (active membership required)</li>
+            <li><strong>Regular rate:</strong> $100/month after launch period</li>
+            <li>Tier X, S, and Y have their own monthly fees — see tier cards above</li>
+            <li>Free tier (Tier 3) has no monthly subscription</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Shoppish Card</h3>
+          <ul>
+            <li><strong>Processing:</strong> $100 one-time (or 4 installments)</li>
+            <li><strong>First deposit:</strong> free</li>
+            <li><strong>After that:</strong> $5 per $250 (waived on $2,500 multiples)</li>
+            <li><strong>Overdraft:</strong> $35 fee if balance goes negative</li>
+            <li><strong>Inactivity:</strong> deactivates after 25 days (reactivation may apply)</li>
+            <li>Deposit fees apply to total account usage</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>What each tier includes</h3>
+          <ul>
+            <li><strong>Free:</strong> 15% fee · $25/kg · 295 rate</li>
+            <li><strong>Tier X:</strong> 10% fee · $22/kg · 290 rate</li>
+            <li><strong>Tier S:</strong> 8% fee · Shoppish Card · in-store shopping</li>
+            <li><strong>Tier Y:</strong> 6% fee · virtual card · Apple Pay · rate lock</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Ordering essentials</h3>
+          <ul>
+            <li>100% upfront payment before confirmation</li>
+            <li>No cancellations after order is confirmed</li>
+            <li>Refunds only when eligible — misuse may remove privilege</li>
+            <li>Third-party shipping — no guaranteed delivery dates</li>
+            <li>Do not place urgent or deadline-based orders</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-label reveal"><span class="section-label-line"></span>FAQ</div>
+    <h2 class="section-heading reveal reveal-delay-1">Common <em>questions</em></h2>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">Which tier should I pick? <span>+</span></div>
+      <div class="faq-a">Occasional shoppers: start on Free. Regular monthly orders: Tier X. Heavy shoppers and card users: Tier S or Y.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">Is the monthly fee included in the comparator? <span>+</span></div>
+      <div class="faq-a">Landed cost per order is shown; each card lists the tier monthly fee separately.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">What is checkout amount? <span>+</span></div>
+      <div class="faq-a">Product price plus checkout charges (10.7%), shown as one line.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">How is weight calculated? <span>+</span></div>
+      <div class="faq-a">Rounded up to the next whole kilogram for carry charges.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">Can I change tiers? <span>+</span></div>
+      <div class="faq-a">Yes — contact us on WhatsApp. Upgrades apply to new orders going forward.</div>
+    </div>
+  </section>
 
   <!-- COMPARISON TABLE -->
   <div class="compare-section">
@@ -658,35 +972,71 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Shoppish. All rights reserved.</p>
+        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms &amp; Conditions</a></span></p>
         <p>Made for Pakistani shoppers (PK)</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Cursor
-    const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    document.addEventListener('mousemove', e => {
-      cur.style.transform  = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-      ring.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-
-    // Nav scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
-    });
-
-    // Reveal on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const CMP_CHECKOUT = 0.107;
+    const CMP_TIERS = [
+      { id: 'free', monthly: 0, fee: 0.15, rate: 295, carry: 25 },
+      { id: 'x', monthly: 4.99, fee: 0.10, rate: 290, carry: 22 },
+      { id: 's', monthly: 19.99, fee: 0.08, rate: 288, carry: 21 },
+      { id: 'y', monthly: 49.99, fee: 0.06, rate: 285, carry: 20 },
+    ];
+
+    function cmpCalc(price, weight, shipping, tier) {
+      const checkout = price * (1 + CMP_CHECKOUT);
+      const fee = price * tier.fee;
+      const roundedKg = Math.ceil(weight);
+      const carryPKR = roundedKg * tier.carry * tier.rate;
+      const goodsPKR = (checkout + fee + shipping) * tier.rate;
+      return { totalPKR: goodsPKR + carryPKR, roundedKg, tier };
+    }
+
+    function runComparator() {
+      const price = parseFloat(document.getElementById('cmpPrice').value);
+      const weight = parseFloat(document.getElementById('cmpWeight').value);
+      const shipRaw = document.getElementById('cmpShipping').value.trim();
+      const shipping = shipRaw === '' ? 0 : Math.max(0, parseFloat(shipRaw) || 0);
+      if (!price || price <= 0 || !weight || weight <= 0) return;
+
+      let bestId = null, bestTotal = Infinity;
+      CMP_TIERS.forEach(t => {
+        const r = cmpCalc(price, weight, shipping, t);
+        const cap = t.id === 'free' ? 'Free' : t.id.toUpperCase();
+        const totalEl = document.getElementById('cmpTotal' + cap);
+        const subEl = document.getElementById('cmpSub' + cap);
+        if (totalEl) totalEl.textContent = 'PKR ' + Math.round(r.totalPKR).toLocaleString('en-PK');
+        if (subEl) subEl.textContent = r.roundedKg + ' kg · ' + Math.round(t.fee * 100) + '% fee';
+        if (r.totalPKR < bestTotal) { bestTotal = r.totalPKR; bestId = t.id; }
+      });
+
+      document.querySelectorAll('.cmp-card').forEach(c => {
+        c.classList.toggle('best', c.dataset.tier === bestId);
+      });
+      document.getElementById('cmpResults').classList.add('visible');
+    }
+
+    const cmpBtn = document.getElementById('cmpBtn');
+    if (cmpBtn) {
+      cmpBtn.addEventListener('click', runComparator);
+      ['cmpPrice', 'cmpWeight', 'cmpShipping'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') runComparator(); });
+      });
+    }
+
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+    });
   </script>
 
   <!-- PAGE TRANSITION -->
@@ -710,63 +1060,6 @@
       });
     })();
   </script>
-
-  <!-- ═══ SITEWIDE HOVER EXPERIENCE ═══ -->
-  <style>
-    .cursor { box-shadow: 0 0 10px rgba(0,198,94,1), 0 0 20px rgba(0,198,94,0.5); }
-    .cursor-ring {
-      transition: width 0.25s cubic-bezier(.23,1,.32,1), height 0.25s cubic-bezier(.23,1,.32,1),
-                  border-color 0.25s, background 0.25s, transform 0.06s linear;
-    }
-    .cursor-ring.hover { width: 64px; height: 64px; border-color: rgba(0,198,94,0.9); background: rgba(0,198,94,0.08); }
-    .cursor-ring.click { width: 24px; height: 24px; border-color: var(--green); background: rgba(0,198,94,0.2); transition: width 0.08s, height 0.08s; }
-
-    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap) { transition: color 0.2s ease; }
-    a:not(.nav-pill):not([class*="btn"]):not(.tier-cta):not(.logo-wrap):hover { color: var(--green); }
-    .footer-col li a { display:inline-block; transition: color 0.2s, transform 0.25s cubic-bezier(.23,1,.32,1) !important; }
-    .footer-col li a:hover { color: var(--green) !important; transform: translateX(5px) !important; }
-
-    .nav-pill:not(.cta):hover { transform: translateY(-2px) !important; }
-    .nav-pill.cta:hover  { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,198,94,0.4) !important; }
-    .tier-cta:hover      { transform: translateY(-4px) !important; box-shadow: 0 8px 24px rgba(0,198,94,0.25) !important; }
-    .tier { transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s !important; }
-    .tier:hover { transform: translateY(-8px) !important; box-shadow: 0 0 0 1px rgba(0,198,94,0.25), 0 28px 70px rgba(0,0,0,0.5) !important; }
-    .btn-calc:hover { transform: translateY(-4px) !important; box-shadow: 0 12px 32px rgba(0,198,94,0.4) !important; }
-  </style>
-
-  <script>
-    (function () {
-      var spot = document.createElement('div');
-      spot.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:0;transition:opacity 0.5s;';
-      document.body.appendChild(spot);
-      document.addEventListener('mousemove', function (e) {
-        spot.style.background = 'radial-gradient(700px circle at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(0,198,94,0.07), transparent 55%)';
-        spot.style.opacity = '1';
-      });
-      document.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
-
-      var ring = document.getElementById('cursorRing');
-      if (ring) {
-        document.addEventListener('mousedown', function () { ring.classList.add('click'); });
-        document.addEventListener('mouseup',   function () { ring.classList.remove('click'); });
-      }
-
-      document.querySelectorAll('.tier-cta,.nav-pill.cta,.btn-calc').forEach(function (btn) {
-        btn.addEventListener('mousemove', function (e) {
-          var r = btn.getBoundingClientRect();
-          var x = (e.clientX - r.left - r.width  / 2) * 0.22;
-          var y = (e.clientY - r.top  - r.height / 2) * 0.22;
-          btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-          btn.style.transition = 'transform 0.15s ease, box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mouseleave', function () {
-          btn.style.transform = '';
-          btn.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), box-shadow 0.25s, background 0.25s';
-        });
-        btn.addEventListener('mousedown', function () { btn.style.transform = 'scale(0.94)'; });
-        btn.addEventListener('mouseup',   function () { btn.style.transform = ''; });
-      });
-    })();
-  </script>
+  <script src="js/glass.js"></script>
 </body>
 </html>

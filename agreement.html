@@ -138,7 +138,12 @@
     .check-item label {
       font-size: 14px; color: var(--text-muted); line-height: 1.55; cursor: pointer;
     }
-    .check-item label a { font-weight: 500; white-space: nowrap; }
+    .check-item label a { font-weight: 500; }
+    .check-item.ack-master label {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
     .check-item.invalid label { color: var(--error); }
     .terms-meta {
       font-size: 11px; color: var(--text-faint); margin-bottom: 16px;
@@ -209,10 +214,11 @@
   <main class="page-wrap">
     <div class="page-eyebrow">Customer agreement</div>
     <h1 class="page-title">Shoppish Customer Agreement</h1>
-    <p class="page-sub">Confirm your details and accept the terms that apply to your order. You do not need to read the full document here — use the link in the first checkbox if you want the complete Terms &amp; Conditions.</p>
+    <p class="page-sub">Confirm your details and accept the Customer Terms for your order. You do not need to scroll through the full Terms here — use the link below to read them on shoppish.pk/terms.</p>
 
     <div class="notice-box">
-      <strong>Please read before proceeding:</strong> By submitting this form, you are electronically accepting the Shoppish Customer Terms &amp; Conditions. The full Terms are available at <a href="terms.html">shoppish.pk/terms</a>. Do not submit unless you understand and agree to them.
+      <strong>Please read before proceeding:</strong> By submitting this form, you electronically accept the Shoppish Customer Terms &amp; Conditions at <a href="terms.html">shoppish.pk/terms</a>.
+      <p style="margin-top:10px;font-size:13px;font-weight:400;color:var(--text-soft);line-height:1.55;"><strong>Returning customers:</strong> You do not need to complete this form for every order if you already accepted the same Terms version (see §19 in the Terms). Each new order you place after that acceptance still applies those Terms and the same risks — unless we ask you to sign again or the Terms change.</p>
     </div>
 
     <div id="successPanel" class="success-panel form-card" role="status">
@@ -230,7 +236,7 @@
       -->
       <div id="formError" class="form-error-banner" role="alert"></div>
 
-      <p class="terms-meta">Terms version <strong id="termsVersionLabel">1.0</strong> · Effective <strong>August 10, 2026</strong></p>
+      <p class="terms-meta">Terms version <strong id="termsVersionLabel">1.1</strong> · Effective <strong>August 10, 2026</strong></p>
 
       <div class="form-step">Step 1 — Your information</div>
 
@@ -256,44 +262,16 @@
         <input type="text" id="signature" name="electronic_signature" autocomplete="off" required>
       </div>
 
-      <div class="form-step">Step 2 — Mandatory acknowledgments</div>
+      <div class="form-step">Step 2 — Accept Terms</div>
 
       <ul class="check-list" id="ackList">
-        <li class="check-item">
-          <input type="checkbox" id="ack1" name="ack_terms" value="yes" required>
-          <label for="ack1">I have read and agree to the Shoppish Customer Terms &amp; Conditions. <a href="terms.html" target="_blank" rel="noopener">Read full Terms</a></label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack2" name="ack_timelines" value="yes" required>
-          <label for="ack2">I understand that delivery timelines are estimates and are not guaranteed unless specifically confirmed in writing.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack3" name="ack_third_parties" value="yes" required>
-          <label for="ack3">I understand that my order may involve independent third parties and that delays, loss, damage, customs issues, and additional charges may occur.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack4" name="ack_charges" value="yes" required>
-          <label for="ack4">I understand that additional packaging, local charges, customs duties, taxes, bulky/heavy/high-value item charges, or other applicable charges may apply.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack5" name="ack_time_sensitive" value="yes" required>
-          <label for="ack5">I understand that I should not place a time-sensitive order unless the required timeline has been specifically confirmed in writing.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack6" name="ack_replacement" value="yes" required>
-          <label for="ack6">I understand that a replacement may not always be available if my product becomes unavailable, lost, damaged, or otherwise cannot be supplied.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack7" name="ack_accurate" value="yes" required>
-          <label for="ack7">I confirm that the information I have provided is accurate.</label>
-        </li>
-        <li class="check-item">
-          <input type="checkbox" id="ack8" name="ack_authorize" value="yes" required>
-          <label for="ack8">I agree to the Shoppish Customer Terms &amp; Conditions and authorize Shoppish to proceed according to those Terms.</label>
+        <li class="check-item ack-master">
+          <input type="checkbox" id="ackMaster" name="ack_master_terms" value="yes" required>
+          <label for="ackMaster">I confirm that my information above is accurate. I have read, or have had a fair opportunity to read, the Shoppish Customer Terms &amp; Conditions (version shown above), including that Shoppish is a facilitation service; delivery dates are estimates unless confirmed in writing; third parties may handle transport; shipping involves risk; additional packaging, customs, duties, taxes, and other charges may apply; time-sensitive orders require written confirmation; and a replacement may not always be available. I agree to those Terms for this order and, as stated in the Terms, for my future orders while the same Terms version remains in effect. I authorize Shoppish to proceed according to those Terms. <a href="terms.html" target="_blank" rel="noopener">Read full Terms</a> · <a href="index.html#before-order" target="_blank" rel="noopener">Before you order</a></label>
         </li>
       </ul>
 
-      <input type="hidden" name="terms_version" id="termsVersionField" value="1.0">
+      <input type="hidden" name="terms_version" id="termsVersionField" value="1.1">
       <input type="hidden" name="terms_effective" value="2026-08-10">
       <input type="hidden" name="accepted_at_utc" id="acceptedAtField" value="">
       <input type="hidden" name="terms_url" value="https://www.shoppish.pk/terms">
@@ -312,7 +290,7 @@
       /** @type {string} Set your Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
       var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvkpkenw';
 
-      var TERMS_VERSION = '1.0';
+      var TERMS_VERSION = '1.1';
       var form = document.getElementById('agreementForm');
       var errorBanner = document.getElementById('formError');
       var successPanel = document.getElementById('successPanel');
@@ -353,7 +331,7 @@
           if (!cb.checked) valid = false;
         });
         if (!valid && !errorBanner.textContent) {
-          showError('Please complete all required fields and check every acknowledgment box.');
+          showError('Please complete all required fields and accept the Terms using the checkbox.');
         }
         return valid;
       }
@@ -372,7 +350,7 @@
         submitBtn.disabled = true;
 
         var payload = new FormData(form);
-        payload.append('acknowledgments_all', 'all_eight_accepted');
+        payload.append('acceptance_type', 'master_checkbox_v1.1');
 
         fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',

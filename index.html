@@ -27,6 +27,8 @@
 
   <!-- Theme -->
   <meta name="theme-color" content="#00c65e">
+  <link rel="canonical" href="https://shoppish.pk/">
+  <meta name="robots" content="index, follow">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVSSBKJ6D9"></script>
@@ -37,7 +39,10 @@
     gtag('config', 'G-HVSSBKJ6D9');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -732,23 +737,7 @@
     @keyframes sv5FadeIn { 0%,8%{opacity:0;} 20%,75%{opacity:1;} 88%,100%{opacity:0;} }
     @keyframes sv5SecureIn { 0%,55%{opacity:0;transform:scale(0.9);} 68%,85%{opacity:1;transform:scale(1);} 96%,100%{opacity:0;} }
 
-    /* sv7 — Tax Refund */
-    .sv7 { flex-direction:column; gap:0; padding:10px 14px; align-items:stretch; }
-    .sv7-title {
-      font-size:7px; letter-spacing:2px; text-transform:uppercase; color:#444;
-      margin-bottom:8px; opacity:0; animation:sv7FadeIn 3.5s infinite;
-    }
-    .sv7-rows { display:flex; flex-direction:column; gap:5px; }
-    .sv7-row {
-      display:flex; justify-content:space-between; align-items:center;
-      font-size:8px; opacity:0;
-    }
-    .sv7-row.r1 { animation:sv7FadeIn 3.5s 0.2s infinite; color:#666; }
-    .sv7-row.r2 { animation:sv7FadeIn 3.5s 0.4s infinite; color:#666; }
-    .sv7-row.r3 { animation:sv7FadeIn 3.5s 0.6s infinite; color:#e0e0e0; font-weight:600; border-top:1px solid rgba(255,255,255,0.06); padding-top:5px; margin-top:2px; }
-    .sv7-row.r4 { animation:sv7FadeIn 3.5s 1.4s infinite; color:#00c65e; font-weight:700; }
-    .sv7-row-val { font-variant-numeric:tabular-nums; }
-    @keyframes sv7FadeIn { 0%,5%{opacity:0;transform:translateX(-4px);} 18%,76%{opacity:1;transform:translateX(0);} 88%,100%{opacity:0;} }
+    /* sv7 removed: Tax refund feature no longer displayed sitewide */
 
 
     .service h3 {
@@ -2084,14 +2073,13 @@
       <div class="ticker-item"><span>Shoppish Card</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>In-Store Shopping</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>Pre-Orders</span><span class="ticker-dot"></span></div>
-      <div class="ticker-item"><span>Tax Refunds</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>USA to Pakistan</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>Personal Shopping</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>Consolidation</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>Shoppish Card</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>In-Store Shopping</span><span class="ticker-dot"></span></div>
       <div class="ticker-item"><span>Pre-Orders</span><span class="ticker-dot"></span></div>
-      <div class="ticker-item"><span>Tax Refunds</span><span class="ticker-dot"></span></div>
+      <!-- Tax Refunds removed from ticker -->
       <div class="ticker-item"><span>USA to Pakistan</span><span class="ticker-dot"></span></div>
     </div>
   </div>
@@ -2186,55 +2174,57 @@
       </div>
       <div class="section-title reveal reveal-delay-1" data-scroll>What We <em>Offer</em></div>
       <p class="section-sub reveal reveal-delay-2">Every way to shop America — we've got it covered.</p>
-      <div class="services-grid">
-        <div class="service reveal reveal-delay-1">
-          <div class="svc-scene sv1">
-            <img src="images/icons/personal-shopping.svg" class="svc-icon" alt="Personal Shopping">
-            <div class="svc-caption">We buy it for you — link to order, we handle the rest.</div>
+      <div class="process-flow services-flow">
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/services/personal-shopping.jpg" alt="Personal shopping — send a link, we buy and ship" width="900" height="675" loading="lazy" data-scroll="parallax-img">
           </div>
-          <h3>Personal Shopping</h3>
-          <p>Send us a link. We buy it, pack it, ship it. You just wait at the door.</p>
-        </div>
-        <div class="service reveal reveal-delay-2">
-          <div class="svc-scene sv2">
-            <img src="images/icons/consolidation.svg" class="svc-icon" alt="Consolidation">
-            <div class="svc-caption">Combine multiple parcels into one shipment to save.</div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-tag">Service</div>
+            <h3>Personal shopping</h3>
+            <p>Send us a link on WhatsApp. We buy it, pack it, and ship it to Pakistan — you just wait at the door.</p>
           </div>
-          <h3>Consolidation</h3>
-          <p>Order from 10 different stores. Pay shipping once. The math does the rest.</p>
-        </div>
-        <div class="service reveal reveal-delay-3">
-          <div class="svc-scene sv4">
-            <img src="images/icons/shoppish-card.svg" class="svc-icon" alt="Shoppish Card">
-            <div class="svc-caption">Virtual US debit card — pay at US checkout instantly.</div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/services/consolidation.jpg" alt="Multiple packages consolidated into one shipment" width="900" height="675" loading="lazy" data-scroll="parallax-img">
           </div>
-          <h3>Shoppish Card</h3>
-          <p>A US card in your pocket. Shop Nike, Amazon, Supreme — at the actual US price.</p>
-        </div>
-        <div class="service reveal reveal-delay-4">
-          <div class="svc-scene sv5">
-            <img src="images/icons/preorders.svg" class="svc-icon" alt="Pre-orders">
-            <div class="svc-caption">Reserve limited drops and secure your pair before they sell out.</div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-tag">Service</div>
+            <h3>Consolidation</h3>
+            <p>Order from multiple US stores and pay shipping once. We combine everything at our warehouse before it leaves.</p>
           </div>
-          <h3>Pre-Orders</h3>
-          <p>Limited drop. 3 pairs left. We already got yours.</p>
-        </div>
-        <div class="service reveal reveal-delay-5">
-          <div class="svc-scene sv3-scene">
-            <img src="images/icons/in-store.svg" class="svc-icon" alt="In-Store Shopping">
-            <div class="svc-caption">Our team shops in-person at US stores for rare finds.</div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/services/shoppish-card.jpg" alt="Shoppish Card virtual US debit card" width="900" height="675" loading="lazy" data-scroll="parallax-img">
           </div>
-          <h3>In-Store Shopping</h3>
-          <p>If it's not online, we walk in. Physically. In the US. For you.</p>
-        </div>
-        <div class="service reveal reveal-delay-6">
-          <div class="svc-scene sv7">
-            <img src="images/icons/tax-refund.svg" class="svc-icon" alt="Tax Refund">
-            <div class="svc-caption">We reclaim eligible US sales tax on qualifying orders.</div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-tag">Service</div>
+            <h3>Shoppish Card</h3>
+            <p>A virtual US debit card on Tier S and above. Shop Nike, Amazon, and Supreme at the actual US checkout price.</p>
           </div>
-          <h3>Bulk &amp; Tax Refunds</h3>
-          <p>We claim your US sales tax back. That's free money — we just get it for you.</p>
-        </div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/services/pre-orders.jpg" alt="Limited sneaker drop pre-order" width="900" height="675" loading="lazy" data-scroll="parallax-img">
+          </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-tag">Service</div>
+            <h3>Pre-orders</h3>
+            <p>Limited drops sell out fast. Tell us what you want before release — we secure it the moment it goes live.</p>
+          </div>
+        </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/services/in-store.jpg" alt="In-store shopping at a US retail location" width="900" height="675" loading="lazy" data-scroll="parallax-img">
+          </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-tag">Service</div>
+            <h3>In-store shopping</h3>
+            <p>If it's not online, we walk in. Our team shops in-person at US stores for items you can't get on a website.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -2263,7 +2253,7 @@
         </div>
         <div class="proof-card reveal reveal-delay-2">
           <div class="proof-stars">★★★★★</div>
-          <div class="proof-quote">"I bulk-ordered skincare from Sephora — 11 items. They consolidated everything, applied the tax refund, and I saved over $80. 100% worth it."</div>
+          <div class="proof-quote">"I bulk-ordered skincare from Sephora — 11 items. They consolidated everything and I saved over $80. 100% worth it."</div>
           <div class="proof-author">
             <div class="proof-avatar">S</div>
             <div>
@@ -2546,7 +2536,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms &amp; Conditions</a></span></p>
+        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms</a> · <a href="agreement.html">Customer Agreement</a></span></p>
         <p class="footer-flag">Made for Pakistani shoppers (PK)</p>
       </div>
     </div>
@@ -3017,7 +3007,7 @@ Membership Tiers:
 - Tier X — $4.99/month: 10% order fee, PKR 8,000/kg carry charge, ~290 exchange rate, exact weighing
 - Tier S — $19.99/month: 8% order fee, PKR 8,000/kg, ~288 rate, in-store, warehouse, dispute handling, Shoppish Card, 1 instalment device
 - Tier Y — $49.99/month: 6% order fee, PKR 8,000/kg, ~285 rate, all Tier S features + PAK Instock, virtual card, Apple Pay, USD rate lock, 0% events (occasionally)
-- Tier ! — By invite only: Best rates, lowest fees, US wholesaler purchase, free PAK delivery, discounted US delivery, monthly 0% events, tax returns
+- Tier ! — By invite only: Best rates, lowest fees, US wholesaler purchase, free PAK delivery, discounted US delivery, monthly 0% events
 
 Contact / Order:
 - WhatsApp: 03143442661 (primary way to place orders)

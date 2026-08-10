@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shoppish Customer Agreement — confirm your order details and accept the Customer Terms &amp; Conditions.">
+  <title>Customer Agreement — Shoppish</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVSSBKJ6D9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HVSSBKJ6D9');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green: #00c65e;
+      --bg: #080808;
+      --bg2: #121212;
+      --border: rgba(255,255,255,0.10);
+      --border-light: rgba(255,255,255,0.18);
+      --text: #ffffff;
+      --muted2: #b0b0b0;
+      --text-muted: #a0a0a0;
+      --text-faint: #888888;
+      --nav-bg: rgba(8,8,8,0.92);
+      --error: rgba(255,100,100,0.9);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f9f9f7; --bg2: #f2f2f0;
+        --border: rgba(0,0,0,0.10); --border-light: rgba(0,0,0,0.18);
+        --text: #0d0d0d; --muted2: #555; --text-muted: #666; --text-faint: #777;
+        --nav-bg: rgba(249,249,247,0.92);
+      }
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    a { color: var(--green); }
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      color: inherit; text-decoration: none;
+    }
+    .logo-text em { font-style: normal; color: var(--green); }
+    .nav-pill {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 9px 22px; border-radius: 100px;
+      background: var(--green); color: #000; text-decoration: none;
+    }
+    .page-wrap {
+      max-width: 640px; margin: 0 auto;
+      padding: 100px 24px 56px;
+    }
+    .page-eyebrow {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 12px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 300; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-sub {
+      font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.65;
+    }
+    .notice-box {
+      background: rgba(0,198,94,0.05);
+      border: 1px solid rgba(0,198,94,0.22);
+      border-radius: 12px; padding: 16px 18px; margin-bottom: 32px;
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+    }
+    .notice-box strong { color: var(--text); font-weight: 600; }
+    .form-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 26px 32px;
+    }
+    .form-step {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 18px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-step + .form-step { margin-top: 32px; }
+    .field { margin-bottom: 20px; }
+    .field label {
+      display: block;
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-faint); margin-bottom: 8px;
+    }
+    .field label .req { color: var(--green); margin-left: 2px; }
+    .field input[type="text"],
+    .field input[type="email"],
+    .field input[type="tel"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-light);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px rgba(0,198,94,0.15);
+    }
+    .field input.invalid { border-color: rgba(255,80,80,0.6); }
+    .field-hint { font-size: 12px; color: var(--text-faint); margin-top: 6px; }
+    .check-list { list-style: none; }
+    .check-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input {
+      width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+      accent-color: var(--green); cursor: pointer;
+    }
+    .check-item label {
+      font-size: 14px; color: var(--text-muted); line-height: 1.55; cursor: pointer;
+    }
+    .check-item label a { font-weight: 500; white-space: nowrap; }
+    .check-item.invalid label { color: var(--error); }
+    .terms-meta {
+      font-size: 11px; color: var(--text-faint); margin-bottom: 16px;
+    }
+    .submit-btn {
+      width: 100%; margin-top: 28px;
+      padding: 16px 24px;
+      border: none; border-radius: 100px;
+      background: var(--green); color: #000;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .submit-btn:hover { background: #00e06a; transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .form-error-banner {
+      display: none;
+      background: rgba(255,80,80,0.08);
+      border: 1px solid rgba(255,80,80,0.35);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px; color: var(--error);
+      margin-bottom: 16px;
+    }
+    .form-error-banner.show { display: block; }
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-panel.show { display: block; }
+    .success-panel h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 400; margin-bottom: 12px;
+    }
+    .success-panel p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+    .success-panel a.btn-link {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 11px; color: var(--text-faint);
+    }
+    .site-footer a { color: inherit; }
+    @media (max-width: 768px) {
+      .site-nav { padding: 0 16px; height: 60px; }
+      .page-wrap { padding: 88px 16px 40px; }
+      .form-card { padding: 22px 18px 28px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="canonical" href="https://www.shoppish.pk/agreement">
+</head>
+<body>
+  <header class="site-nav">
+    <a href="index.html" class="logo-text">SHOPP<em>I</em>SH</a>
+    <a href="terms.html" class="nav-pill" style="background:transparent;border:1px solid var(--border-light);color:var(--text);font-weight:500;">Full Terms</a>
+  </header>
+
+  <main class="page-wrap">
+    <div class="page-eyebrow">Customer agreement</div>
+    <h1 class="page-title">Shoppish Customer Agreement</h1>
+    <p class="page-sub">Confirm your details and accept the terms that apply to your order. You do not need to read the full document here — use the link in the first checkbox if you want the complete Terms &amp; Conditions.</p>
+
+    <div class="notice-box">
+      <strong>Please read before proceeding:</strong> By submitting this form, you are electronically accepting the Shoppish Customer Terms &amp; Conditions. The full Terms are available at <a href="terms.html">shoppish.pk/terms</a>. Do not submit unless you understand and agree to them.
+    </div>
+
+    <div id="successPanel" class="success-panel form-card" role="status">
+      <h2>Agreement received</h2>
+      <p>Thank you. Your acceptance has been recorded with the date, time, and Terms version shown below.</p>
+      <p id="successMeta" class="terms-meta"></p>
+      <a href="index.html" class="btn-link">Back to Shoppish</a>
+    </div>
+
+    <form id="agreementForm" class="form-card" novalidate>
+      <!--
+        BACKEND: Replace FORMSPREE_ENDPOINT in the script below with your Formspree form URL
+        (free at formspree.io), OR use a Google Form POST URL and map field names to entry.* IDs.
+        Submissions should store: name, contact, order #, signature, terms version, timestamp, and each acknowledgment.
+      -->
+      <div id="formError" class="form-error-banner" role="alert"></div>
+
+      <p class="terms-meta">Terms version <strong id="termsVersionLabel">1.0</strong> · Effective <strong>August 10, 2026</strong></p>
+
+      <div class="form-step">Step 1 — Your information</div>
+
+      <div class="field">
+        <label for="fullName">Full legal name <span class="req">*</span></label>
+        <input type="text" id="fullName" name="full_name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="phone">WhatsApp / phone <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="orderNumber">Order number <span class="req">*</span></label>
+        <input type="text" id="orderNumber" name="order_number" required>
+        <p class="field-hint">Use the order or invoice reference from Shoppish WhatsApp.</p>
+      </div>
+      <div class="field">
+        <label for="signature">Electronic signature (type your full name) <span class="req">*</span></label>
+        <input type="text" id="signature" name="electronic_signature" autocomplete="off" required>
+      </div>
+
+      <div class="form-step">Step 2 — Mandatory acknowledgments</div>
+
+      <ul class="check-list" id="ackList">
+        <li class="check-item">
+          <input type="checkbox" id="ack1" name="ack_terms" value="yes" required>
+          <label for="ack1">I have read and agree to the Shoppish Customer Terms &amp; Conditions. <a href="terms.html" target="_blank" rel="noopener">Read full Terms</a></label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack2" name="ack_timelines" value="yes" required>
+          <label for="ack2">I understand that delivery timelines are estimates and are not guaranteed unless specifically confirmed in writing.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack3" name="ack_third_parties" value="yes" required>
+          <label for="ack3">I understand that my order may involve independent third parties and that delays, loss, damage, customs issues, and additional charges may occur.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack4" name="ack_charges" value="yes" required>
+          <label for="ack4">I understand that additional packaging, local charges, customs duties, taxes, bulky/heavy/high-value item charges, or other applicable charges may apply.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack5" name="ack_time_sensitive" value="yes" required>
+          <label for="ack5">I understand that I should not place a time-sensitive order unless the required timeline has been specifically confirmed in writing.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack6" name="ack_replacement" value="yes" required>
+          <label for="ack6">I understand that a replacement may not always be available if my product becomes unavailable, lost, damaged, or otherwise cannot be supplied.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack7" name="ack_accurate" value="yes" required>
+          <label for="ack7">I confirm that the information I have provided is accurate.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ack8" name="ack_authorize" value="yes" required>
+          <label for="ack8">I agree to the Shoppish Customer Terms &amp; Conditions and authorize Shoppish to proceed according to those Terms.</label>
+        </li>
+      </ul>
+
+      <input type="hidden" name="terms_version" id="termsVersionField" value="1.0">
+      <input type="hidden" name="terms_effective" value="2026-08-10">
+      <input type="hidden" name="accepted_at_utc" id="acceptedAtField" value="">
+      <input type="hidden" name="terms_url" value="https://www.shoppish.pk/terms">
+      <input type="hidden" name="agreement_page" value="https://www.shoppish.pk/agreement">
+
+      <button type="submit" class="submit-btn" id="submitBtn">Submit &amp; accept</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Shoppish · <a href="terms.html">Customer Terms &amp; Conditions</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      /** @type {string} Set your Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
+      var FORMSPREE_ENDPOINT = '';
+
+      var TERMS_VERSION = '1.0';
+      var form = document.getElementById('agreementForm');
+      var errorBanner = document.getElementById('formError');
+      var successPanel = document.getElementById('successPanel');
+      var submitBtn = document.getElementById('submitBtn');
+
+      function showError(msg) {
+        errorBanner.textContent = msg;
+        errorBanner.classList.add('show');
+      }
+      function clearError() {
+        errorBanner.textContent = '';
+        errorBanner.classList.remove('show');
+      }
+
+      function validateForm() {
+        clearError();
+        var valid = true;
+        form.querySelectorAll('input[required]:not([type=checkbox])').forEach(function (el) {
+          el.classList.remove('invalid');
+          if (!el.value.trim()) {
+            el.classList.add('invalid');
+            valid = false;
+          }
+        });
+        if (document.getElementById('email').value && !document.getElementById('email').checkValidity()) {
+          document.getElementById('email').classList.add('invalid');
+          valid = false;
+        }
+        var sig = document.getElementById('signature').value.trim().toLowerCase();
+        var name = document.getElementById('fullName').value.trim().toLowerCase();
+        if (sig && name && sig !== name) {
+          showError('Your electronic signature must match your full legal name exactly.');
+          document.getElementById('signature').classList.add('invalid');
+          valid = false;
+        }
+        form.querySelectorAll('.check-item input[type=checkbox]').forEach(function (cb) {
+          cb.closest('.check-item').classList.toggle('invalid', !cb.checked);
+          if (!cb.checked) valid = false;
+        });
+        if (!valid && !errorBanner.textContent) {
+          showError('Please complete all required fields and check every acknowledgment box.');
+        }
+        return valid;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validateForm()) return;
+
+        if (!FORMSPREE_ENDPOINT) {
+          showError('Form storage is not configured yet. Add your Formspree or Google Form endpoint in agreement.html (see comment at top of the form), or contact Shoppish on WhatsApp to accept by message.');
+          return;
+        }
+
+        var acceptedAt = new Date().toISOString();
+        document.getElementById('acceptedAtField').value = acceptedAt;
+        submitBtn.disabled = true;
+
+        var payload = new FormData(form);
+        payload.append('acknowledgments_all', 'all_eight_accepted');
+
+        fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          body: payload,
+          headers: { Accept: 'application/json' }
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Submit failed');
+            form.style.display = 'none';
+            document.querySelector('.notice-box').style.display = 'none';
+            successPanel.classList.add('show');
+            document.getElementById('successMeta').textContent =
+              'Recorded at ' + acceptedAt + ' · Terms v' + TERMS_VERSION;
+            if (typeof gtag === 'function') {
+              gtag('event', 'customer_agreement_submit', { terms_version: TERMS_VERSION });
+            }
+          })
+          .catch(function () {
+            showError('Something went wrong submitting your agreement. Please try again or message us on WhatsApp.');
+            submitBtn.disabled = false;
+          });
+      });
+
+      form.querySelectorAll('input').forEach(function (el) {
+        el.addEventListener('input', clearError);
+        el.addEventListener('change', clearError);
+      });
+    })();
+  </script>
+  <script src="js/glass.js"></script>
+</body>
+</html>

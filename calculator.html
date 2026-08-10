@@ -489,19 +489,19 @@
         <div class="form-row form-row-4">
           <div class="form-group" style="margin-bottom:0;">
             <label class="form-label" for="taxRate">Tax %</label>
-            <input type="number" id="taxRate" class="form-input" value="10.7" min="0" step="0.1">
+            <input type="number" id="taxRate" class="form-input" placeholder="—" min="0" step="0.1">
           </div>
           <div class="form-group" style="margin-bottom:0;">
             <label class="form-label" for="feeRate">Service fee %</label>
-            <input type="number" id="feeRate" class="form-input" value="15" min="0" step="0.1">
+            <input type="number" id="feeRate" class="form-input" placeholder="—" min="0" step="0.1">
           </div>
           <div class="form-group" style="margin-bottom:0;">
             <label class="form-label" for="carryKg">Carry $/kg</label>
-            <input type="number" id="carryKg" class="form-input" value="25" min="0" step="0.01">
+            <input type="number" id="carryKg" class="form-input" value="18" min="0" step="0.01">
           </div>
           <div class="form-group" style="margin-bottom:0;">
             <label class="form-label" for="exRate">Rate PKR</label>
-            <input type="number" id="exRate" class="form-input" value="295" min="1" step="1">
+            <input type="number" id="exRate" class="form-input" value="280" min="1" step="1">
           </div>
         </div>
       </div>
@@ -585,7 +585,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms &amp; Conditions</a></span></p>
+        <p>© 2026 Shoppish. All rights reserved. <span class="legal-fine-print">· <a href="terms.html">Terms</a> · <a href="agreement.html">Customer Agreement</a></span></p>
         <p>Made for Pakistani shoppers (PK)</p>
       </div>
     </div>
@@ -668,10 +668,10 @@
       if (!weight || weight <= 0) { weightInput.classList.add('error'); weightErr.classList.add('show'); return; }
 
       const taxIncluded = document.getElementById('taxIncluded').checked;
-      const taxPct = num('taxRate', 10.7);
-      const feePct = num('feeRate', 15);
-      const carryKg = num('carryKg', 25);
-      const rate = num('exRate', 295);
+      const taxPct = num('taxRate', 0);
+      const feePct = num('feeRate', 0);
+      const carryKg = num('carryKg', 18);
+      const rate = num('exRate', 280);
       const shippingRaw = document.getElementById('shippingFee').value.trim();
       const shipping = shippingRaw === '' ? 0 : Math.max(0, parseFloat(shippingRaw) || 0);
 
@@ -710,10 +710,10 @@
       ['productPrice', 'productWeight', 'shippingFee', 'productLink'].forEach(id => {
         document.getElementById(id).value = '';
       });
-      document.getElementById('taxRate').value = '10.7';
-      document.getElementById('feeRate').value = '15';
-      document.getElementById('carryKg').value = '25';
-      document.getElementById('exRate').value = '295';
+      document.getElementById('taxRate').value = '';
+      document.getElementById('feeRate').value = '';
+      document.getElementById('carryKg').value = '18';
+      document.getElementById('exRate').value = '280';
       document.getElementById('taxIncluded').checked = false;
       syncTaxField();
       document.getElementById('resultCard').classList.remove('visible');

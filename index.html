@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoppish — Shop USA. Deliver Pakistan.</title>
+  <title>Shoppish — Shopping Made Simple</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23080808'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia%2C serif' font-size='20' font-weight='bold' fill='%2300c65e'%3ES%3C/text%3E%3C/svg%3E">
 
   <!-- SEO -->
-  <meta name="description" content="Shoppish — Shop any US store and get it delivered to Pakistan. Personal shopping, consolidation, Shoppish Card, in-store shopping and pre-orders. Join 5,000+ members.">
+  <meta name="description" content="Shoppish — Shopping made simple. Shop from around the world; we facilitate the purchase and help arrange delivery to Pakistan. Personal shopping, consolidation, Shoppish Card, and more.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Shoppish — Shop USA. Deliver Pakistan.">
-  <meta property="og:description" content="Your wishlist doesn't stop at borders. Ours doesn't either. Shop any US store — we handle everything.">
+  <meta property="og:title" content="Shoppish — Shopping Made Simple">
+  <meta property="og:description" content="Shop from around the world. Shoppish facilitates your purchase and helps arrange delivery to Pakistan — with clear terms before you order.">
   <meta property="og:url" content="https://shoppish.pk">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://shoppish.pk/og-image.jpg">
@@ -21,8 +21,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Shoppish — Shop USA. Deliver Pakistan.">
-  <meta name="twitter:description" content="Your wishlist doesn't stop at borders. Ours doesn't either.">
+  <meta name="twitter:title" content="Shoppish — Shopping Made Simple">
+  <meta name="twitter:description" content="We facilitate your purchase and help arrange delivery to Pakistan. Review our Customer Terms before ordering.">
   <meta name="twitter:image" content="https://shoppish.pk/og-image.jpg">
 
   <!-- Theme -->
@@ -287,6 +287,15 @@
       line-height: 1.75;
       opacity: 0;
       animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+    .hero-intro {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: -36px auto 52px;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.95s ease forwards;
     }
 
     .hero-actions {
@@ -1348,6 +1357,83 @@
       flex-shrink: 0;
     }
 
+    /* ─── BEFORE YOU ORDER ─── */
+    .order-notice-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .order-notice-card {
+      margin-top: 36px;
+      padding: 32px 36px 36px;
+      border: 1px solid rgba(255, 180, 0, 0.22);
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    @media (prefers-color-scheme: light) {
+      .order-notice-card { border-color: rgba(180, 120, 0, 0.28); }
+    }
+    .order-notice-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #e6a800;
+      margin-bottom: 16px;
+    }
+    .order-notice-kicker svg { flex-shrink: 0; opacity: 0.9; }
+    .order-notice-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .order-notice-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .order-notice-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+    .order-notice-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      opacity: 0.65;
+    }
+    .order-notice-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .order-notice-footer a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 640px) {
+      .order-notice-card { padding: 24px 20px 28px; }
+    }
+
     /* ─── FAQ ─── */
     .faq-section { background: var(--bg); border-top: 1px solid var(--border); }
     .faq-list { margin-top: 40px; border-top: 1px solid var(--border); }
@@ -1992,6 +2078,7 @@
   <div id="mobile-menu" aria-hidden="true">
     <ul class="mobile-menu-links">
       <li><a href="#how" class="mobile-link">Process</a></li>
+      <li><a href="#before-order" class="mobile-link">Before You Order</a></li>
       <li><a href="membership.html" class="mobile-link">Membership</a></li>
       <li><a href="calculator.html" class="mobile-link">Calc<em>u</em>lator</a></li>
     </ul>
@@ -2009,6 +2096,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#how">Process</a></li>
+      <li><a href="#before-order">Before You Order</a></li>
       <li><a href="membership.html">Membership</a></li>
       <li><a href="calculator.html">Calculator</a></li>
     </ul>
@@ -2030,10 +2118,10 @@
       Trusted by shoppers in Karachi, Lahore, Islamabad &amp; beyond
     </div>
     <h1>
-      <span class="line">Shop the USA.</span>
-      <span class="line"><em>Delivered</em> to Pakistan.</span>
+      <span class="line">Shopping Made <em>Simple</em></span>
     </h1>
-    <p class="hero-sub">Your wishlist doesn't stop at borders. Ours doesn't either.</p>
+    <p class="hero-sub">Shop from around the world. We facilitate the purchase and help arrange delivery to Pakistan.</p>
+    <p class="hero-intro">Shoppish is a shopping and shipping facilitation service. You provide the product you want, and we facilitate the purchase and arrangements required to get it to you.</p>
     <div class="hero-actions">
       <a href="#join" class="btn-primary">Start Shopping <span>→</span></a>
       <a href="#how" class="btn-secondary">How It Works</a>
@@ -2115,52 +2203,94 @@
         <span class="section-eyebrow">Process</span>
       </div>
       <div class="section-title reveal reveal-delay-1" data-scroll>How It <em>Works</em></div>
-      <p class="section-sub reveal reveal-delay-2">You wish it. We ship it. Simple as that.</p>
+      <p class="section-sub reveal reveal-delay-2">We facilitate your purchase and arrange the applicable delivery process.</p>
       <div class="process-flow">
         <article class="process-step">
           <div class="process-step-media" data-scroll="fade-scale">
-            <img src="images/process/step-1-whatsapp.jpg" alt="Person messaging a product link on WhatsApp" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+            <img src="images/process/step-1-whatsapp.jpg" alt="Person sharing a product link on WhatsApp" width="900" height="600" loading="lazy" data-scroll="parallax-img">
           </div>
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-number">01</div>
             <div class="step-tag">Step one</div>
-            <h3>Send the link</h3>
-            <p>Share any product link or name with us on WhatsApp. We confirm availability and quote your landed cost before you pay.</p>
+            <h3>Send us the product</h3>
+            <p>Share the product or website link with us on WhatsApp (or through your usual Shoppish channel).</p>
           </div>
         </article>
         <article class="process-step">
           <div class="process-step-media" data-scroll="fade-scale">
-            <img src="images/process/step-2-shop.jpg" alt="Shopping and purchasing from a US store" width="900" height="601" loading="lazy" data-scroll="parallax-img">
+            <img src="images/process/step-2-shop.jpg" alt="Reviewing order details and pricing" width="900" height="601" loading="lazy" data-scroll="parallax-img">
           </div>
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-number">02</div>
             <div class="step-tag">Step two</div>
-            <h3>We purchase it</h3>
-            <p>Our team buys your item from any US store or website — online or in-person — once you've paid upfront.</p>
+            <h3>Receive your total</h3>
+            <p>We’ll provide the applicable amount based on the order and available shipping arrangements. Calculator and website figures are estimates only.</p>
           </div>
         </article>
         <article class="process-step">
           <div class="process-step-media" data-scroll="fade-scale">
-            <img src="images/process/step-3-ship.jpg" alt="Packages being prepared for international shipping" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+            <img src="images/process/step-2-shop.jpg" alt="Confirming payment for an order" width="900" height="601" loading="lazy" data-scroll="parallax-img">
           </div>
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-number">03</div>
             <div class="step-tag">Step three</div>
-            <h3>We pack &amp; ship</h3>
-            <p>Your order is carefully packed at our US warehouse and shipped internationally via trusted carriers.</p>
+            <h3>Make the required payment</h3>
+            <p>Orders are processed according to the payment terms provided for your order. Full payment may be required before processing.</p>
           </div>
         </article>
         <article class="process-step">
           <div class="process-step-media" data-scroll="fade-scale">
-            <img src="images/process/step-4-deliver.jpg" alt="Package delivered to a doorstep" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+            <img src="images/process/step-3-ship.jpg" alt="Order in transit via third-party arrangements" width="900" height="600" loading="lazy" data-scroll="parallax-img">
           </div>
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-number">04</div>
             <div class="step-tag">Step four</div>
-            <h3>You receive it</h3>
-            <p>Delivered to your door in Pakistan. Tracked the whole way — you always know where your order is.</p>
+            <h3>Delivery arrangements</h3>
+            <p>Your order may be transported through independent travelers, couriers, carriers, vendors, or other third parties.</p>
           </div>
         </article>
+        <article class="process-step">
+          <div class="process-step-media" data-scroll="fade-scale">
+            <img src="images/process/step-4-deliver.jpg" alt="Customer receiving an order in Pakistan" width="900" height="600" loading="lazy" data-scroll="parallax-img">
+          </div>
+          <div class="process-step-copy" data-scroll="fade-up">
+            <div class="step-number">05</div>
+            <div class="step-tag">Step five</div>
+            <h3>Receive your order</h3>
+            <p>Delivery arrangements to Pakistan are available depending on the order and destination. Timelines may vary from order to order.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORTANT BEFORE ORDERING -->
+  <div class="order-notice-section" id="before-order">
+    <div class="section-wrap">
+      <div class="section-meta reveal">
+        <div class="section-meta-line"></div>
+        <span class="section-eyebrow">Important</span>
+      </div>
+      <div class="section-title reveal reveal-delay-1" data-scroll>Before You <em>Order</em></div>
+      <div class="order-notice-card reveal reveal-delay-2">
+        <div class="order-notice-kicker">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Please read before you order
+        </div>
+        <ul class="order-notice-list">
+          <li>Do not order time-sensitive items. If you need an item by a specific date, ask us before ordering. A specific delivery date should never be assumed unless expressly confirmed in writing.</li>
+          <li>Delivery timelines are estimates only. Delays, changes, or additional local handling may occur.</li>
+          <li>Shipping involves risk. Products may be subject to handling, transportation, storage, customs, or other circumstances during the journey.</li>
+          <li>Extra packaging is available where applicable and may be recommended for fragile, bulky, heavy, expensive, or delicate items. Additional charges may apply.</li>
+          <li>Additional charges may apply for packaging, boxes, bulky/heavy items, high-value items, local transportation, customs, duties, taxes, storage, or other applicable charges.</li>
+          <li>Avoid sending sentimental or irreplaceable items. If an item cannot be delivered, becomes unavailable, is damaged, or is otherwise affected during the process, an identical replacement may not be possible.</li>
+          <li>Customs and government charges are separate from the product price and may apply depending on the item and destination.</li>
+          <li>Products may be purchased from third-party retailers and websites. Their availability, policies, pricing, and fulfillment are outside Shoppish’s control.</li>
+          <li>Transportation may be handled by independent third parties. Their schedules, handling, policies, and operations may affect an order.</li>
+          <li>100% upfront payment may be required before an order is processed. If the required payment is not made when instructed, additional charges may apply if Shoppish proceeds with the order.</li>
+          <li>Please review the Shoppish Customer Terms &amp; Conditions before placing an order.</li>
+        </ul>
+        <p class="order-notice-footer">By placing an order, you acknowledge and agree to the applicable Shoppish Terms &amp; Conditions — including the full <a href="terms.html">Customer Terms</a> and, where requested, the <a href="agreement.html">Customer Agreement</a>.</p>
       </div>
     </div>
   </div>
@@ -2173,7 +2303,7 @@
         <span class="section-eyebrow">Services</span>
       </div>
       <div class="section-title reveal reveal-delay-1" data-scroll>What We <em>Offer</em></div>
-      <p class="section-sub reveal reveal-delay-2">Every way to shop America — we've got it covered.</p>
+      <p class="section-sub reveal reveal-delay-2">Every way to shop internationally — facilitation, not promises.</p>
       <div class="process-flow services-flow">
         <article class="process-step">
           <div class="process-step-media" data-scroll="fade-scale">
@@ -2182,7 +2312,7 @@
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-tag">Service</div>
             <h3>Personal shopping</h3>
-            <p>Send us a link on WhatsApp. We buy it, pack it, and ship it to Pakistan — you just wait at the door.</p>
+            <p>Send us a link on WhatsApp. We facilitate your purchase and arrange the applicable delivery process to Pakistan.</p>
           </div>
         </article>
         <article class="process-step">
@@ -2192,7 +2322,7 @@
           <div class="process-step-copy" data-scroll="fade-up">
             <div class="step-tag">Service</div>
             <h3>Consolidation</h3>
-            <p>Order from multiple US stores and pay shipping once. We combine everything at our warehouse before it leaves.</p>
+            <p>Order from multiple stores and pay shipping once where consolidation applies. We combine items before arranging transport through third parties.</p>
           </div>
         </article>
         <article class="process-step">
@@ -2241,7 +2371,7 @@
       <div class="proof-grid">
         <div class="proof-card reveal reveal-delay-1">
           <div class="proof-stars">★★★★★</div>
-          <div class="proof-quote">"Ordered Yeezys from StockX — got them in 12 days. The process was so smooth I didn't even have to think about it. Shoppish handled everything."</div>
+          <div class="proof-quote">"Ordered Yeezys from StockX through Shoppish — the process was smooth and they kept me updated on WhatsApp. Facilitation without the hassle of doing it myself."</div>
           <div class="proof-author">
             <div class="proof-avatar">A</div>
             <div>
@@ -2284,7 +2414,7 @@
     <div class="wa-cta-inner reveal">
       <div class="wa-cta-text">
         <h3>Your first order is one<br><em>message away.</em></h3>
-        <p>Drop us a link on WhatsApp. We'll handle everything else.</p>
+        <p>Share a product link on WhatsApp. We’ll quote the applicable amount and explain next steps.</p>
       </div>
       <a href="https://wa.me/923143442661?utm_source=website&utm_medium=cta_band&utm_campaign=whatsapp" target="_blank" rel="noopener" class="btn-whatsapp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -2309,7 +2439,7 @@
             <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer" role="region">
-            <div class="faq-answer-inner">Typically 8–14 days from purchase to your door in Pakistan. Express options are available for Tier S and above.</div>
+            <div class="faq-answer-inner">Delivery timelines vary by order and are estimates only. Do not assume a specific delivery date unless expressly confirmed in writing on WhatsApp. Time-sensitive orders should be discussed before you pay.</div>
           </div>
         </div>
 
@@ -2319,7 +2449,7 @@
             <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer" role="region">
-            <div class="faq-answer-inner">You pay us directly via bank transfer or your preferred method after we confirm your order and final cost. No upfront payment until you approve the quote.</div>
+            <div class="faq-answer-inner">We confirm your total on WhatsApp before processing. Payment terms depend on your order — full upfront payment may be required before Shoppish proceeds. Do not pay until you approve the quoted amount.</div>
           </div>
         </div>
 
@@ -2339,7 +2469,7 @@
             <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer" role="region">
-            <div class="faq-answer-inner">We photograph every item before shipping. Tier S and above members get full dispute handling support. All shipments are insured.</div>
+            <div class="faq-answer-inner">Transit and handling involve third parties and inherent risk. Outcomes depend on the item, retailer, and circumstances — an identical replacement may not always be possible. See our <a href="terms.html">Customer Terms</a> and contact us on WhatsApp to discuss a specific order.</div>
           </div>
         </div>
 
@@ -2349,7 +2479,7 @@
             <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer" role="region">
-            <div class="faq-answer-inner">You receive tracking updates directly on WhatsApp at every stage — purchased, packed, shipped, and delivered.</div>
+            <div class="faq-answer-inner">Updates may be shared on WhatsApp when available. Tracking and status information from third parties can be incomplete, delayed, or unavailable — we do not represent that every order is tracked end-to-end.</div>
           </div>
         </div>
 
@@ -2482,7 +2612,7 @@
       </div>
       <div class="trust-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Fast Delivery
+        Facilitation Service
       </div>
       <div class="trust-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2501,7 +2631,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-brand-name">SHOPP<em>I</em>SH</div>
-          <p>Everything America has. Delivered to your door in Pakistan.</p>
+          <p>Shop from around the world. We facilitate purchases and help arrange delivery to Pakistan.</p>
         </div>
         <div class="footer-col">
           <h5>Services</h5>
@@ -2996,18 +3126,24 @@
     })();
 
     // ─── CHAT WIDGET ───
-    const SHOPPISH_SYSTEM = `You are the Shoppish AI assistant — a friendly, knowledgeable helper for Shoppish, a US-to-Pakistan personal shopping service.
+    const SHOPPISH_SYSTEM = `You are the Shoppish AI assistant — a friendly, knowledgeable helper for Shoppish, a shopping and shipping facilitation service for customers in Pakistan.
+
+Positioning (important — do not contradict):
+- Shoppish facilitates the customer's purchase and helps arrange applicable transportation/delivery. Shoppish is NOT the manufacturer, retailer, carrier, courier, customs authority, or guarantor of delivery dates.
+- Do NOT promise guaranteed delivery dates, door delivery timelines (e.g. "8–14 days"), full tracking, insurance on all shipments, customs clearance, or automatic replacements.
+- Delivery timelines are estimates unless expressly confirmed in writing. Third parties may handle transport.
+- Direct customers to read Customer Terms at shoppish.pk/terms and the Customer Agreement at shoppish.pk/agreement when relevant.
 
 About Shoppish:
-- We help Pakistanis buy anything from US stores and get it delivered to Pakistan.
-- Services: Personal Shopping (we buy for you), Consolidation (ship multiple items together), Shoppish Card (virtual US card for self-checkout), In-Store Shopping (physical US mall visits), Pre-Orders (limited drops, releases).
+- Customers share product links; Shoppish facilitates buying from US and other international stores and arranges delivery to Pakistan where applicable.
+- Services: Personal Shopping, Consolidation, Shoppish Card (virtual US card), In-Store Shopping, Pre-Orders.
 
 Membership Tiers:
 - Tier 3 — Free: 15% order fee, PKR 8,000/kg carry charge, 295 exchange rate, roundup weighing
 - Tier X — $4.99/month: 10% order fee, PKR 8,000/kg carry charge, ~290 exchange rate, exact weighing
-- Tier S — $19.99/month: 8% order fee, PKR 8,000/kg, ~288 rate, in-store, warehouse, dispute handling, Shoppish Card, 1 instalment device
-- Tier Y — $49.99/month: 6% order fee, PKR 8,000/kg, ~285 rate, all Tier S features + PAK Instock, virtual card, Apple Pay, USD rate lock, 0% events (occasionally)
-- Tier ! — By invite only: Best rates, lowest fees, US wholesaler purchase, free PAK delivery, discounted US delivery, monthly 0% events
+- Tier S — $19.99/month: 8% order fee, PKR 8,000/kg, ~288 rate, in-store, Shoppish Card, dispute handling support where applicable
+- Tier Y — $49.99/month: 6% order fee, PKR 8,000/kg, ~285 rate, Tier S features + PAK Instock, virtual card, Apple Pay, USD rate lock
+- Tier ! — By invite only: best rates for invited members
 
 Contact / Order:
 - WhatsApp: 03143442661 (primary way to place orders)
@@ -3017,7 +3153,7 @@ Contact / Order:
 Guidelines:
 - Keep answers concise and helpful.
 - For placing orders, always direct to WhatsApp: https://wa.me/923143442661
-- If asked about pricing for a specific product, explain that final cost depends on product price + US sales tax + shipping + service fee, and they should ask on WhatsApp for a quote.
+- Pricing on the website calculator is estimates only; final totals are confirmed on WhatsApp.
 - Be warm, professional, and use simple English.
 - Do not make up policies or prices not listed above.`;
 

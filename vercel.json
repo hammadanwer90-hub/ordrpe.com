@@ -3,12 +3,7 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "shoppish.pk"
-        }
-      ],
+      "has": [{ "type": "host", "value": "shoppish.pk" }],
       "destination": "https://www.shoppish.pk/$1",
       "permanent": true
     }
